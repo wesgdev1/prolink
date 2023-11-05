@@ -3,19 +3,31 @@ import { ButtonHome, CaptionStyled } from "./StyledComponents";
 
 export const Carrousel = () => {
   return (
-    <Carousel>
+    <Carousel className="pt-5 mt-5 pb-2">
       <Carousel.Item>
         <img
-          style={{ width: "10%" }}
+          style={{ width: "100%" }}
           className="d-block w-100"
           src="https://res.cloudinary.com/db9nfgjqr/image/upload/v1698877962/top_sb6rkf.jpg"
           alt="First slide"
         />
         <CaptionStyled>
-          <p className="fs-2">CONECTANDO MUNDOS</p>
+          <p>CONECTANDO MUNDOS</p>
           <ButtonHome>SERVICIOS</ButtonHome>
         </CaptionStyled>
       </Carousel.Item>
+      <Carousel.Item>
+        <img
+          style={{ width: "10%" }}
+          className="d-block w-100"
+          src="https://res.cloudinary.com/db9nfgjqr/image/upload/v1699069305/Dise%C3%B1o_sin_t%C3%ADtulo_10_p30azn.png"
+          alt="First slide"
+        />
+        <CaptionStyled>
+          <ButtonHome>Paga tu factura</ButtonHome>
+        </CaptionStyled>
+      </Carousel.Item>
+
       {/* <Carousel.Item>
         <img
           className="d-block w-100"

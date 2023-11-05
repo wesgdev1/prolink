@@ -7,11 +7,14 @@ import "./theme/custom.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./theme/index.css";
 import theme from "./theme/index.js";
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );

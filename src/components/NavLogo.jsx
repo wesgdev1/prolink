@@ -1,15 +1,16 @@
 export const NavLogo = () => {
   return (
-    <img
-      style={{ width: "30%", height: "auto", maxWidth: "400px" }}
-      src="https://res.cloudinary.com/db9nfgjqr/image/upload/v1698873285/PROLINK_LOGO_pauqtg.png"
-      alt="logo"
-    />
+    <div className="d-flex align-items-center gap-4">
+      <img
+        style={{ width: "70px", height: "auto" }}
+        src="https://res.cloudinary.com/db9nfgjqr/image/upload/v1699064959/PROLINK_ICONO_vavly5.png"
+        alt="logo"
+      />
+      <img
+        style={{ width: "50%", height: "100%" }}
+        src="https://res.cloudinary.com/db9nfgjqr/image/upload/v1699064959/LETRA_COLOR_zpgisz.png"
+        alt="logo"
+      />
+    </div>
   );
 };
-
-// const LogoStyled = styled("img")(() => ({
-//   width: "100%",
-//   height: "auto",
-//   maxWidth: "400px",
-// }));

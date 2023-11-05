@@ -1,6 +1,12 @@
-import React from "react";
-import { Button, Col, Container, Nav, Row } from "react-bootstrap";
+import { Col, Container, Nav, Row } from "react-bootstrap";
 import { NavLogo } from "./NavLogo";
+import { NavLink } from "react-router-dom";
+import {
+  ContainerVacioStyled,
+  ConteinerNavStyled,
+  NavLinkStyled,
+  NavLinkStyledLogin,
+} from "./StyledComponents";
 
 export const NavComponent = () => {
   const navItems = [
@@ -9,35 +15,25 @@ export const NavComponent = () => {
     { name: "Servicios", url: "/servicios" },
     { name: "Contacto", url: "/contacto" },
   ];
+
   return (
     <>
-      <Container
-        fluid
-        className="pt-5 pb-4"
-        style={{ backgroundColor: "#000000" }}
-      >
+      <ConteinerNavStyled fluid className="pt-3 pb-4">
         <Row>
-          <Col className md={3}>
+          <Col xs={4} className md={3}>
             <NavLogo />
           </Col>
           <Col
             className="d-flex align-items-center justify-content-center "
             md={6}
+            xs={3}
           >
             <nav>
-              <Nav activeKey="/home" className="d-flex justify-content-center">
-                <Nav.Item>
-                  <Nav.Link href="/home">Inicio</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="link-1">Blog</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="link-2">Servicios</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="link-2">Contacto</Nav.Link>
-                </Nav.Item>
+              <Nav className="d-flex justify-content-center gap-4">
+                <NavLinkStyled to="/home">Inicio</NavLinkStyled>
+                <NavLinkStyled to="/blogs">Blog</NavLinkStyled>
+                <NavLinkStyled to="/servicios">Servicios</NavLinkStyled>
+                <NavLinkStyled to="/contacto">Contacto</NavLinkStyled>
               </Nav>
             </nav>
           </Col>
@@ -45,11 +41,21 @@ export const NavComponent = () => {
             style={{ color: "#71bbfb" }}
             className=" d-flex justify-content-end align-items-center"
             md={3}
+            xs={5}
           >
-            <p>Iniciar sesion | Registrarse</p>
+            <nav>
+              <Nav className="d-flex justify-content-center">
+                <NavLinkStyledLogin to="/login" className="nav-link">
+                  Iniciar Sesión
+                </NavLinkStyledLogin>
+                <NavLinkStyledLogin to="/signUp" className="nav-link">
+                  Registrarse
+                </NavLinkStyledLogin>
+              </Nav>
+            </nav>
           </Col>
         </Row>
-      </Container>
+      </ConteinerNavStyled>
     </>
   );
 };
