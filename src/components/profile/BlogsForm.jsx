@@ -8,12 +8,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, ErrorMessage } from "formik";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { z } from "zod";
-import { Button } from "react-bootstrap";
-import {
-  ButtonStyled,
-  MainConteiner,
-  NavLinkStyledRegister,
-} from "../components/StyledComponents";
+
+import { MainConteiner } from "../../components/blog/StyledComponentsBlog";
+import { ButtonStyled } from "../StyledComponents";
 
 const emailRqd = z.string({
   required_error: "El correo es requerido",
@@ -31,7 +28,7 @@ const singUpSchema = z.object({
     .max(16, "La contraseña debe tener máximo 16 caracteres"),
 });
 
-export function Login() {
+export const BlogsForm = () => {
   const navigate = useNavigate();
 
   const [error, setError] = useState(false);
@@ -50,9 +47,9 @@ export function Login() {
     await onLogin(values);
     setSubmitting(false);
   };
+
   return (
-    <MainConteiner className="img-fluid pt-5">
-      {/* <h1 className="">Iniciar sesion</h1> */}
+    <MainConteiner>
       <div className="login d-flex row w-50 bg-white">
         <div className="login__contenedor">
           {error && (
@@ -83,32 +80,20 @@ export function Login() {
             }) => (
               <>
                 <Form
-                  className="Form_login my-5 d-flex flex-column gap-2 "
+                  className="d-flex flex-column gap-2 "
                   onSubmit={handleSubmit}
                 >
-                  <div className="d-flex justify-content-center flex-column align-items-center gap-2">
-                    <img
-                      style={{ width: "10%", height: "auto" }}
-                      src="https://res.cloudinary.com/db9nfgjqr/image/upload/v1698873285/PROLINK_LOGO_pauqtg.png"
-                      alt="logo"
-                    ></img>
-
-                    <h2>Iniciar sesion</h2>
-                    <p>
-                      Ingrese las credenciales para acceder a la aplicacion.
-                    </p>
-                  </div>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Correo Electrónico</Form.Label>
+                    <Form.Label>Titulo del Blog</Form.Label>
                     <Form.Control
-                      type="email"
-                      placeholder="Ingrese su correo"
-                      name="email"
+                      type="text"
+                      placeholder="Ingrese el titulo"
+                      name="title"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.email}
+                      value={values.title}
                       className={
-                        touched.email && errors.email ? "is-invalid" : ""
+                        touched.title && errors.title ? "is-invalid" : ""
                       }
                     />
                     <ErrorMessage
@@ -117,24 +102,25 @@ export function Login() {
                       className="invalid-feedback"
                     />
                     <Form.Text className="text-muted">
-                      Nosotros nunca compartiremos su correo con nadie más.
+                      Elige un titulo Cool.
                     </Form.Text>
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Contraseña</Form.Label>
+                    <Form.Label>Contenido</Form.Label>
                     <Form.Control
-                      type="password"
+                      as="textarea"
+                      rows={4}
                       placeholder="Ingrese su contraseña"
-                      name="password"
+                      name="content"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.password}
+                      value={values.content}
                       className={
-                        touched.password && errors.password ? "is-invalid" : ""
+                        touched.content && errors.content ? "is-invalid" : ""
                       }
                     />
                     <ErrorMessage
-                      name="password"
+                      name="content"
                       component="div"
                       className="invalid-feedback"
                     />
@@ -142,15 +128,7 @@ export function Login() {
                   <Form.Group
                     className="mb-3 d-flex justify-content-between"
                     controlId="formBasicCheckbox"
-                  >
-                    <Form.Check type="checkbox" label="Recuerdáme" />
-                    <NavLink
-                      to={"/Recoverypassword"}
-                      style={{ textDecoration: "none", color: "darkblue" }}
-                    >
-                      ¿Olvidaste tu Constraseña?
-                    </NavLink>
-                  </Form.Group>
+                  ></Form.Group>
                   <div className="d-flex justify-content-center">
                     <ButtonStyled
                       variant="primary"
@@ -159,7 +137,7 @@ export function Login() {
                       disabled={isSubmitting}
                     >
                       {!isSubmitting ? (
-                        "Iniciar Sesión"
+                        "CREAR BLOG"
                       ) : (
                         <Spinner
                           as="span"
@@ -170,23 +148,6 @@ export function Login() {
                       )}
                     </ButtonStyled>
                   </div>
-                  <div className="d-flex gap-1 mt-2 justify-content-center">
-                    <label>¿No tienes un usuario?</label>
-                    <NavLink
-                      style={{ textDecoration: "none", color: "darkblue" }}
-                      to={"/profile"}
-                    >
-                      Registrate
-                    </NavLink>
-                  </div>
-                  <div className="d-flex gap-1 mt-2 justify-content-center">
-                    <NavLink
-                      style={{ textDecoration: "none", color: "darkblue" }}
-                      to={"/home"}
-                    >
-                      Volver al Inicio
-                    </NavLink>
-                  </div>
                 </Form>
               </>
             )}
@@ -195,4 +156,4 @@ export function Login() {
       </div>
     </MainConteiner>
   );
-}
+};

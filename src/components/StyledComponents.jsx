@@ -110,3 +110,39 @@ export const FooterContainer = styled("div")(({ theme }) => ({
   color: "white",
   paddingBottom: "3rem",
 }));
+
+export const ButtonWhatsappStyled = styled(Button)(({ theme }) => ({
+  width: "40%",
+
+  backgroundColor: theme.colors.mainColor,
+  borderColor: "white",
+  color: "white",
+  position: "fixed",
+  bottom: "2%",
+  right: "2%",
+
+  "&:hover": {
+    backgroundColor: theme.colors.secondaryColor,
+    borderColor: theme.colors.secondayColor,
+  },
+}));
+
+export const IconStyled = styled("a")(({ theme }) => ({
+  backgroundColor: "green",
+  color: "white",
+  borderRadius: "50%",
+  width: "100px",
+  lineHeight: "100px",
+  position: "fixed",
+  bottom: "2%",
+  right: "2%",
+  textAlign: "center",
+  fontSize: "2rem",
+  boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+  zIndex: 100,
+  "&:hover": {
+    textDecoration: "none",
+    color: "green",
+    backgroundColor: "white",
+  },
+}));

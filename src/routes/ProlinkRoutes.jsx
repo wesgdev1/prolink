@@ -14,7 +14,7 @@ export const ProlinkRoutes = () => {
         <Route path="/*" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blogs/:id" element={<BlogDeatil />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/*" element={<Profile />} />
       </Routes>
       <footer>
         <Footer />
