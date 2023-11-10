@@ -1,26 +1,19 @@
-import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Alert, Button, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+
+import { useBlogs } from "../../domain/useBlogs";
 
 export const Blogs = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  const { data, loading, error } = useBlogs();
   const handleClick = () => {
     navigate("/profile/blogs/add");
   };
 
-  async function cargarBlogs() {
-    const response = await fetch("http://localhost:3000/api/v1/blogs");
-    const data = await response.json();
-    setData(data.data);
-  }
-
-  useEffect(() => {
-    cargarBlogs();
-  }, []);
-
   return (
     <div>
+      {loading && <Spinner animation="border" variant="primary" />}
+      {error && <Alert variant="danger">{error}</Alert>}
       {data.map((blog) => {
         return (
           <div key={blog.id}>

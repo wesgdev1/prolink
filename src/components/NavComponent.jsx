@@ -1,12 +1,14 @@
-import { Col, Container, Nav, Row } from "react-bootstrap";
+import { Button, Col, Container, Nav, Row } from "react-bootstrap";
 import { NavLogo } from "./NavLogo";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import {
   ContainerVacioStyled,
   ConteinerNavStyled,
   NavLinkStyled,
   NavLinkStyledLogin,
 } from "./StyledComponents";
+import { useContext } from "react";
+import { AuthContext } from "../auth/context/AuthContext";
 
 export const NavComponent = () => {
   const navItems = [
@@ -15,6 +17,14 @@ export const NavComponent = () => {
     { name: "Servicios", url: "/servicios" },
     { name: "Contacto", url: "/contacto" },
   ];
+
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/home");
+  };
 
   return (
     <>
@@ -43,16 +53,27 @@ export const NavComponent = () => {
             md={3}
             xs={5}
           >
-            <nav>
-              <Nav className="d-flex justify-content-center">
-                <NavLinkStyledLogin to="/login" className="nav-link">
-                  Iniciar Sesión
+            {user ? (
+              <>
+                <NavLinkStyledLogin to="/profile" className="nav-link">
+                  Perfil
                 </NavLinkStyledLogin>
-                <NavLinkStyledLogin to="/signUp" className="nav-link">
-                  Registrarse
-                </NavLinkStyledLogin>
-              </Nav>
-            </nav>
+                <Button onClick={handleLogout} className="nav-link ms-4">
+                  Cerrar sesion
+                </Button>
+              </>
+            ) : (
+              <nav>
+                <Nav className="d-flex justify-content-center">
+                  <NavLinkStyledLogin to="/login" className="nav-link">
+                    Iniciar Sesión
+                  </NavLinkStyledLogin>
+                  <NavLinkStyledLogin to="/signUp" className="nav-link">
+                    Registrarse
+                  </NavLinkStyledLogin>
+                </Nav>
+              </nav>
+            )}
           </Col>
         </Row>
       </ConteinerNavStyled>

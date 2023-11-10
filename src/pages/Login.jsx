@@ -1,5 +1,5 @@
 import Alert from "react-bootstrap/Alert";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
@@ -14,6 +14,9 @@ import {
   MainConteiner,
   NavLinkStyledRegister,
 } from "../components/StyledComponents";
+import { AuthContext } from "../auth/context/AuthContext";
+import { signIn } from "../api/auth";
+import { setSession } from "../api/sessions";
 
 const emailRqd = z.string({
   required_error: "El correo es requerido",
@@ -32,21 +35,39 @@ const singUpSchema = z.object({
 });
 
 export function Login() {
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onLogin = async (formData) => {};
+  // const onLogin = async (formData) => {};
   const initialValues = {
     email: "",
     password: "",
   };
 
+  // llamado al ApiAgent
+
+  const onLogin = async (formData) => {
+    const response = await signIn(formData);
+
+    const { data, meta } = response;
+
+    login(data);
+    setSession(meta.token);
+
+    navigate("/profile", { replace: true });
+  };
+
+  // manejador del submit
+
   const onSubmit = async (values, { setSubmitting }) => {
+    // navigate("/profile");
+    // console.log(values);
+    // console.log(login);
+    // login({ user: { ...values } });
     setSubmitting(true);
-    setError(false);
-    setErrorMessage("");
     await onLogin(values);
     setSubmitting(false);
   };
@@ -67,9 +88,7 @@ export function Login() {
 
           <Formik
             initialValues={initialValues}
-            onSubmit={async (values, { setSubmitting }) => {
-              navigate("/profile");
-            }}
+            onSubmit={onSubmit}
             validationSchema={toFormikValidationSchema(singUpSchema)}
           >
             {({

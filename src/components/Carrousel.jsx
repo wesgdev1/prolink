@@ -1,7 +1,14 @@
 import { Button, Carousel } from "react-bootstrap";
 import { ButtonHome, CaptionStyled } from "./StyledComponents";
+import { useNavigate } from "react-router-dom";
 
 export const Carrousel = () => {
+  const navigate = useNavigate();
+
+  const handleClickFactura = () => {
+    navigate("/facturas");
+  };
+
   return (
     <Carousel className="pt-5 mt-5 pb-2">
       <Carousel.Item>
@@ -24,7 +31,7 @@ export const Carrousel = () => {
           alt="First slide"
         />
         <CaptionStyled>
-          <ButtonHome>Paga tu factura</ButtonHome>
+          <ButtonHome onClick={handleClickFactura}>Paga tu factura</ButtonHome>
         </CaptionStyled>
       </Carousel.Item>
 

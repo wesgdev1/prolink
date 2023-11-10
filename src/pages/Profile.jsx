@@ -2,8 +2,15 @@ import { Card } from "react-bootstrap";
 import { NavProfiles } from "../components/profile/NavProfiles";
 import { ProfilesRoutes } from "../components/profile/ProfileRoutes";
 import { ContainerProfile } from "../components/profile/StyledComponentsProfile";
+import { useContext } from "react";
+import { AuthContext } from "../auth/context/AuthContext";
 
 export const Profile = () => {
+  const userTest = null;
+
+  // consumo el contexto
+  const { user } = useContext(AuthContext);
+
   return (
     <ContainerProfile>
       <div className="mx-2  px-5  pb-3">
@@ -15,11 +22,13 @@ export const Profile = () => {
               alt=""
               style={{ width: "10%", borderRadius: "50%" }}
             />
-            <div className="d-flex justify-content-between">
-              <Card.Text>Email: willienn@hotmail.com</Card.Text>
-              <Card.Text>Cargo: sistemas</Card.Text>
-              <Card.Text>Numero: 3213718930</Card.Text>
-            </div>
+            {user && (
+              <div className="d-flex justify-content-between">
+                <Card.Text>Email: willienn@hotmail.com</Card.Text>
+                <Card.Text>Cargo: sistemas</Card.Text>
+                <Card.Text>Numero: 3213718930</Card.Text>
+              </div>
+            )}
 
             {/* <Button variant="primary">Go somewhere</Button> */}
           </Card.Body>

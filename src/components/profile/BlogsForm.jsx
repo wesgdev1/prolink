@@ -11,21 +11,19 @@ import { z } from "zod";
 
 import { MainConteiner } from "../../components/blog/StyledComponentsBlog";
 import { ButtonStyled } from "../StyledComponents";
+import { createBlog } from "../../api/blogs";
 
-const emailRqd = z.string({
-  required_error: "El correo es requerido",
+const titleRqd = z.string({
+  required_error: "El Titulo es requerido",
 });
 
-const passwordRqd = z.string({
-  required_error: "La contraseña es requerida",
+const contentRqd = z.string({
+  required_error: "Debes colocar el contenido del Blog",
 });
 
 const singUpSchema = z.object({
-  email: emailRqd.email("Dirección de correo incorrecto"),
-  password: passwordRqd
-
-    .min(6, "La contraseña debe tener mínimo 6 caracteres")
-    .max(16, "La contraseña debe tener máximo 16 caracteres"),
+  title: titleRqd.min(6, "El titulo debe tener mínimo 6 caracteres"),
+  content: contentRqd.min(6, "El contenido debe tener mínimo 6 caracteres"),
 });
 
 export const BlogsForm = () => {
@@ -34,17 +32,21 @@ export const BlogsForm = () => {
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onLogin = async (formData) => {};
+  const onCreateBlog = async (formData) => {
+    const response = await createBlog(formData);
+    const { data } = response;
+    navigate("/blogs", { replace: true });
+  };
   const initialValues = {
-    email: "",
-    password: "",
+    title: "",
+    content: "",
   };
 
   const onSubmit = async (values, { setSubmitting }) => {
     setSubmitting(true);
     setError(false);
     setErrorMessage("");
-    await onLogin(values);
+    await onCreateBlog(values);
     setSubmitting(false);
   };
 
@@ -57,16 +59,13 @@ export const BlogsForm = () => {
               variant="danger"
               style={{ width: "75%", margin: "auto", marginTop: "10px" }}
             >
-              No se pudo iniciar sesión, por favor verifica tu conexión e
-              intentalo nuevamente
+              No se pudo Crear el Blog, intenta nuevamente
             </Alert>
           )}
 
           <Formik
             initialValues={initialValues}
-            onSubmit={async (values, { setSubmitting }) => {
-              navigate("/profile");
-            }}
+            onSubmit={onSubmit}
             validationSchema={toFormikValidationSchema(singUpSchema)}
           >
             {({
@@ -97,7 +96,7 @@ export const BlogsForm = () => {
                       }
                     />
                     <ErrorMessage
-                      name="email"
+                      name="title"
                       component="div"
                       className="invalid-feedback"
                     />
@@ -110,7 +109,7 @@ export const BlogsForm = () => {
                     <Form.Control
                       as="textarea"
                       rows={4}
-                      placeholder="Ingrese su contraseña"
+                      placeholder="Escribe aqui el contenido de tu Blog"
                       name="content"
                       onChange={handleChange}
                       onBlur={handleBlur}
