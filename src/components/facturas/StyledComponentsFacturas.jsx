@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 
 export const ContainerFacturas = styled("div")(({ theme }) => ({
   display: "flex",
+  flexWrap: "wrap",
   justifyContent: "center",
   flexDirection: "row",
   gap: "50px",

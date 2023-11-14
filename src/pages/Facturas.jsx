@@ -141,6 +141,7 @@ export const Facturas = () => {
             <h2>No se encontraron facturas con ese numero de cedula</h2>
           </div>
         )}
+
         {facturas?.map((factura) => (
           <FacturaDetail key={factura.id} factura={factura} />
         ))}

@@ -17,3 +17,21 @@ export const getFacturaSearch = async ({ id }) => {
     return Promise.reject(error.message);
   }
 };
+
+export const getFacturas = async () => {
+  try {
+    const { data: response } = await http.get("/facturas");
+    return { data: response.data, meta: response.meta };
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
+
+export const createFactura = async (payload) => {
+  try {
+    const { data: response } = await http.post("/facturas", payload);
+    return { data: response.data, meta: response.meta };
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};

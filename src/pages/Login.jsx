@@ -50,14 +50,19 @@ export function Login() {
   // llamado al ApiAgent
 
   const onLogin = async (formData) => {
-    const response = await signIn(formData);
+    try {
+      const response = await signIn(formData);
 
-    const { data, meta } = response;
+      const { data, meta } = response;
 
-    login(data);
-    setSession(meta.token);
+      login(data);
+      setSession(meta.token);
 
-    navigate("/profile", { replace: true });
+      navigate("/profile", { replace: true });
+    } catch (error) {
+      console.log("errorsoski");
+      setError(true);
+    }
   };
 
   // manejador del submit
@@ -81,8 +86,7 @@ export function Login() {
               variant="danger"
               style={{ width: "75%", margin: "auto", marginTop: "10px" }}
             >
-              No se pudo iniciar sesión, por favor verifica tu conexión e
-              intentalo nuevamente
+              No se pudo iniciar sesión, por favor verifica tu credenciales
             </Alert>
           )}
 

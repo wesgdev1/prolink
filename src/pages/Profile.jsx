@@ -37,11 +37,13 @@ export const Profile = () => {
           </Card.Footer>
         </Card>
       </div>
-      <div className="d-flex mx-2  px-5 pb-5 ">
+      <div className="d-flex  mx-2  px-5 pb-5 ">
         <div className="">
           <NavProfiles />
         </div>
-        <ProfilesRoutes />
+        <div className="px-5">
+          <ProfilesRoutes />
+        </div>
       </div>
     </ContainerProfile>
   );

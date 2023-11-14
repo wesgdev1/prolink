@@ -1,7 +1,14 @@
 import { useState } from "react";
+import { useFacturas } from "../../domain/useFacturas";
+import { Alert, Spinner } from "react-bootstrap";
+import { createFactura } from "../../api/facturas";
+import { set } from "date-fns";
 
 export const FacturasForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const { data, loading, error, recargarFacturas } = useFacturas();
+  const [resultadoCarga, setResultadoCarga] = useState(null);
+  const [show, setShow] = useState(true);
 
   const parseTextContent = (text) => {
     const lines = text.split("\n");
@@ -9,7 +16,7 @@ export const FacturasForm = () => {
     let currentRecord = {};
 
     for (const line of lines) {
-      const [key, value] = line.split(":").map((item) => item.trim());
+      const [key, value] = line.split(",").map((item) => item.trim());
 
       if (key && value) {
         currentRecord[key] = value;
@@ -45,10 +52,17 @@ export const FacturasForm = () => {
 
     const text = await readFileAsText(selectedFile);
     console.log("Contenido del archivo de texto:");
-    console.log(text);
+
     const json = parseTextContent(text);
+
     const datajson = { ...json };
-    console.log(datajson);
+    // const nuevoObjeto = { factura: datajson };
+    // console.log(nuevoObjeto);
+
+    const response = await createFactura({ facturas: datajson });
+    const { count } = response.data;
+    setResultadoCarga(`${count} facturas cargadas`);
+    recargarFacturas();
   };
 
   const readFileAsText = (file) => {
@@ -65,15 +79,40 @@ export const FacturasForm = () => {
   };
 
   return (
-    <div>
-      <h2>Modulo de carga de facturas</h2>
+    <>
+      <div className="d-flex flex-column  ">
+        <h2>Modulo de carga de facturas</h2>
 
-      <form>
-        <input type="file" onChange={handleFileChange} accept=".txt" />
-        <button onClick={handleSubmit} type="submit">
-          Enviar
-        </button>
-      </form>
-    </div>
+        <div>
+          <form>
+            <input type="file" onChange={handleFileChange} accept=".txt" />
+            <button onClick={handleSubmit} type="submit">
+              Enviar
+            </button>
+          </form>
+        </div>
+        {resultadoCarga && (
+          <Alert variant="success" onClose={() => setShow(false)} dismissible>
+            {resultadoCarga}
+          </Alert>
+        )}
+      </div>
+
+      <div className="pt-5">
+        <h4>Facturas cargadas</h4>
+        {loading && <Spinner animation="border" variant="primary" />}
+        {error && <Alert variant="danger">{error}</Alert>}
+
+        {data &&
+          data.map((factura) => {
+            return (
+              <div key={factura.id}>
+                {" "}
+                {factura.cliente.nombreCompleto} -valor - {factura.total}
+              </div>
+            );
+          })}
+      </div>
+    </>
   );
 };
