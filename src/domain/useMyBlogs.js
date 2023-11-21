@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getBlogs } from "../api/blogs";
+import { getMyBlogs } from "../api/blogs";
 
-export const useBlogs = () => {
+export const useMyBlogs = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -11,7 +11,7 @@ export const useBlogs = () => {
     setError("");
 
     try {
-      const response = await getBlogs();
+      const response = await getMyBlogs();
 
       setData(response.data);
     } catch (error) {

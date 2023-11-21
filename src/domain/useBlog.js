@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { getBlogs } from "../api/blogs";
+import { getBlog } from "../api/blogs";
 
-export const useBlogs = () => {
-  const [data, setData] = useState([]);
+export const useBlog = ({ id }) => {
+  const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const cargarBlogs = async () => {
+  const cargarBlogs = async (id) => {
     setLoading(true);
     setError("");
 
     try {
-      const response = await getBlogs();
+      const response = await getBlog(id);
 
       setData(response.data);
     } catch (error) {
@@ -22,8 +22,8 @@ export const useBlogs = () => {
   };
 
   useEffect(() => {
-    cargarBlogs();
-  }, []);
+    cargarBlogs(id);
+  }, [id]);
 
   return { data, loading, error };
 };

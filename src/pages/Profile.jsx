@@ -37,11 +37,11 @@ export const Profile = () => {
           </Card.Footer>
         </Card>
       </div>
-      <div className="d-flex  mx-2  px-5 pb-5 ">
+      <div className="d-flex  mx-2  px-5 pb-5 j">
         <div className="">
           <NavProfiles />
         </div>
-        <div className="px-5">
+        <div className="px-5 flex-grow-1">
           <ProfilesRoutes />
         </div>
       </div>

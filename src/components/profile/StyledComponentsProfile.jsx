@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Nav } from "react-bootstrap";
+import { Button, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 export const ContainerProfile = styled("div")(({ theme }) => ({
@@ -29,5 +29,15 @@ export const NavLinkStyled = styled(NavLink)(({ theme }) => ({
   "&:hover": {
     color: `${theme.colors.mainColor}`,
     fontSize: "1.2rem",
+  },
+}));
+
+export const EditBlog = styled(Button)(({ theme }) => ({
+  color: theme.colors.mainColor,
+  background: "transparent",
+  border: "none",
+  "&:hover": {
+    color: "white",
+    background: theme.colors.mainColor,
   },
 }));
