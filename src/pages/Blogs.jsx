@@ -1,58 +1,48 @@
-import { Button, Card } from "react-bootstrap";
+import { Badge } from "react-bootstrap";
 import { ContainerBlog } from "../components/blog/StyledComponentsBlog";
 
+import { BlogCard } from "../components/blog/BlogCard";
+import { EditBlog } from "../components/profile/StyledComponentsProfile";
+import { useBlogs } from "../domain/useBlogs";
+import { useNavigate } from "react-router-dom";
+
 export const Blogs = () => {
+  const { data, loading, error } = useBlogs();
+  const navigate = useNavigate();
+
+  const viewDetail = (id) => {
+    navigate(`/blogs/${id}`);
+  };
   return (
     <ContainerBlog>
-      <h1>Blog</h1>
-      <Card className="text-center">
-        <Card.Header>Featured</Card.Header>
-        <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
-          <Card.Text>
-            With supporting text below as a natural lead-in to additional
-            content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-        <Card.Footer className="text-muted">2 days ago</Card.Footer>
-      </Card>
-      <Card className="text-center">
-        <Card.Header>Featured</Card.Header>
-        <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
-          <Card.Text>
-            With supporting text below as a natural lead-in to additional
-            content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-        <Card.Footer className="text-muted">2 days ago</Card.Footer>
-      </Card>
-      <Card className="text-center">
-        <Card.Header>Featured</Card.Header>
-        <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
-          <Card.Text>
-            With supporting text below as a natural lead-in to additional
-            content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-        <Card.Footer className="text-muted">2 days ago</Card.Footer>
-      </Card>
-      <Card className="text-center">
-        <Card.Header>Featured</Card.Header>
-        <Card.Body>
-          <Card.Title>Special title treatment</Card.Title>
-          <Card.Text>
-            With supporting text below as a natural lead-in to additional
-            content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-        <Card.Footer className="text-muted">2 days ago</Card.Footer>
-      </Card>
+      <div className="d-flex flex-column align-items-center gap-2">
+        <h1>Blog prolink</h1>
+        <p>haga clic en una etiqueta para explorar la publicación por tema</p>
+        <div className="d-flex gap-4">
+          <EditBlog>
+            <Badge bg="secondary">All</Badge>
+          </EditBlog>
+          <EditBlog>
+            <Badge bg="secondary">Software</Badge>
+          </EditBlog>
+          <EditBlog>
+            <Badge bg="secondary">Cloud</Badge>
+          </EditBlog>
+          <EditBlog>
+            <Badge bg="secondary">Network</Badge>
+          </EditBlog>
+        </div>
+      </div>
+      <div className="d-flex flex-wrap gap-3 justify-content-center pt-5 pb-5">
+        {loading && <h1>Cargando...</h1>}
+        {error && <h1>Error...</h1>}
+        {data?.length > 0 &&
+          data.map((blog) => {
+            return (
+              <BlogCard key={blog.id} blog={blog} viewDetail={viewDetail} />
+            );
+          })}
+      </div>
     </ContainerBlog>
   );
 };

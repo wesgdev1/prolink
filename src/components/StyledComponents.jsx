@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Carousel, Container } from "react-bootstrap";
+import { Button, Carousel, Container, Pagination } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 export const ButtonHome = styled(Button)(({ theme }) => ({
@@ -145,4 +145,51 @@ export const IconStyled = styled("a")(({ theme }) => ({
     color: "green",
     backgroundColor: "white",
   },
+}));
+
+export const PaginationStyle = styled(Pagination)(({ theme }) => ({
+  justifyContent: "center",
+}));
+
+export const PagPrevStyle = styled(Pagination.Prev)(({ theme }) => ({
+  margin: 5,
+  "& * ": {
+    color: theme.colors.mainColor,
+    borderRadius: "5px",
+  },
+}));
+export const PagItemStyle = styled(Pagination.Item)(({ theme }) => ({
+  margin: 5,
+  "& * ": {
+    color: theme.colors.mainColor,
+    borderRadius: "50%",
+  },
+  "&.active .page-link": {
+    backgroundColor: theme.colors.mainColor,
+    color: "white",
+  },
+}));
+
+export const PagEllipsisStyle = styled(Pagination.Ellipsis)(({ theme }) => ({
+  margin: 5,
+  "& * ": {
+    color: theme.colors.mainColor,
+    borderRadius: "50%",
+  },
+}));
+
+export const PagNextStyle = styled(Pagination.Next)(({ theme }) => ({
+  margin: 5,
+  "& * ": {
+    color: theme.colors.mainColor,
+    borderRadius: "5px",
+  },
+}));
+
+export const ImgStyled = styled("img")(({ theme }) => ({
+  width: "80%",
+  height: "80%",
+  objectFit: "cover",
+  borderRadius: "10px",
+  boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
 }));
