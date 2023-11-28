@@ -12,11 +12,17 @@ export const NavProfiles = () => {
         {user?.tipoUsuario === "Admin" ? (
           <nav>
             <NavStyled>
-              <NavLinkStyled to="/profile">Crear Cliente</NavLinkStyled>
-              <NavLinkStyled to="/profile">Crear Tecnico</NavLinkStyled>
+              <NavLinkStyled to="/profile/clientes">
+                Modulo Clientes
+              </NavLinkStyled>
+              <NavLinkStyled to="/profile/tecnicos">
+                Modulo tecnicos
+              </NavLinkStyled>
               <NavLinkStyled to="facturas">Cargar Facturas</NavLinkStyled>
-              <NavLinkStyled to="/profile">Crear Soportes</NavLinkStyled>
-              <NavLinkStyled to="/profile">habilitar Blogs</NavLinkStyled>
+              <NavLinkStyled to="/profile/soportes">
+                Soportes Tecnicos
+              </NavLinkStyled>
+              <NavLinkStyled to="/profile">Modulo de Blogs</NavLinkStyled>
             </NavStyled>
           </nav>
         ) : user?.tipoUsuario === "Cliente" ? (
@@ -30,7 +36,9 @@ export const NavProfiles = () => {
           <nav>
             <NavStyled>
               <NavLinkStyled to="blogs">Blogs</NavLinkStyled>
-              <NavLinkStyled to="blogs">Soportes tecnicos</NavLinkStyled>
+              <NavLinkStyled to="soportes/mis-Soportes">
+                Soportes tecnicos
+              </NavLinkStyled>
             </NavStyled>
           </nav>
         )}

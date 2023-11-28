@@ -197,7 +197,7 @@ export function Login() {
                     <label>¿No tienes un usuario?</label>
                     <NavLink
                       style={{ textDecoration: "none", color: "darkblue" }}
-                      to={"/profile"}
+                      to={"/signup"}
                     >
                       Registrate
                     </NavLink>

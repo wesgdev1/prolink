@@ -80,7 +80,7 @@ export const FacturasForm = () => {
 
   return (
     <>
-      <div className="d-flex flex-column  ">
+      <div className="d-flex flex-column">
         <h2>Modulo de carga de facturas</h2>
 
         <div>
@@ -96,22 +96,22 @@ export const FacturasForm = () => {
             {resultadoCarga}
           </Alert>
         )}
-      </div>
 
-      <div className="pt-5">
-        <h4>Facturas cargadas</h4>
-        {loading && <Spinner animation="border" variant="primary" />}
-        {error && <Alert variant="danger">{error}</Alert>}
+        <div className="pt-5">
+          <h4>Facturas cargadas</h4>
+          {loading && <Spinner animation="border" variant="primary" />}
+          {error && <Alert variant="danger">{error}</Alert>}
 
-        {data &&
-          data.map((factura) => {
-            return (
-              <div key={factura.id}>
-                {" "}
-                {factura.cliente.nombreCompleto} -valor - {factura.total}
-              </div>
-            );
-          })}
+          {data &&
+            data.map((factura) => {
+              return (
+                <div key={factura.id}>
+                  {" "}
+                  {factura.cliente.nombreCompleto} -valor - {factura.total}
+                </div>
+              );
+            })}
+        </div>
       </div>
     </>
   );

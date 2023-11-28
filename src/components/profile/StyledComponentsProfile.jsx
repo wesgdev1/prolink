@@ -8,6 +8,7 @@ export const ContainerProfile = styled("div")(({ theme }) => ({
 
 export const NavStyled = styled(Nav)(({ theme }) => ({
   display: "flex",
+  width: "200px",
   flexDirection: "column",
   gap: "3rem",
   paddingTop: "2rem",
@@ -28,16 +29,38 @@ export const NavLinkStyled = styled(NavLink)(({ theme }) => ({
   textDecoration: "none",
   "&:hover": {
     color: `${theme.colors.mainColor}`,
-    fontSize: "1.2rem",
+    // fontSize: "1.2rem",
   },
 }));
 
 export const EditBlog = styled(Button)(({ theme }) => ({
+  fontSize: "0.8rem",
   color: theme.colors.mainColor,
   background: "transparent",
   border: "none",
   "&:hover": {
     color: "white",
     background: theme.colors.mainColor,
+  },
+}));
+
+export const ButtonProfile = styled(Button)(({ theme }) => ({
+  width: "25%",
+  backgroundColor: theme.colors.mainColor,
+  borderColor: theme.colors.mainColor,
+  color: "white",
+  "&:hover": {
+    backgroundColor: theme.colors.secondaryColor,
+    borderColor: theme.colors.secondaryColor,
+  },
+}));
+export const ButtonPBlog = styled(Button)(({ theme }) => ({
+  width: "60%",
+  backgroundColor: theme.colors.mainColor,
+  borderColor: theme.colors.mainColor,
+  color: "white",
+  "&:hover": {
+    backgroundColor: theme.colors.secondaryColor,
+    borderColor: theme.colors.secondaryColor,
   },
 }));

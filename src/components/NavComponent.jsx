@@ -2,6 +2,7 @@ import { Button, Col, Container, Nav, Row } from "react-bootstrap";
 import { NavLogo } from "./NavLogo";
 import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import {
+  ButtonHomeLogin,
   ContainerVacioStyled,
   ConteinerNavStyled,
   NavLinkStyled,
@@ -65,12 +66,12 @@ export const NavComponent = () => {
             ) : (
               <nav>
                 <Nav className="d-flex justify-content-center">
-                  <NavLinkStyledLogin to="/login" className="nav-link">
-                    Iniciar Sesión
-                  </NavLinkStyledLogin>
-                  <NavLinkStyledLogin to="/signUp" className="nav-link">
+                  <ButtonHomeLogin onClick={() => navigate("/login")}>
+                    Iniciar sesion
+                  </ButtonHomeLogin>
+                  <ButtonHomeLogin onClick={() => navigate("/signup")}>
                     Registrarse
-                  </NavLinkStyledLogin>
+                  </ButtonHomeLogin>
                 </Nav>
               </nav>
             )}

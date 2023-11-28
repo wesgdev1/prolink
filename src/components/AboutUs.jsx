@@ -3,16 +3,27 @@ export const AboutUs = () => {
     <div className="d-flex flex-column justify-content-center align-items-center pt-5 pb-5">
       <h1 className="">QUIENES SOMOS</h1>
       <p className="pt-5 mx-5">
-        Somos una empresa líder en el sector automotriz dedicada a conectar a
-        las empresas de autos con los clientes que buscan productos, repuestos
-        de calidad. Nuestra plataforma ofrece un espacio virtual que facilita la
-        interacción y transacciones entre ambas partes, brindando comodidad,
-        eficiencia y confianza en cada paso del proceso. Nuestro objetivo es
-        simplificar la búsqueda y adquisición de productos automotrices,
-        fomentando una experiencia satisfactoria tanto para las empresas como
-        para los clientes. Con un enfoque en la calidad, variedad y excelencia
-        en el servicio, nos esforzamos por ser el puente que une las necesidades
-        automotrices con las soluciones más adecuadas.
+        <strong>ProLink </strong>es una empresa líder en el sector de las
+        telecomunicaciones, dedicada a proporcionar servicios de internet y
+        fibra óptica de vanguardia. Nos enorgullece ser pioneros en la entrega
+        de soluciones tecnológicas innovadoras que conectan comunidades,
+        negocios y hogares, creando un puente hacia un futuro digital más rápido
+        y eficiente.
+      </p>
+      <p>
+        Nuestro <strong>objetivo</strong> es ofrecer un servicio de calidad, con
+        la mejor tecnología y la mejor atención al cliente, para que nuestros
+        usuarios puedan disfrutar de una experiencia única.
+      </p>
+      <p>
+        Nuestra <strong>misión </strong>es brindar un servicio de internet de
+        alta velocidad, confiable y de calidad, para que nuestros clientes
+        puedan disfrutar de una experiencia única.
+      </p>
+      <p>
+        Nuestra <strong>vision</strong> es ser la empresa líder en el sector de
+        las telecomunicaciones, ofreciendo servicios de internet y fibra óptica
+        de vanguardia.
       </p>
     </div>
   );

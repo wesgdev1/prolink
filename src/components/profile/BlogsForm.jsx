@@ -228,7 +228,5 @@ export const BlogsForm = () => {
         )}
       </Formik>
     </div>
-
-    // </MainConteinerBlogForm>
   );
 };
