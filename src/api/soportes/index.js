@@ -43,6 +43,17 @@ export const getMySoportes = async () => {
   }
 };
 
+export const getSoportesDia = async () => {
+  try {
+    const { data: response } = await http.get("/soportes/soportesDia");
+
+    // TODO No voy a validad por el momento, pero debería
+    return { data: response.data, meta: response.meta };
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};
+
 export const updateSoporte = async (id, payload) => {
   try {
     const { data: response } = await http.put(`/soportes/${id}`, payload);

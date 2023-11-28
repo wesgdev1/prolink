@@ -18,7 +18,7 @@ export const TecnicosTable = ({ tecnicos }) => {
   return (
     <div className="pt-4">
       {" "}
-      <Table striped bordered hover>
+      <Table striped bordered hover style={{ fontSize: "0.8rem" }}>
         <thead>
           <tr>
             <th>Nombre</th>

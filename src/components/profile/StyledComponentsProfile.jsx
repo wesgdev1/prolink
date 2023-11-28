@@ -16,7 +16,9 @@ export const NavStyled = styled(Nav)(({ theme }) => ({
   paddingLeft: "2rem",
   paddingRight: "2rem",
   border: "1px solid #A2A2A2 ",
-  // backgroundColor: "#A2A2A2 ",
+  boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.50)",
+
+  background: " #D0CFD1 ",
   borderRadius: "10px",
   color: "#000",
 
@@ -24,7 +26,7 @@ export const NavStyled = styled(Nav)(({ theme }) => ({
 }));
 
 export const NavLinkStyled = styled(NavLink)(({ theme }) => ({
-  fontSize: "1rem",
+  fontSize: "0.8rem",
   color: "#000",
   textDecoration: "none",
   "&:hover": {

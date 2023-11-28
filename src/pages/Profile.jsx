@@ -14,8 +14,14 @@ export const Profile = () => {
 
   return (
     <ContainerProfile>
-      <div className="mx-2  px-5  pb-3">
-        <Card className="text-center">
+      <div className="mx-2  px-5  pb-5">
+        <Card
+          className="text-center"
+          style={{
+            background: "linear-gradient(to right, #DDF3FF, #E7F6FE)",
+            boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+          }}
+        >
           <Card.Header>
             {user?.tipoUsuario === "Admin"
               ? "Bienvenido Administrador"
@@ -53,12 +59,12 @@ export const Profile = () => {
           </Card.Footer>
         </Card>
       </div>
-      <div className="d-flex  mx-2  px-5 pb-5 gap-5 ">
+      <div className="d-flex  mx-2  px-5 pb-5 gap-2 ">
         <div className="">
           <NavProfiles />
         </div>
         {/* <div className="d-flex px-5 flex-grow-1"> */}
-        <div className=" px-5 flex-grow-1">
+        <div className=" px-5 flex-grow-1 p">
           <ProfilesRoutes />
         </div>
       </div>

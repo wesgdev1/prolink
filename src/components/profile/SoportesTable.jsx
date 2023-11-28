@@ -19,7 +19,7 @@ export const SoportesTable = ({ soportes }) => {
   return (
     <div className="pt-4">
       {" "}
-      <Table responsive>
+      <Table responsive style={{ fontSize: "0.8rem" }}>
         <thead>
           <tr>
             <th>#</th>
