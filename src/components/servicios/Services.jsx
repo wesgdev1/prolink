@@ -16,9 +16,6 @@ export const Services = () => {
         <Service />
         <Service />
         <Service />
-        <Service />
-        <Service />
-        <Service />
       </div>
     </div>
   );

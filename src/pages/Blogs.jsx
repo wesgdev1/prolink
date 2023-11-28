@@ -42,6 +42,7 @@ export const Blogs = () => {
               <BlogCard key={blog.id} blog={blog} viewDetail={viewDetail} />
             );
           })}
+        {data?.length === 0 && <h1>No hay blogs para mostrar</h1>}
       </div>
     </ContainerBlog>
   );

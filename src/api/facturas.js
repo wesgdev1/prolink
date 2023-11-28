@@ -20,7 +20,7 @@ export const getFacturaSearch = async ({ id }) => {
 
 export const getFacturas = async () => {
   try {
-    const { data: response } = await http.get("/facturas");
+    const { data: response } = await http.get("/facturas?limit=100");
     return { data: response.data, meta: response.meta };
   } catch (error) {
     return Promise.reject(error.message);

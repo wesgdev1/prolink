@@ -41,6 +41,16 @@ export const NavLinkStyledLogin = styled(NavLink)(({ theme }) => ({
     fontSize: "1.2rem",
   },
 }));
+export const ButtonHomeLogin = styled(Button)(({ theme }) => ({
+  color: theme.colors.mainColor,
+  background: "transparent",
+  border: "none",
+  "&:hover": {
+    color: "white",
+    background: theme.colors.mainColor,
+  },
+}));
+
 export const NavLinkStyledRegister = styled(NavLink)(({ theme }) => ({
   color: "black",
   textDecoration: "none",
@@ -58,7 +68,7 @@ export const ConteinerNavStyled = styled(Container)(({ theme }) => ({
   position: "fixed",
   top: 0,
 
-  zIndex: 1,
+  zIndex: 10,
   overflow: "hidden",
 
   "::after": {
