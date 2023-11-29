@@ -8,6 +8,7 @@ import {
   CardImgStyled,
   CardStyled,
 } from "./StyledComponentsBlog";
+import { format, formatDistanceToNow } from "date-fns";
 
 export const BlogCard = ({ blog, viewDetail }) => {
   return (
@@ -28,7 +29,7 @@ export const BlogCard = ({ blog, viewDetail }) => {
 
         <div className="d-flex pt-2 justify-content-start gap-2 ">
           <img
-            src="https://placehold.co/50x50"
+            src={blog.tecnico?.usuario?.urlFoto}
             style={{
               width: "21%",
               borderRadius: "50%",
@@ -36,8 +37,12 @@ export const BlogCard = ({ blog, viewDetail }) => {
             }}
           ></img>
           <AutorStyled className="d-flex flex-column justify-content-end">
-            <p>Welinton Elvis Suarez</p>
-            <p>hace 3 dias</p>
+            <p>{blog.tecnico?.nombreCompleto}</p>
+            <p>
+              {formatDistanceToNow(new Date(blog.createdAt), {
+                addSuffix: true,
+              })}
+            </p>
           </AutorStyled>
         </div>
       </Card.Body>

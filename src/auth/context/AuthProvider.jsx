@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({});
+  const [initComplete, setInitComplete] = useState(false);
 
   const init = async () => {
     const json = localStorage.getItem("user");
@@ -24,8 +25,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    init();
+    const initialize = async () => {
+      await init();
+      setInitComplete(true);
+    };
+
+    initialize();
   }, []);
+
+  if (!initComplete) {
+    return null;
+  }
 
   return (
     <AuthContext.Provider

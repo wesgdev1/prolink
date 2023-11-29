@@ -14,6 +14,7 @@ import { SoporteForm } from "./SoporteForm";
 import { Soportes } from "./Soportes";
 import { SoporteDetail } from "./SoporteDetail";
 import { SoportesHistory } from "./SoportesHistory";
+import { TestComponent } from "./TestComponent";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -22,7 +23,17 @@ export const ProfilesRoutes = () => {
       <Routes>
         <Route
           path="/"
-          element={user?.tipoUsuario === "Admin" ? <Information /> : <></>}
+          element={
+            user?.tipoUsuario === "Admin" ? (
+              <Information />
+            ) : user?.tipoUsuario === "Cliente" ? (
+              <>
+                <TestComponent />
+              </>
+            ) : (
+              <></>
+            )
+          }
         />
         <Route path="blogs" element={<Blogs />} />
         <Route path="blogs/add" element={<BlogsForm />} />
@@ -35,6 +46,7 @@ export const ProfilesRoutes = () => {
         <Route path="clientes/add" element={<ClientesForm />} />
         <Route path="clientes/:id" element={<ClientesForm />} />
         <Route path="clientes/:id/soportes" element={<SoportesHistory />} />
+        <Route path="tecnicos/:id/soportes" element={<SoportesHistory />} />
         <Route path="ticket/add" element={<SoporteForm />} />
         <Route path="soportes" element={<Soportes />} />
         <Route path="soportes/mis-soportes" element={<Soportes />} />

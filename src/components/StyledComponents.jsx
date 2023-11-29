@@ -197,8 +197,8 @@ export const PagNextStyle = styled(Pagination.Next)(({ theme }) => ({
 }));
 
 export const ImgStyled = styled("img")(({ theme }) => ({
-  width: "80%",
-  height: "80%",
+  width: "60%",
+  height: "60%",
   objectFit: "cover",
   borderRadius: "10px",
   boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",

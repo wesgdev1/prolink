@@ -1,8 +1,9 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ContainerBlogDetail } from "../components/blog/StyledComponentsBlog";
 import { useBlog } from "../domain/useBlog";
 import { ImgStyled } from "../components/StyledComponents";
 import { Col, Row } from "react-bootstrap";
+import { formatDistanceToNow } from "date-fns";
 
 export const BlogDeatil = () => {
   const { id } = useParams();
@@ -10,7 +11,10 @@ export const BlogDeatil = () => {
   return (
     <ContainerBlogDetail>
       <div className="d-flex justify-content-start pb-5">
-        <a href="">Volver a la lista de post</a>
+        <Link to="/blogs">
+          <i className="bi bi-arrow-left"> </i>
+          Volver a la lista de blogs
+        </Link>
       </div>
       <div>
         {loading && <h1>Cargando...</h1>}
@@ -21,16 +25,24 @@ export const BlogDeatil = () => {
 
             <h1>{data.title}</h1>
             <Row>
-              <Col md={9}>
+              <Col md={9} className="px-5">
                 {data.content.split("\n").map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
                 ))}
               </Col>
-              <Col className="d-flex flex-column gap-2 ">
-                <img src="https://placehold.co/30x30" alt="algo" />
+              <Col className="d-flex flex-column gap-2 " md={3}>
+                <img
+                  style={{ width: "50%" }}
+                  src={data.tecnico.usuario.urlFoto}
+                  alt="Autor"
+                />
                 <h4>Autor</h4>
-                <div>Welinton suarez</div>
-                <div>Publicado hace 3 dias</div>
+                <div>{data.tecnico?.nombreCompleto}</div>
+                <div>
+                  {formatDistanceToNow(new Date(data.createdAt), {
+                    addSuffix: true,
+                  })}
+                </div>
                 <h4>Datos del Blog</h4>
                 <div>7 estrellas</div>
                 <div>50 comentaios</div>

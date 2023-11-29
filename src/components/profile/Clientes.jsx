@@ -82,8 +82,6 @@ export const Clientes = () => {
       ) : (
         <ClientesTable clientes={data} />
       )}
-
-      {/* // {data.length > 0 && <ClientesTable clientes={data} />} */}
     </div>
   );
 };

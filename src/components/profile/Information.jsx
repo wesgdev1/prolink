@@ -3,7 +3,8 @@ import { useSoportesDia } from "../../domain/soportes/useSoportesDia";
 import { VictoryPie, VictoryLabel } from "victory";
 import { useClientes } from "../../domain/clientes/useClientes";
 import { useTecnicos } from "../../domain/tecnicos/useTecnicos";
-import { useMyBlogs } from "../../domain/useMyBlogs";
+
+import { useBlogs } from "../../domain/useBlogs";
 
 export const Information = () => {
   const fecha = new Date();
@@ -22,7 +23,7 @@ export const Information = () => {
     loading: loading3,
     error: error3,
   } = useTecnicos();
-  const { data: dataBlogs, loading: loading4, error: error4 } = useMyBlogs();
+  const { data: dataBlogs, loading: loading4, error: error4 } = useBlogs();
 
   const contarResueltos = () => {
     let contador = 0;
@@ -52,22 +53,26 @@ export const Information = () => {
             <h2>Informacion diaria</h2>
 
             <p>{fechaFormateada}</p>
-            <div style={{ height: "180px", width: "500px" }}>
-              <VictoryPie
-                colorScale={["green", "red"]}
-                data={[
-                  { x: "Resueltos", y: contarResueltos() },
-                  { x: "Pendientes", y: contarPendientes() },
-                ]}
-                animate={{
-                  duration: 2000,
-                }}
-                labels={({ datum }) => `${datum.x}: ${datum.y}`}
-                labelComponent={
-                  <VictoryLabel angle={0} style={{ fontSize: 20 }} />
-                }
-              />
-            </div>
+            {data?.length > 0 ? (
+              <div style={{ height: "180px", width: "500px" }}>
+                <VictoryPie
+                  colorScale={["green", "red"]}
+                  data={[
+                    { x: "Resueltos", y: contarResueltos() },
+                    { x: "Pendientes", y: contarPendientes() },
+                  ]}
+                  animate={{
+                    duration: 2000,
+                  }}
+                  labels={({ datum }) => `${datum.x}: ${datum.y}`}
+                  labelComponent={
+                    <VictoryLabel angle={0} style={{ fontSize: 20 }} />
+                  }
+                />
+              </div>
+            ) : (
+              <p>No hay soportes en el momento</p>
+            )}
 
             <div className="d-flex gap-5 pt-5 justify-content-center">
               <Card border="success" style={{ width: "10rem" }}>

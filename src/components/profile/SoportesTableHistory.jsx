@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Badge, Table } from "react-bootstrap";
 import { Paginator } from "../Paginator";
 import { EditBlog } from "./StyledComponentsProfile";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { format, parseISO } from "date-fns";
 
 export const SoportesTableHistory = ({ cliente }) => {
@@ -12,6 +12,9 @@ export const SoportesTableHistory = ({ cliente }) => {
   const lastIndex = currentPage * soportesBypage;
   const firstIndex = lastIndex - soportesBypage;
   const navigate = useNavigate();
+  const location = useLocation();
+  const pathname = location.pathname;
+  const istecnicos = pathname.includes("tecnicos") || false;
 
   const verDetalleSoporte = (soporte) => {
     navigate(`/profile/soportes/${soporte.id}`);
@@ -19,7 +22,7 @@ export const SoportesTableHistory = ({ cliente }) => {
   return (
     <div className="pt-4">
       {" "}
-      <Table responsive>
+      <Table responsive style={{ fontSize: "0.8rem" }}>
         <thead>
           <tr>
             <th>#</th>
@@ -42,7 +45,11 @@ export const SoportesTableHistory = ({ cliente }) => {
                   })}
                 </td>
                 <td>{soporte.horaGeneracion}</td>
-                <td>{cliente.nombreCompleto}</td>
+                <td>
+                  {istecnicos
+                    ? soporte.cliente.nombreCompleto
+                    : cliente.nombreCompleto}
+                </td>
                 <td>{soporte.descripcion}</td>
                 <td>
                   {soporte.estado ? (

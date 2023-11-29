@@ -22,14 +22,20 @@ export const NavProfiles = () => {
               <NavLinkStyled to="/profile/soportes">
                 Soportes Tecnicos
               </NavLinkStyled>
-              <NavLinkStyled to="/profile">Modulo de Blogs</NavLinkStyled>
+              <NavLinkStyled to="/profile/soportes">
+                Soportes Online
+              </NavLinkStyled>
+              <NavLinkStyled to="/profile/blogs">Modulo de Blogs</NavLinkStyled>
             </NavStyled>
           </nav>
         ) : user?.tipoUsuario === "Cliente" ? (
           <nav>
             <NavStyled>
-              <NavLinkStyled to="/profile">Soporte tenico</NavLinkStyled>
-              <NavLinkStyled to="/profile">Pagar Factura</NavLinkStyled>
+              <NavLinkStyled to="soportes/mis-soportes">
+                Soporte tecnico
+              </NavLinkStyled>
+              <NavLinkStyled to="/profile">Mis facturas</NavLinkStyled>
+              <NavLinkStyled to="/profile">Soporte Online</NavLinkStyled>
             </NavStyled>
           </nav>
         ) : (
