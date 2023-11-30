@@ -61,6 +61,9 @@ export const Soportes = () => {
 
   return (
     <div className="pt-5">
+      <h4 className="pb-3">
+        <i className="bi bi-wrench-adjustable"></i> Soportes tecnicos en sitio
+      </h4>
       <div className="d-flex justify-content-between">
         <div style={{ width: "30%" }}>
           <Form.Control

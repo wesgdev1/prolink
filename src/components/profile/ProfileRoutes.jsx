@@ -15,6 +15,7 @@ import { Soportes } from "./Soportes";
 import { SoporteDetail } from "./SoporteDetail";
 import { SoportesHistory } from "./SoportesHistory";
 import { TestComponent } from "./TestComponent";
+import { Facturas } from "./Facturas";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -51,6 +52,7 @@ export const ProfilesRoutes = () => {
         <Route path="soportes" element={<Soportes />} />
         <Route path="soportes/mis-soportes" element={<Soportes />} />
         <Route path="soportes/:id" element={<SoporteDetail />} />
+        <Route path="misFacturas" element={<Facturas />} />
       </Routes>
     </>
   );

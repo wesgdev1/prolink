@@ -34,7 +34,9 @@ export const NavProfiles = () => {
               <NavLinkStyled to="soportes/mis-soportes">
                 Soporte tecnico
               </NavLinkStyled>
-              <NavLinkStyled to="/profile">Mis facturas</NavLinkStyled>
+              <NavLinkStyled to="/profile/misFacturas">
+                Mis facturas
+              </NavLinkStyled>
               <NavLinkStyled to="/profile">Soporte Online</NavLinkStyled>
             </NavStyled>
           </nav>
