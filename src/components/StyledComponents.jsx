@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Carousel, Container, Pagination } from "react-bootstrap";
+import { Button, Card, Carousel, Container, Pagination } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 export const ButtonHome = styled(Button)(({ theme }) => ({
@@ -97,6 +97,8 @@ export const MainConteiner = styled("div")(({ theme }) => ({
   width: "100vw",
   backgroundImage: `url("https://res.cloudinary.com/db9nfgjqr/image/upload/v1698974214/Dise%C3%B1o_sin_t%C3%ADtulo_6_ukijmg.png")`,
   backgroundSize: "cover",
+  // da trasparencia a la imagen de fondo usa la propieda de trasnparecnia
+
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
   // background: `linear-gradient(100deg, black 10%, ${theme.colors.mainColor} 90%)`,
@@ -202,4 +204,16 @@ export const ImgStyled = styled("img")(({ theme }) => ({
   objectFit: "cover",
   borderRadius: "10px",
   boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+}));
+
+export const ContainerContacto = styled("div")(({ theme }) => ({
+  paddingTop: "100px",
+}));
+
+export const CardStyledContacto = styled(Card)(({ theme }) => ({
+  width: "30rem",
+  borderColor: theme.colors.mainColor,
+  boxShadow: `3px 3px 3px black`,
+  borderRadius: "20px",
+  padding: "60px",
 }));

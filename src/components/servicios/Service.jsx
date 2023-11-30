@@ -6,7 +6,7 @@ export const Service = () => {
     <Card style={{ width: "18rem" }}>
       <Card.Img
         variant="top"
-        src="https://res.cloudinary.com/dppqkypts/image/upload/v1700692550/1plan_vtvvyn.png"
+        src="https://res.cloudinary.com/dppqkypts/image/upload/v1701294367/Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_dwakut.png"
       />
       <Card.Body>
         <Card.Title>Internet + DirecTv GO</Card.Title>
@@ -15,7 +15,7 @@ export const Service = () => {
         </Card.Text>
         <hr />
         <Card.Text>
-          <h4>$ 3.000</h4>
+          <h4>$ 49.900</h4>
         </Card.Text>
         <ButtonInfo>Solicitar Informacion</ButtonInfo>
       </Card.Body>

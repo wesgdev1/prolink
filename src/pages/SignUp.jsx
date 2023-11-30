@@ -114,8 +114,8 @@ export function SignUp() {
   return (
     <MainConteiner className="img-fluid pt-5">
       {/* <h1 className="">Iniciar sesion</h1> */}
-      <div className="login d-flex row w-50 bg-white">
-        <div className="login__contenedor">
+      <div className="login d-flex row w-50 bg-white pt-3">
+        <div className="login__contenedor pt-5">
           {error && (
             <Alert
               variant="danger"
@@ -145,7 +145,7 @@ export function SignUp() {
                   className="Form_login my-5 d-flex flex-column gap-2 "
                   onSubmit={handleSubmit}
                 >
-                  <div className="d-flex justify-content-center flex-column align-items-center gap-2">
+                  <div className="d-flex justify-content-center flex-column align-items-center gap-2 pt-5">
                     <img
                       style={{ width: "10%", height: "auto" }}
                       src="https://res.cloudinary.com/db9nfgjqr/image/upload/v1698873285/PROLINK_LOGO_pauqtg.png"

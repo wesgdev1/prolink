@@ -7,6 +7,7 @@ import { NavComponent } from "../components/NavComponent";
 import { Footer } from "../components/footer/Footer";
 import { Facturas } from "../pages/Facturas";
 import { PagoExitoso } from "../pages/PagoExitoso";
+import { Contacto } from "../pages/Contacto";
 
 export const ProlinkRoutes = () => {
   return (
@@ -19,6 +20,7 @@ export const ProlinkRoutes = () => {
         <Route path="/blogs/:id" element={<BlogDeatil />} />
         <Route path="/profile/*" element={<Profile />} />
         <Route path="/success" element={<PagoExitoso />} />
+        <Route path="/contacto" element={<Contacto />} />
       </Routes>
       <footer>
         <Footer />

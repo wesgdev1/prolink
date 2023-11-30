@@ -43,7 +43,7 @@ export const NavComponent = () => {
               <Nav className="d-flex justify-content-center gap-4">
                 <NavLinkStyled to="/home">Inicio</NavLinkStyled>
                 <NavLinkStyled to="/blogs">Blog</NavLinkStyled>
-                <NavLinkStyled to="/servicios">Servicios</NavLinkStyled>
+                {/* <NavLinkStyled to="/servicios">Servicios</NavLinkStyled> */}
                 <NavLinkStyled to="/contacto">Contacto</NavLinkStyled>
               </Nav>
             </nav>
