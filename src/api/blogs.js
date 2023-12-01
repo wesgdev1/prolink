@@ -54,3 +54,14 @@ export const getBlog = async (id) => {
     return Promise.reject(error.message);
   }
 };
+
+export const hacerPing = async () => {
+  try {
+    const { data: response } = await http.get(`/blogs/ping`);
+
+    // TODO No voy a validad por el momento, pero debería
+    return { data: response.data };
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};

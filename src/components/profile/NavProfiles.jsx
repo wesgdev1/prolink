@@ -22,7 +22,7 @@ export const NavProfiles = () => {
               <NavLinkStyled to="/profile/soportes">
                 Soportes Tecnicos
               </NavLinkStyled>
-              <NavLinkStyled to="/profile/soportes">
+              <NavLinkStyled to="/profile/realtime">
                 Soportes Online
               </NavLinkStyled>
               <NavLinkStyled to="/profile/blogs">Modulo de Blogs</NavLinkStyled>

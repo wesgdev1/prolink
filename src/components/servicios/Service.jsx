@@ -15,9 +15,18 @@ export const Service = () => {
         </Card.Text>
         <hr />
         <Card.Text>
-          <h4>$ 49.900</h4>
+          <h4>$ 89.900</h4>
         </Card.Text>
-        <ButtonInfo>Solicitar Informacion</ButtonInfo>
+        <Card.Text>
+          <p
+            style={{
+              textDecoration: "line-through",
+            }}
+          >
+            Normal: $150.000
+          </p>
+        </Card.Text>
+        <ButtonInfo>¡Lo quiero!</ButtonInfo>
       </Card.Body>
     </Card>
   );

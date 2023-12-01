@@ -15,10 +15,10 @@ export const ButtonHome = styled(Button)(({ theme }) => ({
 
 export const CaptionStyled = styled(Carousel.Caption)(({ theme }) => ({
   "& p": {
-    color: "white",
-    fontWeight: "bold",
+    color: "black",
+    // fontWeight: "bold",
     fontSize: "38px",
-    textShadow: "3px 4px 1px #000000",
+    // textShadow: "3px 4px 1px #000000",
   },
 }));
 
@@ -216,4 +216,8 @@ export const CardStyledContacto = styled(Card)(({ theme }) => ({
   boxShadow: `3px 3px 3px black`,
   borderRadius: "20px",
   padding: "60px",
+}));
+
+export const ParrafoStyled = styled("p")(({ theme }) => ({
+  textAlign: "justify",
 }));
