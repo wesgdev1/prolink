@@ -13,20 +13,32 @@ export const NavProfiles = () => {
           <nav>
             <NavStyled>
               <NavLinkStyled to="/profile/clientes">
+                <i className="bi bi-person-circle"></i>
                 Modulo Clientes
               </NavLinkStyled>
 
               <NavLinkStyled to="/profile/tecnicos">
+                <i className="bi bi-person-badge-fill"></i>
                 Modulo tecnicos
               </NavLinkStyled>
-              <NavLinkStyled to="facturas">Cargar Facturas</NavLinkStyled>
+              <NavLinkStyled to="facturas">
+                <i className="bi bi-receipt-cutoff"></i>Cargar Facturas
+              </NavLinkStyled>
               <NavLinkStyled to="/profile/soportes">
+                <i className="bi bi-person-fill-gear"></i>
                 Soportes Tecnicos
               </NavLinkStyled>
               <NavLinkStyled to="/profile/realtime">
+                <i className="bi bi-chat-dots"></i>
                 Soportes Online
               </NavLinkStyled>
-              <NavLinkStyled to="/profile/blogs">Modulo de Blogs</NavLinkStyled>
+              <NavLinkStyled to="/profile/pings">
+                <i className="bi bi-chat-dots"></i>
+                Hosts
+              </NavLinkStyled>
+              <NavLinkStyled to="/profile/blogs">
+                <i className="bi bi-book-half"></i>Modulo de Blogs
+              </NavLinkStyled>
             </NavStyled>
           </nav>
         ) : user?.tipoUsuario === "Cliente" ? (

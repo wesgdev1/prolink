@@ -4,12 +4,14 @@ import "ldrs/ping";
 
 import { ButtonAgent } from "../chats/StyledComponentsChats";
 import { useConversaciones } from "../../domain/conversaciones/useConversaciones";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { ButtonProfile } from "./StyledComponentsProfile";
 import { RealtimeTable } from "./RealtimeTable";
 import { ModalMessages } from "./ModalMessages";
+import { AuthContext } from "../../auth/context/AuthContext";
 
 export const RealTime = () => {
+  const { user } = useContext(AuthContext);
   const { data, isLoading: loading, error } = useConversaciones();
 
   const [filteredData, setFilteredData] = useState([]);
@@ -48,55 +50,60 @@ export const RealTime = () => {
       </h4>
 
       <div>
-        <p>
-          <i className="bi bi-person-fill-gear"></i> Agentes Disponibles
-        </p>
-        <div className="d-flex gap-5 justify-content-center flex-wrap">
-          <Card style={{ width: "12rem" }}>
-            <Card.Body>
-              <div className="d-flex flex-column justify-content-center align-items-center">
-                <Card.Title className="d-flex gap-2">
-                  <i className="bi bi-person-fill-gear"></i> Agente 1
-                  <l-ping size="20" speed="1" color="green"></l-ping>
-                </Card.Title>
-                <Card.Text></Card.Text>
-                <ButtonAgent onClick={() => setModalMessages(true)}>
-                  Abrir un Caso
-                </ButtonAgent>
-                <ModalMessages
-                  show={modalMessages}
-                  onHide={() => setModalMessages(false)}
-                  recipientId="1d088966-fa12-4ae2-a5fe-c867a7c40bc7"
-                />
-              </div>
-            </Card.Body>
-          </Card>
-          <Card style={{ width: "12rem" }}>
-            <Card.Body>
-              <div className="d-flex flex-column justify-content-center align-items-center">
-                <Card.Title className="d-flex gap-2">
-                  <i className="bi bi-person-fill-gear"></i> Agente 2
-                  <l-ping size="20" speed="1" color="green"></l-ping>
-                </Card.Title>
-                <Card.Text></Card.Text>
-                <ButtonAgent variant="primary">Abrir un Caso</ButtonAgent>
-              </div>
-            </Card.Body>
-          </Card>
-          <Card style={{ width: "12rem" }}>
-            <Card.Body>
-              <div className="d-flex flex-column justify-content-center align-items-center">
-                <Card.Title className="d-flex gap-2">
-                  <i className="bi bi-person-fill-gear"></i> Agente 3
-                  <l-ping size="20" speed="1" color="red"></l-ping>
-                </Card.Title>
-                <Card.Text></Card.Text>
-                <ButtonAgent variant="primary">Abrir un Caso</ButtonAgent>
-              </div>
-            </Card.Body>
-          </Card>
-        </div>
-        <hr />
+        {user?.tipoUsuario === "Cliente" && (
+          <>
+            {" "}
+            <p>
+              <i className="bi bi-person-fill-gear"></i> Agentes Disponibles
+            </p>
+            <div className="d-flex gap-5 justify-content-center flex-wrap">
+              <Card style={{ width: "12rem" }}>
+                <Card.Body>
+                  <div className="d-flex flex-column justify-content-center align-items-center">
+                    <Card.Title className="d-flex gap-2">
+                      <i className="bi bi-person-fill-gear"></i> Agente 1
+                      <l-ping size="20" speed="1" color="green"></l-ping>
+                    </Card.Title>
+                    <Card.Text></Card.Text>
+                    <ButtonAgent onClick={() => setModalMessages(true)}>
+                      Abrir un Caso
+                    </ButtonAgent>
+                    <ModalMessages
+                      show={modalMessages}
+                      onHide={() => setModalMessages(false)}
+                      recipientId="1d088966-fa12-4ae2-a5fe-c867a7c40bc7"
+                    />
+                  </div>
+                </Card.Body>
+              </Card>
+              <Card style={{ width: "12rem" }}>
+                <Card.Body>
+                  <div className="d-flex flex-column justify-content-center align-items-center">
+                    <Card.Title className="d-flex gap-2">
+                      <i className="bi bi-person-fill-gear"></i> Agente 2
+                      <l-ping size="20" speed="1" color="green"></l-ping>
+                    </Card.Title>
+                    <Card.Text></Card.Text>
+                    <ButtonAgent variant="primary">Abrir un Caso</ButtonAgent>
+                  </div>
+                </Card.Body>
+              </Card>
+              <Card style={{ width: "12rem" }}>
+                <Card.Body>
+                  <div className="d-flex flex-column justify-content-center align-items-center">
+                    <Card.Title className="d-flex gap-2">
+                      <i className="bi bi-person-fill-gear"></i> Agente 3
+                      <l-ping size="20" speed="1" color="red"></l-ping>
+                    </Card.Title>
+                    <Card.Text></Card.Text>
+                    <ButtonAgent variant="primary">Abrir un Caso</ButtonAgent>
+                  </div>
+                </Card.Body>
+              </Card>
+            </div>
+            <hr />
+          </>
+        )}
 
         <p>
           <i className="bi bi-chat-left-text-fill"></i>Chats

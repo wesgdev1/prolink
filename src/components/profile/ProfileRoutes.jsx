@@ -18,6 +18,8 @@ import { TestComponent } from "./TestComponent";
 import { Facturas } from "./Facturas";
 import { RealTime } from "./RealTime";
 import { Chats } from "./Chats";
+import { Pings } from "./Pings";
+import { PingsTable } from "./PingsTable";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -57,6 +59,7 @@ export const ProfilesRoutes = () => {
         <Route path="misFacturas" element={<Facturas />} />
         <Route path="realtime" element={<RealTime />} />
         <Route path="realtime/chats/:id" element={<Chats />} />
+        <Route path="pings" element={<PingsTable />} />
       </Routes>
     </>
   );

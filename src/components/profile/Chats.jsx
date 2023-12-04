@@ -1,9 +1,9 @@
 import Image from "react-bootstrap/Image";
 import Swal from "sweetalert2";
 
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../auth/context/AuthContext";
-import { Button, ListGroup } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 import {
   ButtonChat,
   FormTextStyle,
@@ -17,7 +17,9 @@ import {
   useUpdateConversacion,
 } from "../../domain/conversaciones/useConversacion";
 import { createMessage } from "../../api/mensajes";
-import { format, formatDistanceToNow } from "date-fns";
+import { format } from "date-fns";
+import socket from "../../../src/socket";
+import { useEffect } from "react";
 
 export const Chats = () => {
   const { user } = useContext(AuthContext);
@@ -32,11 +34,27 @@ export const Chats = () => {
     actions: { updateConversacion },
   } = useUpdateConversacion();
   const [mensajeContenido, setMensajeContenido] = useState("");
+  const [newData, setNewData] = useState();
+  useEffect(() => {
+    if (data?.mensajes) {
+      setNewData(data);
+      console.log("data", data);
+      console.log("newData", newData);
+    }
+  }, [data]);
+
   const handleInputChange = (event) => {
     setMensajeContenido(event.target.value);
   };
+
   const cerraCaso = async () => {
     await updateConversacion(id, { estado: true });
+    socket.emit("mensaje", {
+      estado: true,
+      conversacionId: id,
+      recipientId:
+        user?.tipoUsuario === "Cliente" ? data?.usuarioB.id : data?.usuarioA.id,
+    });
     Swal.fire({
       icon: "success",
       title: "Caso cerrado con exito",
@@ -65,6 +83,15 @@ export const Chats = () => {
         conversacionId: id,
       });
       setMensajeContenido("");
+      socket.emit("mensaje", {
+        estado: false,
+        mensaje: mensaje.data,
+        conversacionId: id,
+        recipientId:
+          user?.tipoUsuario === "Cliente"
+            ? data?.usuarioB.id
+            : data?.usuarioA.id,
+      });
     }
   };
 
@@ -76,16 +103,65 @@ export const Chats = () => {
         conversacionId: id,
       });
       setMensajeContenido("");
+      setMensajeContenido("");
+      socket.emit("mensaje", {
+        estado: false,
+        mensaje: mensaje.data,
+        conversacionId: id,
+        recipientId:
+          user?.tipoUsuario === "Cliente"
+            ? data?.usuarioB.id
+            : data?.usuarioA.id,
+      });
     }
   };
+
+  useEffect(() => {
+    socket.on("mensaje", (payload) => {
+      if (payload.conversacionId === id && payload.estado === false) {
+        setNewData((prevData) => {
+          return {
+            ...prevData,
+            mensajes: [...prevData.mensajes, payload.mensaje],
+          };
+        });
+      }
+
+      if (payload.estado === true && payload.conversacionId === id) {
+        console.log("por aqui fue");
+        setNewData((prevData) => {
+          return {
+            ...prevData,
+            estado: true,
+          };
+        });
+      }
+    });
+
+    return () => {
+      socket.off("mensaje");
+    };
+  }, [id]);
+
+  const messagesContainerRef = useRef(null);
+  const scrollHaciaAbajo = () => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
+    }
+  };
+  useEffect(() => {
+    scrollHaciaAbajo();
+  }, [newData]);
 
   return (
     <>
       <div className="m-auto w-100 p-4 ">
+        <h3 className="pt-5 pb-3">Soporte Online</h3>
         <div className="d-flex">
           <div className="d-flex flex-column w-50">
             <span className="fs-6 fw-bold mb-4">
-              Caso: {data?.numeroConversacion}
+              Caso # {data?.numeroConversacion}
             </span>
             <div className="d-flex gap-3">
               <Image
@@ -99,7 +175,13 @@ export const Chats = () => {
                   <span className="fs-5 fw-bold">Datos del Cliente</span>
                 )}
 
-                <ListGroup style={{ fontSize: "0.8rem" }}>
+                <ListGroup style={{ fontSize: "0.8rem" }} className="pt-4">
+                  <ListGroup.Item>
+                    <div>
+                      <strong>Nombre:</strong>
+                    </div>
+                    <div>{data?.usuarioA.cliente.nombreCompleto}</div>
+                  </ListGroup.Item>
                   <ListGroup.Item>
                     <div>
                       <strong>Servicio:</strong>
@@ -122,9 +204,25 @@ export const Chats = () => {
               </div>
             </div>
             <div className="d-flex justify-content-between mt-auto mb-2 mx-2">
-              {user.tipoUsuario !== "Admin" ? null : (
+              {user.tipoUsuario !== "Admin" ? (
+                newData?.estado ? (
+                  <>
+                    <div>
+                      <i className="bi bi-check-circle-fill"></i> Este caso ha
+                      sido resuelto
+                    </div>
+                  </>
+                ) : null
+              ) : (
                 <>
-                  {data?.estado ? null : (
+                  {newData?.estado ? (
+                    <>
+                      <div>
+                        <i className="bi bi-check-circle-fill"></i> Este caso ha
+                        sido resuelto
+                      </div>
+                    </>
+                  ) : (
                     <div className="d-flex gap-2">
                       <ButtonChat onClick={cerraCaso} className="ms-auto">
                         <i className="bi bi-x-circle-fill"></i> Cerrar caso
@@ -144,55 +242,64 @@ export const Chats = () => {
             className="border rounded shadow w-75 justify-content-between pt-4 d-flex flex-column"
             style={{ height: "460px" }}
           >
-            <div className="overflow-auto" style={{ maxHeight: "360px" }}>
+            <div
+              className="overflow-auto"
+              style={{ maxHeight: "360px" }}
+              ref={messagesContainerRef}
+            >
               <ListMessages className="list-group">
                 {
                   //Aqui Va la funcion .map para imprimir el history de los mensajes Cliente-empresa
                   <>
-                    {data?.mensajes.map((mensaje) => (
-                      <ListMessagesItem
-                        className={
-                          (user?.tipoUsuario === "Cliente" &&
-                          user?.id === mensaje.usuarioId
-                            ? "user"
-                            : "") ||
-                          (user?.tipoUsuario === "Admin" &&
-                          user?.id === mensaje.usuarioId
-                            ? "user"
-                            : "")
-                        }
-                        key={mensaje.id}
-                      >
-                        <strong>
-                          {" "}
-                          {format(
-                            new Date(mensaje.createdAt),
-                            "dd/MM/yyyy HH:mm"
-                          )}
-                        </strong>{" "}
-                        <Image
-                          src={
-                            user?.tipoUsuario === "Cliente"
-                              ? mensaje.usuarioId === user?.id
-                                ? user?.urlFoto
-                                : "https://res.cloudinary.com/dppqkypts/image/upload/v1700682370/ADMIN_zafi93.png"
-                              : mensaje.usuarioId === user?.id
-                              ? "https://res.cloudinary.com/dppqkypts/image/upload/v1700682370/ADMIN_zafi93.png"
-                              : data?.usuarioA.urlFoto
+                    {newData &&
+                      newData?.mensajes?.map((mensaje) => (
+                        <ListMessagesItem
+                          className={
+                            (user?.tipoUsuario === "Cliente" &&
+                            user?.id === mensaje.usuarioId
+                              ? "user"
+                              : "") ||
+                            (user?.tipoUsuario === "Admin" &&
+                            user?.id === mensaje.usuarioId
+                              ? "user"
+                              : "")
                           }
-                          style={{ height: 30, width: 30, borderRadius: "50%" }}
-                        />
-                        <p className="pt-2 lh-1 m-0 text-start">
-                          {mensaje.content}
-                        </p>
-                      </ListMessagesItem>
-                    ))}
+                          key={mensaje.id}
+                        >
+                          <strong>
+                            {" "}
+                            {format(
+                              new Date(mensaje.createdAt),
+                              "dd/MM/yyyy HH:mm"
+                            )}
+                          </strong>{" "}
+                          <Image
+                            src={
+                              user?.tipoUsuario === "Cliente"
+                                ? mensaje.usuarioId === user?.id
+                                  ? user?.urlFoto
+                                  : "https://res.cloudinary.com/dppqkypts/image/upload/v1700682370/ADMIN_zafi93.png"
+                                : mensaje.usuarioId === user?.id
+                                ? "https://res.cloudinary.com/dppqkypts/image/upload/v1700682370/ADMIN_zafi93.png"
+                                : data?.usuarioA.urlFoto
+                            }
+                            style={{
+                              height: 30,
+                              width: 30,
+                              borderRadius: "50%",
+                            }}
+                          />
+                          <p className="pt-2 lh-1 m-0 text-start">
+                            {mensaje.content}
+                          </p>
+                        </ListMessagesItem>
+                      ))}
                   </>
                 }
               </ListMessages>
             </div>
 
-            {data?.estado ? null : (
+            {newData?.estado ? null : (
               <div className="d-flex align-items-center border rounded p-1 m-3">
                 <FormTextStyle
                   size="sm"
@@ -210,6 +317,7 @@ export const Chats = () => {
           </div>
         </div>
       </div>
+      <hr />
     </>
   );
 };

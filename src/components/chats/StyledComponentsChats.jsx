@@ -24,7 +24,7 @@ export const ListMessagesItem = styled.li(() => ({
   padding: 7,
   color: "white",
   background: "linear-gradient(to right, #000000 , #20BFFF  )",
-  borderRadius: "10px 10px 10px 0",
+  borderRadius: "20px 20px 20px 20px",
   "&.user": {
     margin: "5px 16px 10px auto",
 
