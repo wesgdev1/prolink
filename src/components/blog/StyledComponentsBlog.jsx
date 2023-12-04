@@ -32,17 +32,17 @@ export const MainConteinerBlogForm = styled("div")(({ theme }) => ({
 }));
 
 export const CardStyled = styled(Card)(({ theme }) => ({
-  borderColor: theme.colors.mainColor,
-  boxShadow: `3px 3px 3px black`,
+  // borderColor: theme.colors.mainColor,
+  boxShadow: `3px 3px 10px gray`,
   borderRadius: "20px",
 
-  width: "400px",
-  height: "600px",
+  width: "25%",
+  height: "500px",
 }));
 
 export const CardImgStyled = styled(Card.Img)(({ theme }) => ({
-  width: "398px",
-  height: "300px",
+  width: "100%",
+  height: "50%",
   borderRadius: "20px 20px 0px 0px",
 }));
 

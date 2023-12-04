@@ -10,15 +10,19 @@ export const NavStyled = styled(Nav)(({ theme }) => ({
   display: "flex",
   width: "200px",
   flexDirection: "column",
-  gap: "3rem",
+  justifyContent: "center",
+  gap: "2rem",
   paddingTop: "2rem",
   paddingBottom: "2rem",
   paddingLeft: "2rem",
   paddingRight: "2rem",
-  border: "1px solid #A2A2A2 ",
-  boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.50)",
+  // border: "1px solid #A2A2A2 ",
+  borderRight: "1px solid #A2A2A2",
+  // boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.50)",
+  boxShadow: "inset -10px 0px 5px -10px rgba(64, 0, 129  )",
+  height: "60vh",
 
-  background: " #D0CFD1 ",
+  // background: " #D0CFD1 ",
   borderRadius: "10px",
   color: "#000",
 
@@ -26,13 +30,20 @@ export const NavStyled = styled(Nav)(({ theme }) => ({
 }));
 
 export const NavLinkStyled = styled(NavLink)(({ theme }) => ({
-  fontSize: "0.8rem",
+  display: "flex",
+  paddingTop: "0.8rem",
+
+  gap: "5px",
+  fontSize: "0.9rem",
   color: "#000",
   textDecoration: "none",
   "&:hover": {
     color: `${theme.colors.mainColor}`,
     // fontSize: "1.2rem",
   },
+  borderTop: "0.3px solid #A2A2A2",
+
+  borderRadius: "3px",
 }));
 
 export const EditBlog = styled(Button)(({ theme }) => ({

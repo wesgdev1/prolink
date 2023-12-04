@@ -15,6 +15,7 @@ export const NavProfiles = () => {
               <NavLinkStyled to="/profile/clientes">
                 Modulo Clientes
               </NavLinkStyled>
+
               <NavLinkStyled to="/profile/tecnicos">
                 Modulo tecnicos
               </NavLinkStyled>
@@ -32,12 +33,22 @@ export const NavProfiles = () => {
           <nav>
             <NavStyled>
               <NavLinkStyled to="soportes/mis-soportes">
+                <i className="bi bi-wrench-adjustable"></i>
                 Soporte tecnico
               </NavLinkStyled>
+
               <NavLinkStyled to="/profile/misFacturas">
+                <i className="bi bi-receipt"></i>
                 Mis facturas
               </NavLinkStyled>
-              <NavLinkStyled to="/profile">Soporte Online</NavLinkStyled>
+              <NavLinkStyled to="/profile/realtime">
+                <i className="bi bi-chat-dots"></i>
+                Soporte Online
+              </NavLinkStyled>
+              <NavLinkStyled to="/profile/realtime">
+                <i className="bi bi-pencil"></i>
+                Editar mi perfil
+              </NavLinkStyled>
             </NavStyled>
           </nav>
         ) : (

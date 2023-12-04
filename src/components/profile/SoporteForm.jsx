@@ -75,6 +75,7 @@ export const SoporteForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const location = useLocation();
   const cliente = location.state?.cliente;
+  console.log("cliente", cliente);
 
   const onCreateCliente = async (formData) => {
     const newData = {

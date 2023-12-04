@@ -17,6 +17,7 @@ import { SoportesHistory } from "./SoportesHistory";
 import { TestComponent } from "./TestComponent";
 import { Facturas } from "./Facturas";
 import { RealTime } from "./RealTime";
+import { Chats } from "./Chats";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -55,6 +56,7 @@ export const ProfilesRoutes = () => {
         <Route path="soportes/:id" element={<SoporteDetail />} />
         <Route path="misFacturas" element={<Facturas />} />
         <Route path="realtime" element={<RealTime />} />
+        <Route path="realtime/chats/:id" element={<Chats />} />
       </Routes>
     </>
   );

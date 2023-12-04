@@ -23,15 +23,16 @@ export const BlogCard = ({ blog, viewDetail }) => {
             <Card.Text key={index}>{paragraph}</Card.Text>
           ))}
         </CardDescroptionStyle>
-        <ButtonLeerStyled onClick={() => viewDetail(blog.id)}>
+        {/* <ButtonLeerStyled onClick={() => viewDetail(blog.id)}>
           Leer mas...
-        </ButtonLeerStyled>
+        </ButtonLeerStyled> */}
 
         <div className="d-flex pt-2 justify-content-start gap-2 ">
           <img
             src={blog.tecnico?.usuario?.urlFoto}
             style={{
               width: "21%",
+
               borderRadius: "50%",
               border: "1px solid black",
             }}

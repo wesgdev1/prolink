@@ -33,7 +33,7 @@ export const Blogs = () => {
           </EditBlog>
         </div>
       </div>
-      <div className="d-flex flex-wrap gap-3 justify-content-center pt-5 pb-5">
+      <div className="d-flex flex-wrap gap-5 justify-content-center pt-5 pb-5">
         {loading && <h1>Cargando...</h1>}
         {error && <h1>Error...</h1>}
         {data?.length > 0 &&

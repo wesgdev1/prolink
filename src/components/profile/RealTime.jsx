@@ -1,32 +1,151 @@
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
-import { hacerPing } from "../../api/blogs";
-import { useEffect } from "react";
-import { useState } from "react";
+import { Alert, Card, Spinner } from "react-bootstrap";
+
 import "ldrs/ping";
 
+import { ButtonAgent } from "../chats/StyledComponentsChats";
+import { useConversaciones } from "../../domain/conversaciones/useConversaciones";
+import { useState } from "react";
+import { ButtonProfile } from "./StyledComponentsProfile";
+import { RealtimeTable } from "./RealtimeTable";
+import { ModalMessages } from "./ModalMessages";
+
 export const RealTime = () => {
-  const [ping, setPing] = useState("");
+  const { data, isLoading: loading, error } = useConversaciones();
 
-  useEffect(() => {
-    const hacerPingAsincrono = async () => {
-      const resultado = await hacerPing();
-      console.log(resultado.data);
-      setPing(resultado.data.time);
-    };
+  const [filteredData, setFilteredData] = useState([]);
+  const [filtroSelected, setFiltroSelected] = useState("Todo");
+  const [modalMessages, setModalMessages] = useState(false);
 
-    const intervalId = setInterval(hacerPingAsincrono, 5000); // 5000 ms = 5 s
+  const [notificacion, setNotificacion] = useState(false);
+  const handleFiltro = (e) => {
+    if (e.target.value === "1") {
+      const filter = data?.filter((soporte) => {
+        return soporte.estado === false;
+      });
+      setFilteredData(filter);
+      setFiltroSelected("1");
+      setNotificacion(filter.length === 0);
+    }
+    if (e.target.value === "2") {
+      const filter = data?.filter((soporte) => {
+        return soporte.estado === true;
+      });
+      setFilteredData(filter);
+      setFiltroSelected("2");
+      setNotificacion(filter.length === 0);
+    }
+    if (e.target.value === "Todo") {
+      setFilteredData([]);
+      setFiltroSelected("Todo");
+    }
+  };
 
-    // Limpiar el intervalo cuando el componente se desmonte
-    return () => clearInterval(intervalId);
-  }, []);
+  const abrirCaso = () => {};
   return (
-    <div>
-      <h1>hola</h1>
-      <span>192,168,1,1</span>
+    <div className="pt-5">
+      <h4 className="pb-3">
+        <i className="bi bi-wrench-adjustable"></i> Soportes Online
+      </h4>
 
-      <h1>{ping}result</h1>
+      <div>
+        <p>
+          <i className="bi bi-person-fill-gear"></i> Agentes Disponibles
+        </p>
+        <div className="d-flex gap-5 justify-content-center flex-wrap">
+          <Card style={{ width: "12rem" }}>
+            <Card.Body>
+              <div className="d-flex flex-column justify-content-center align-items-center">
+                <Card.Title className="d-flex gap-2">
+                  <i className="bi bi-person-fill-gear"></i> Agente 1
+                  <l-ping size="20" speed="1" color="green"></l-ping>
+                </Card.Title>
+                <Card.Text></Card.Text>
+                <ButtonAgent onClick={() => setModalMessages(true)}>
+                  Abrir un Caso
+                </ButtonAgent>
+                <ModalMessages
+                  show={modalMessages}
+                  onHide={() => setModalMessages(false)}
+                  recipientId="1d088966-fa12-4ae2-a5fe-c867a7c40bc7"
+                />
+              </div>
+            </Card.Body>
+          </Card>
+          <Card style={{ width: "12rem" }}>
+            <Card.Body>
+              <div className="d-flex flex-column justify-content-center align-items-center">
+                <Card.Title className="d-flex gap-2">
+                  <i className="bi bi-person-fill-gear"></i> Agente 2
+                  <l-ping size="20" speed="1" color="green"></l-ping>
+                </Card.Title>
+                <Card.Text></Card.Text>
+                <ButtonAgent variant="primary">Abrir un Caso</ButtonAgent>
+              </div>
+            </Card.Body>
+          </Card>
+          <Card style={{ width: "12rem" }}>
+            <Card.Body>
+              <div className="d-flex flex-column justify-content-center align-items-center">
+                <Card.Title className="d-flex gap-2">
+                  <i className="bi bi-person-fill-gear"></i> Agente 3
+                  <l-ping size="20" speed="1" color="red"></l-ping>
+                </Card.Title>
+                <Card.Text></Card.Text>
+                <ButtonAgent variant="primary">Abrir un Caso</ButtonAgent>
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+        <hr />
 
-      <l-ping size="50" speed="1" color="red"></l-ping>
+        <p>
+          <i className="bi bi-chat-left-text-fill"></i>Chats
+        </p>
+      </div>
+
+      {loading && <Spinner animation="border" variant="info" />}
+      {error && (
+        <Alert variant="danger">Ocurrio un problema en el servidor</Alert>
+      )}
+
+      <div className="d-flex justify-content-end">
+        <div className="d-flex gap-5 w-50">
+          <span>Ordenar:</span>
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            value={filtroSelected}
+            onChange={handleFiltro}
+          >
+            <option selected>Todo</option>
+            <option value="1">Pendientes</option>
+            <option value="2">Resueltas</option>
+          </select>
+        </div>
+      </div>
+
+      {notificacion ? (
+        <div className="pt-3">
+          <p>No se encontraron resultados</p>
+          <ButtonProfile onClick={() => setNotificacion(false)}>
+            Ver todo
+          </ButtonProfile>
+        </div>
+      ) : filteredData.length > 0 ? (
+        <>
+          <p className="pt-2">
+            Se encontraron: ({filteredData.length}) coincidencias
+          </p>
+
+          <ButtonProfile onClick={() => setFilteredData([])}>
+            Mostra todo
+          </ButtonProfile>
+          <RealtimeTable conversaciones={filteredData} />
+          <h1>chat filtrado</h1>
+        </>
+      ) : (
+        data && <RealtimeTable conversaciones={data} />
+      )}
     </div>
   );
 };
