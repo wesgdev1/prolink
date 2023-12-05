@@ -36,13 +36,17 @@ export const CardStyled = styled(Card)(({ theme }) => ({
   boxShadow: `3px 3px 10px gray`,
   borderRadius: "20px",
 
-  width: "25%",
+  width: "24%",
   height: "500px",
+  "&:hover": {
+    boxShadow: `3px 3px 30px ${theme.colors.mainColor}`,
+  },
 }));
 
 export const CardImgStyled = styled(Card.Img)(({ theme }) => ({
   width: "100%",
-  height: "50%",
+  height: "200px",
+
   borderRadius: "20px 20px 0px 0px",
 }));
 

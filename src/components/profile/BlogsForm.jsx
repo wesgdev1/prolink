@@ -13,6 +13,8 @@ import { ButtonStyled } from "../StyledComponents";
 import { createBlog, updateBlog } from "../../api/blogs";
 import { formatError } from "./utils";
 import { Col, Row } from "react-bootstrap";
+import Swal from "sweetalert2";
+import { el } from "date-fns/locale";
 
 const titleRqd = z.string({
   required_error: "El Titulo es requerido",
@@ -40,6 +42,19 @@ export const BlogsForm = () => {
   const onCreateBlog = async (formData) => {
     const response = await createBlog(formData);
     const { data } = response;
+    if (data) {
+      Swal.fire({
+        icon: "success",
+        title: "Blog Creado",
+        text: "El Blog se creo correctamente, debe esperar que sea aprobado por el administrador",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Blog no Creado",
+        text: "El Blog no se creo correctamente, intena nuevamente",
+      });
+    }
     navigate("/profile/blogs", { replace: true });
   };
   const initialValues = {
@@ -49,7 +64,21 @@ export const BlogsForm = () => {
   };
 
   const onUpdateBlog = async (formData) => {
-    await updateBlog(actionEdit.id, formData);
+    const response = await updateBlog(actionEdit.id, formData);
+    const { data } = response;
+
+    if (data) {
+      Swal.fire({
+        icon: "success",
+        title: "Blog Actualizado",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Blog no Actualizado",
+        text: "El Blog no se actualizo correctamente, intena nuevamente",
+      });
+    }
     navigate("/profile/blogs", { replace: true });
   };
 
