@@ -20,6 +20,7 @@ import { RealTime } from "./RealTime";
 import { Chats } from "./Chats";
 import { Pings } from "./Pings";
 import { PingsTable } from "./PingsTable";
+import { Calendar } from "./Calendar";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -36,7 +37,9 @@ export const ProfilesRoutes = () => {
                 <TestComponent />
               </>
             ) : (
-              <></>
+              <>
+                <Calendar></Calendar>
+              </>
             )
           }
         />

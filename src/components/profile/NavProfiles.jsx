@@ -33,7 +33,7 @@ export const NavProfiles = () => {
                 Soportes Online
               </NavLinkStyled>
               <NavLinkStyled to="/profile/pings">
-                <i className="bi bi-chat-dots"></i>
+                <i className="bi bi-hdd-stack"></i>
                 Hosts
               </NavLinkStyled>
               <NavLinkStyled to="/profile/blogs">
@@ -66,9 +66,18 @@ export const NavProfiles = () => {
         ) : (
           <nav>
             <NavStyled>
-              <NavLinkStyled to="blogs">Blogs</NavLinkStyled>
+              <NavLinkStyled to="/profile">
+                {" "}
+                <i className="bi bi-calendar2-week"></i> Agenda
+              </NavLinkStyled>
+              <NavLinkStyled to="/profile/blogs">
+                <i className="bi bi-book-half"></i>Blogs
+              </NavLinkStyled>
               <NavLinkStyled to="soportes/mis-Soportes">
-                Soportes tecnicos
+                <i className="bi bi-wrench-adjustable"></i> Soportes tecnicos
+              </NavLinkStyled>
+              <NavLinkStyled to="/profile">
+                <i className="bi bi-pencil"></i>Editar Perfil
               </NavLinkStyled>
             </NavStyled>
           </nav>

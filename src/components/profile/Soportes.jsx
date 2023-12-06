@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { Alert, Form, Spinner } from "react-bootstrap";
 
 import { useSoportes } from "../../domain/soportes/useSoportes";
@@ -7,6 +6,8 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../auth/context/AuthContext";
 import { useState } from "react";
 import { ButtonProfile } from "./StyledComponentsProfile";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { Pdf } from "./Pdf";
 
 export const Soportes = () => {
   const { user } = useContext(AuthContext);
@@ -88,6 +89,17 @@ export const Soportes = () => {
             <option value="2">Resueltas</option>
           </select>
         </div>
+      </div>
+      <div className="pt-5">
+        <PDFDownloadLink document={<Pdf data={data} />} fileName="soportes.pdf">
+          {({ blob, url, loading, error }) =>
+            loading ? (
+              "Cargando documento..."
+            ) : (
+              <ButtonProfile>Imprimir soportes del dia</ButtonProfile>
+            )
+          }
+        </PDFDownloadLink>
       </div>
       {loading && <Spinner animation="border" variant="info" />}
       {error && (

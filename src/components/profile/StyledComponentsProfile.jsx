@@ -17,10 +17,11 @@ export const NavStyled = styled(Nav)(({ theme }) => ({
   paddingLeft: "2rem",
   paddingRight: "2rem",
   // border: "1px solid #A2A2A2 ",
-  borderRight: "1px solid #A2A2A2",
+  // borderRight: "1px solid #A2A2A2",
   // boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.50)",
-  boxShadow: "inset -10px 0px 5px -10px rgba(64, 0, 129  )",
-  height: "90vh",
+
+  boxShadow: "inset -10px 0px 10px -10px rgba(64, 0, 129, 0.5)",
+  height: "80vh",
 
   // background: " #D0CFD1 ",
   borderRadius: "10px",
@@ -75,5 +76,23 @@ export const ButtonPBlog = styled(Button)(({ theme }) => ({
   "&:hover": {
     backgroundColor: theme.colors.secondaryColor,
     borderColor: theme.colors.secondaryColor,
+  },
+}));
+
+export const ContainerCalendar = styled("div")(({ theme }) => ({
+  width: "30rem",
+  margin: "auto",
+  paddingTop: "20px",
+  marginTop: "50px",
+  fontSize: "1rem",
+
+  boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.50)",
+  borderRadius: "10px",
+  "& > *:first-of-type": {
+    margin: "20px",
+    paddingBottom: "20px",
+  },
+  "& *": {
+    color: "black",
   },
 }));

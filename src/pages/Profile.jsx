@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import { NavProfiles } from "../components/profile/NavProfiles";
 import { ProfilesRoutes } from "../components/profile/ProfileRoutes";
 import { ContainerProfile } from "../components/profile/StyledComponentsProfile";
@@ -18,37 +18,62 @@ export const Profile = () => {
         <Card
           className="text-center"
           style={{
-            background: "linear-gradient(to right, #DDF3FF, #E7F6FE)",
-            boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+            background: "linear-gradient(to right, #009BD9, #E7F6FE)",
+            boxShadow: "0px 0px 30px 0px rgba(0,0,0,0.75)",
+            borderRadius: "30px",
           }}
         >
           <Card.Header>
-            {user?.tipoUsuario === "Admin"
-              ? "Bienvenido Administrador"
-              : user?.tipoUsuario === "Cliente"
-              ? "¡Bienvenido! " + user?.cliente.nombreCompleto
-              : "¡Bienvenido! " + user?.tecnico.nombreCompleto}
+            <strong>
+              {user?.tipoUsuario === "Admin"
+                ? "Bienvenido Administrador"
+                : user?.tipoUsuario === "Cliente"
+                ? "¡Bienvenido! " + user?.cliente.nombreCompleto
+                : "¡Bienvenido! " + user?.tecnico.nombreCompleto}
+            </strong>
           </Card.Header>
           <Card.Body>
-            <img
+            {/* <img
               src={user?.tipoUsuario === "Admin" ? IMG_ADMIN : user?.urlFoto}
               alt=""
               style={{ width: "10%", borderRadius: "50%" }}
+            /> */}
+            <Image
+              src={user?.tipoUsuario === "Admin" ? IMG_ADMIN : user?.urlFoto}
+              roundedCircle
+              width={100}
+              height={100}
             />
             {user && user?.tipoUsuario === "Admin" ? (
-              <div className="d-flex justify-content-between pt-4">
-                <Card.Text>Email: {user?.email}</Card.Text>
-                <Card.Text>Cargo: Administrador</Card.Text>
+              <div className="d-flex justify-content-center pt-4 gap-5">
+                <Card.Text>
+                  <strong>Email:</strong>
+                  {user?.email}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Cargo:</strong> Administrador
+                </Card.Text>
               </div>
             ) : user?.tipoUsuario === "Cliente" ? (
-              <div className="d-flex justify-content-between pt-4">
-                <Card.Text>Email: {user?.email}</Card.Text>
-                <Card.Text>Casos abiertos: 1 caso abierto</Card.Text>
+              <div className="d-flex justify-content-center pt-4 gap-5">
+                <Card.Text>
+                  {" "}
+                  <strong>Email:</strong> {user?.email}
+                </Card.Text>
+
+                <Card.Text>
+                  <strong>Servicio:</strong> 100Mbps fibra optica
+                </Card.Text>
               </div>
             ) : (
-              <div className="d-flex justify-content-between pt-4">
-                <Card.Text>Email: {user?.email}</Card.Text>
-                <Card.Text>Soporte del dia: 10 soportes pendientes</Card.Text>
+              <div className="d-flex justify-content-center pt-4 gap-5">
+                <Card.Text>
+                  {" "}
+                  <strong>Email:</strong> {user?.email}
+                </Card.Text>
+                <Card.Text>
+                  <strong>Cargo:</strong> Tecnico de soporte
+                </Card.Text>
               </div>
             )}
 

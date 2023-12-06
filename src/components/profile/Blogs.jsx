@@ -16,6 +16,9 @@ export const Blogs = () => {
 
   return (
     <div className="pt-5">
+      <h4 className="pb-3">
+        <i className="bi bi-book-half"></i> Blogs
+      </h4>
       {user.tipoUsuario === "Tecnico" && (
         <div className="d-flex justify-content-start">
           <ButtonProfile onClick={handleClick}>Crear Blog</ButtonProfile>

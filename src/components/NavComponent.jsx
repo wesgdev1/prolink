@@ -57,20 +57,20 @@ export const NavComponent = () => {
             {user ? (
               <>
                 <NavLinkStyledLogin to="/profile" className="nav-link">
-                  Perfil
+                  <i className="bi bi-person-circle"></i> Perfil
                 </NavLinkStyledLogin>
                 <Button onClick={handleLogout} className="nav-link ms-4">
-                  Cerrar sesion
+                  <i className="bi bi-box-arrow-right"></i> Cerrar sesion
                 </Button>
               </>
             ) : (
               <nav>
                 <Nav className="d-flex justify-content-center">
                   <ButtonHomeLogin onClick={() => navigate("/login")}>
-                    Iniciar sesion
+                    <i className="bi bi-person-circle"></i> Iniciar sesion
                   </ButtonHomeLogin>
                   <ButtonHomeLogin onClick={() => navigate("/signup")}>
-                    Registrarse
+                    <i className="bi bi-person-plus"></i> Registrarse
                   </ButtonHomeLogin>
                 </Nav>
               </nav>
