@@ -8,11 +8,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, ErrorMessage } from "formik";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { z } from "zod";
-import { Button } from "react-bootstrap";
+
 import { ButtonStyled, MainConteiner } from "../components/StyledComponents";
 import { AuthContext } from "../auth/context/AuthContext";
-import { signIn, signUp } from "../api/auth";
-import { setSession } from "../api/sessions";
+import { signUp } from "../api/auth";
+import Swal from "sweetalert2";
 
 const emailRqd = z.string({
   required_error: "El correo es requerido",
@@ -79,17 +79,21 @@ export function SignUp() {
       const response = await signUp(formData);
 
       const { data, meta } = response;
-      console.log("data", data);
+
       if (data) {
-        console.log("se registro");
+        Swal.fire({
+          icon: "success",
+          title: "Tu Usuario ha sido Creado",
+          text: "Se envio un correo de confirmacion a tu correo electronico",
+        });
       }
-
-      // login(data);
-      // setSession(meta.token);
-
       navigate("/login", { replace: true });
     } catch (error) {
-      console.log("errorsoski de creacion");
+      Swal.fire({
+        icon: "error",
+        title: "Tu Usuario no ha sido Creado",
+        text: "No tiene servicios con Prolink comunicaciones, porfavor contacte a su administrador",
+      });
       setError(true);
     }
   };

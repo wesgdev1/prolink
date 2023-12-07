@@ -5,6 +5,7 @@ import { useClientes } from "../../domain/clientes/useClientes";
 import { useTecnicos } from "../../domain/tecnicos/useTecnicos";
 
 import { useBlogs } from "../../domain/useBlogs";
+import { Zoom } from "react-awesome-reveal";
 
 export const Information = () => {
   const fecha = new Date();
@@ -73,54 +74,58 @@ export const Information = () => {
             ) : (
               <p>No hay soportes en el momento</p>
             )}
+            <Zoom left>
+              <div className="d-flex gap-5 pt-5 justify-content-center">
+                <Card border="success" style={{ width: "10rem" }}>
+                  <Card.Body>
+                    <div className="d-flex flex-column align-items-center justify-content-center">
+                      <Card.Text>Clientes</Card.Text>
 
-            <div className="d-flex gap-5 pt-5 justify-content-center">
-              <Card border="success" style={{ width: "10rem" }}>
-                <Card.Body>
-                  <div className="d-flex flex-column align-items-center justify-content-center">
-                    <Card.Text>Clientes</Card.Text>
+                      <Card.Text>
+                        <i
+                          style={{ fontSize: "3rem" }}
+                          className="bi bi-person"
+                        ></i>
+                      </Card.Text>
+                      <Card.Text>{dataCliente.length}</Card.Text>
+                    </div>
+                  </Card.Body>
+                </Card>
+                <Card
+                  border="success"
+                  style={{ width: "10rem", boxShadow: "3px 3px 20px gray" }}
+                >
+                  <Card.Body>
+                    <div className="d-flex flex-column align-items-center justify-content-center">
+                      <Card.Text>Tecnicos</Card.Text>
 
-                    <Card.Text>
-                      <i
-                        style={{ fontSize: "3rem" }}
-                        className="bi bi-person"
-                      ></i>
-                    </Card.Text>
-                    <Card.Text>{dataCliente.length}</Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-              <Card border="success" style={{ width: "10rem" }}>
-                <Card.Body>
-                  <div className="d-flex flex-column align-items-center justify-content-center">
-                    <Card.Text>Tecnicos</Card.Text>
+                      <Card.Text>
+                        <i
+                          style={{ fontSize: "3rem" }}
+                          className="bi bi-person-vcard"
+                        ></i>
+                      </Card.Text>
+                      <Card.Text>{dataTecnicos.length}</Card.Text>
+                    </div>
+                  </Card.Body>
+                </Card>
+                <Card border="success" style={{ width: "10rem" }}>
+                  <Card.Body>
+                    <div className="d-flex flex-column align-items-center justify-content-center">
+                      <Card.Text>Blogs</Card.Text>
 
-                    <Card.Text>
-                      <i
-                        style={{ fontSize: "3rem" }}
-                        className="bi bi-person-vcard"
-                      ></i>
-                    </Card.Text>
-                    <Card.Text>{dataTecnicos.length}</Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-              <Card border="success" style={{ width: "10rem" }}>
-                <Card.Body>
-                  <div className="d-flex flex-column align-items-center justify-content-center">
-                    <Card.Text>Blogs</Card.Text>
-
-                    <Card.Text>
-                      <i
-                        style={{ fontSize: "3rem" }}
-                        className="bi bi-file-text"
-                      ></i>
-                    </Card.Text>
-                    <Card.Text>{dataBlogs.length}</Card.Text>
-                  </div>
-                </Card.Body>
-              </Card>
-            </div>
+                      <Card.Text>
+                        <i
+                          style={{ fontSize: "3rem" }}
+                          className="bi bi-file-text"
+                        ></i>
+                      </Card.Text>
+                      <Card.Text>{dataBlogs.length}</Card.Text>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
+            </Zoom>
           </div>
         </div>
       )}

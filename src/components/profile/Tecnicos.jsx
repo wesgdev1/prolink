@@ -33,6 +33,9 @@ export const Tecnicos = () => {
   };
   return (
     <div className="pt-5">
+      <h4 className="pb-3">
+        <i className="bi bi-person-add"></i> Tecnicos
+      </h4>
       <div className="d-flex justify-content-end">
         <ButtonProfile onClick={handleClick}>Agregar tecnico</ButtonProfile>
       </div>

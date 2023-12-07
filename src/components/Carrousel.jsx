@@ -15,7 +15,7 @@ export const Carrousel = () => {
         <img
           style={{ width: "100%" }}
           className="d-block w-100"
-          src="https://res.cloudinary.com/dppqkypts/image/upload/v1701397521/Dise%C3%B1o_sin_t%C3%ADtulo_ihpxop.svg"
+          src="https://res.cloudinary.com/dppqkypts/image/upload/v1701903970/Dise%C3%B1o_sin_t%C3%ADtulo_12_igz5cr.png"
           alt="First slide"
         />
         <CaptionStyled>

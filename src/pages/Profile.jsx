@@ -38,12 +38,19 @@ export const Profile = () => {
               alt=""
               style={{ width: "10%", borderRadius: "50%" }}
             /> */}
-            <Image
-              src={user?.tipoUsuario === "Admin" ? IMG_ADMIN : user?.urlFoto}
-              roundedCircle
-              width={100}
-              height={100}
-            />
+            <div>
+              <Image
+                src={
+                  user?.tipoUsuario === "Admin"
+                    ? IMG_ADMIN
+                    : user?.urlFoto ||
+                      "https://res.cloudinary.com/dppqkypts/image/upload/v1701901417/Dise%C3%B1o_sin_t%C3%ADtulo_11_r8jfvs.png"
+                }
+                roundedCircle
+                width={100}
+                height={100}
+              />
+            </div>
             {user && user?.tipoUsuario === "Admin" ? (
               <div className="d-flex justify-content-center pt-4 gap-5">
                 <Card.Text>
