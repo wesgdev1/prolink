@@ -1,21 +1,24 @@
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { ButtonInfo } from "./StyledComponentsServices";
+import { useNavigate } from "react-router-dom";
 
-export const Service = () => {
+export const Service = ({ img, title, description, price, priceNormal }) => {
+  const navigate = useNavigate();
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img
-        variant="top"
-        src="https://res.cloudinary.com/dppqkypts/image/upload/v1701294367/Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_dwakut.png"
-      />
+    <Card
+      style={{
+        width: "18rem",
+        borderRadius: "20px",
+        boxShadow: "3px 3px 10px gray",
+      }}
+    >
+      <Card.Img variant="top" src={img} />
       <Card.Body>
-        <Card.Title>Internet + DirecTv GO</Card.Title>
-        <Card.Text>
-          Hasta 450 megas de internet + DirecTv GO con 3 meses de regalo
-        </Card.Text>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>{description}</Card.Text>
         <hr />
         <Card.Text>
-          <h4>$ 89.900</h4>
+          <h4>{price}</h4>
         </Card.Text>
         <Card.Text>
           <p
@@ -23,10 +26,12 @@ export const Service = () => {
               textDecoration: "line-through",
             }}
           >
-            Normal: $150.000
+            {priceNormal}
           </p>
         </Card.Text>
-        <ButtonInfo>¡Lo quiero!</ButtonInfo>
+        <ButtonInfo onClick={() => navigate("/contacto")}>
+          ¡Lo quiero!
+        </ButtonInfo>
       </Card.Body>
     </Card>
   );

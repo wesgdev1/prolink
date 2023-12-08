@@ -30,7 +30,7 @@ export const Footer = () => {
         </Col>
       </Row>
       <div className="pt-2 d-flex justify-content-center">
-        © 2023 Copyright:prolink.com.co
+        © 2023 Prolink Comunicaciones
       </div>
     </FooterContainer>
   );

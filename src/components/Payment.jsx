@@ -1,7 +1,9 @@
 import { Col, Image, Row } from "react-bootstrap";
 import { ButtonProfile } from "./profile/StyledComponentsProfile";
+import { useNavigate } from "react-router-dom";
 
 export const Payments = () => {
+  const navigate = useNavigate();
   return (
     <Row className="pt-5 pb-2">
       <Col md={5}>
@@ -24,10 +26,12 @@ export const Payments = () => {
           </p>
           <p>Nit: 9010290012</p>
           <p>
-            Si requieres asoseria o tienes dudas al momento de elegir algunos de
-            nuestros planes, estaremos pendiente para colaborarte.
+            Si requieres asesoria o tienes dudas al momento de elegir algunos de
+            nuestros planes da click en el siguiente boton.
           </p>
-          <ButtonProfile>Mas informacion</ButtonProfile>
+          <ButtonProfile onClick={() => navigate("/contacto")}>
+            ¡Solicitar informacion!
+          </ButtonProfile>
         </div>
       </Col>
     </Row>
