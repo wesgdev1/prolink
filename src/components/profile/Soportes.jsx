@@ -90,17 +90,30 @@ export const Soportes = () => {
           </select>
         </div>
       </div>
-      <div className="pt-5">
-        <PDFDownloadLink document={<Pdf data={data} />} fileName="soportes.pdf">
-          {({ blob, url, loading, error }) =>
-            loading ? (
-              "Cargando documento..."
-            ) : (
-              <ButtonProfile>Imprimir soportes del dia</ButtonProfile>
-            )
-          }
-        </PDFDownloadLink>
-      </div>
+
+      {user?.tipoUsuario === "Tecnico" && (
+        <div className="pt-5">
+          <PDFDownloadLink
+            document={
+              <Pdf
+                data={data.filter((soporte) => {
+                  return soporte.estado === false;
+                })}
+              />
+            }
+            fileName="soportes.pdf"
+          >
+            {({ blob, url, loading, error }) =>
+              loading ? (
+                "Cargando documento..."
+              ) : (
+                <ButtonProfile>Imprimir soportes Pendientes</ButtonProfile>
+              )
+            }
+          </PDFDownloadLink>
+        </div>
+      )}
+
       {loading && <Spinner animation="border" variant="info" />}
       {error && (
         <Alert variant="danger">Ocurrio un problema en el servidor</Alert>

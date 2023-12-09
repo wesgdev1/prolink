@@ -165,7 +165,15 @@ export const Chats = () => {
             </span>
             <div className="d-flex gap-3">
               <Image
-                src="https://res.cloudinary.com/dppqkypts/image/upload/v1700753804/imagesBlog/8d3a5d84b2a92cb6cea3e801c619cf83.png"
+                src={
+                  user?.tipoUsuario === "Cliente"
+                    ? user?.urlFoto
+                      ? user?.urlFoto
+                      : "https://res.cloudinary.com/dppqkypts/image/upload/v1701901417/Dise%C3%B1o_sin_t%C3%ADtulo_11_r8jfvs.png"
+                    : data?.usuarioA.urlFoto
+                    ? data?.usuarioA.urlFoto
+                    : "https://res.cloudinary.com/dppqkypts/image/upload/v1701901417/Dise%C3%B1o_sin_t%C3%ADtulo_11_r8jfvs.png"
+                }
                 style={{ height: 50, width: 50, borderRadius: "50%" }}
               />
               <div className="text-start">
@@ -278,10 +286,14 @@ export const Chats = () => {
                               user?.tipoUsuario === "Cliente"
                                 ? mensaje.usuarioId === user?.id
                                   ? user?.urlFoto
+                                    ? user?.urlFoto
+                                    : "https://res.cloudinary.com/dppqkypts/image/upload/v1701901417/Dise%C3%B1o_sin_t%C3%ADtulo_11_r8jfvs.png"
                                   : "https://res.cloudinary.com/dppqkypts/image/upload/v1700682370/ADMIN_zafi93.png"
                                 : mensaje.usuarioId === user?.id
                                 ? "https://res.cloudinary.com/dppqkypts/image/upload/v1700682370/ADMIN_zafi93.png"
                                 : data?.usuarioA.urlFoto
+                                ? data?.usuarioA.urlFoto
+                                : "https://res.cloudinary.com/dppqkypts/image/upload/v1701901417/Dise%C3%B1o_sin_t%C3%ADtulo_11_r8jfvs.png"
                             }
                             style={{
                               height: 30,

@@ -76,23 +76,12 @@ export const RealTime = () => {
                   </div>
                 </Card.Body>
               </Card>
+
               <Card style={{ width: "12rem" }}>
                 <Card.Body>
                   <div className="d-flex flex-column justify-content-center align-items-center">
                     <Card.Title className="d-flex gap-2">
                       <i className="bi bi-person-fill-gear"></i> Agente 2
-                      <l-ping size="20" speed="1" color="green"></l-ping>
-                    </Card.Title>
-                    <Card.Text></Card.Text>
-                    <ButtonAgent variant="primary">Abrir un Caso</ButtonAgent>
-                  </div>
-                </Card.Body>
-              </Card>
-              <Card style={{ width: "12rem" }}>
-                <Card.Body>
-                  <div className="d-flex flex-column justify-content-center align-items-center">
-                    <Card.Title className="d-flex gap-2">
-                      <i className="bi bi-person-fill-gear"></i> Agente 3
                       <l-ping size="20" speed="1" color="red"></l-ping>
                     </Card.Title>
                     <Card.Text></Card.Text>

@@ -191,16 +191,12 @@ export const ClientesForm = () => {
               onSubmit={handleSubmit}
               style={{ width: "75%", margin: "auto", marginTop: "10px" }}
             >
-              {/* {error && (
-                <Alert
-                  variant="danger"
-                  style={{ width: "75%", margin: "auto", marginTop: "10px" }}
-                >
-                  Hubo un error, intentalo nuevamente
-                </Alert>
-              )} */}
               <Form.Group className="" controlId="formBasicNombreCompleto">
-                <h3 className="pt-5 pb-3">Nuevo cliente</h3>
+                <h3 className="pt-5 pb-3">
+                  {actionEdit
+                    ? "Actualizar datos de usuario"
+                    : " Registro de nuevo Cliente"}
+                </h3>
                 <Form.Label>Nombre Completo</Form.Label>
                 <Form.Control
                   type="text"
@@ -387,20 +383,6 @@ export const ClientesForm = () => {
                   className="invalid-feedback"
                 />
               </Form.Group>
-
-              {/* {actionEdit?.id && (
-                <div className="d-flex gap-5">
-                  {" "}
-                  <Form.Label column sm="3">
-                    Imagen
-                  </Form.Label>
-                  <img
-                    width={200}
-                    src={actionEdit?.fotos[0]?.url_foto}
-                    alt="Imagen del Blog"
-                  />{" "}
-                </div>
-              )} */}
 
               <div className="d-flex justify-content-center">
                 <ButtonStyled

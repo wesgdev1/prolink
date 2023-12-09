@@ -24,7 +24,7 @@ export const Pdf = ({ data }) => {
       width: 100,
       height: 100,
       borderRadius: 50,
-      marginTop: 5,
+      marginTop: 2,
     },
     text: {
       fontSize: 20,
@@ -32,7 +32,7 @@ export const Pdf = ({ data }) => {
       marginTop: 20,
     },
     signatureSection: {
-      marginTop: 10,
+      marginTop: 50,
       marginLeft: 10,
     },
     line: {
@@ -53,46 +53,50 @@ export const Pdf = ({ data }) => {
     },
   });
   return (
-    // generame la estructura de un pdf para mostrar una orden de servicio o soporte tecnico
-
     <Document>
-      {data?.map((soporte) => (
-        <Page key={soporte.id} style={styles.page}>
-          <Image
-            src="https://res.cloudinary.com/dppqkypts/image/upload/v1700682370/ADMIN_zafi93.png "
-            style={styles.image}
-          />
-          <Line style={styles.line} />
-          <Text style={styles.text}>
-            Orden de Servicio: {soporte.numeroSoporte}
-          </Text>
-          <View style={styles.section}>
-            <Text>Numero de soporte: {soporte.numeroSoporte}</Text>
-            <Text>Nombre: {soporte.cliente.nombreCompleto}</Text>
-            <Text>Telefono: {soporte.cliente.telefono}</Text>
-            <Text>Direccion: {soporte.cliente.direccion}</Text>
-            <Text>Fecha: {soporte.fechaGeneracion}</Text>
-            <Text>Hora: {soporte.horaGeneracion}</Text>
-          </View>
-          <Line style={styles.line} />
+      {data && data.length > 0 ? (
+        data?.map((soporte) => (
+          <Page key={soporte.id} style={styles.page}>
+            <Image
+              src="https://res.cloudinary.com/dppqkypts/image/upload/v1702156223/Dise%C3%B1o_sin_t%C3%ADtulo_17_cz79tt.png"
+              style={styles.image}
+            />
+            <Line style={styles.line} />
+            <Text style={styles.text}>
+              Orden de Servicio: {soporte.numeroSoporte}
+            </Text>
+            <View style={styles.section}>
+              <Text>Numero de soporte: {soporte.numeroSoporte}</Text>
+              <Text>Nombre: {soporte.cliente.nombreCompleto}</Text>
+              <Text>Telefono: {soporte.cliente.telefono}</Text>
+              <Text>Direccion: {soporte.cliente.direccion}</Text>
+              <Text>Fecha: {soporte.fechaGeneracion}</Text>
+              <Text>Hora: {soporte.horaGeneracion}</Text>
+            </View>
+            <Line style={styles.line} />
 
-          <View style={styles.section}>
-            <Text>Falla: {soporte.descripcion}</Text>
-          </View>
+            <View style={styles.section}>
+              <Text>Falla: {soporte.descripcion}</Text>
+            </View>
 
-          <Line style={styles.line} />
-          <View style={styles.solutionSection}>
-            <Text style={styles.solutionText}>Solución:</Text>
-            <Text style={styles.emptySolution}></Text>
-          </View>
-          <View style={styles.signatureSection}>
-            <Text>Firma del Cliente: _________________________</Text>
-          </View>
-          <View style={styles.signatureSection}>
-            <Text>Firma del Tecnico: _________________________</Text>
-          </View>
+            <Line style={styles.line} />
+            <View style={styles.solutionSection}>
+              <Text style={styles.solutionText}>Solución:</Text>
+              <Text style={styles.emptySolution}></Text>
+            </View>
+            <View style={styles.signatureSection}>
+              <Text>Firma del Cliente: _________________________</Text>
+            </View>
+            <View style={styles.signatureSection}>
+              <Text>Firma del Tecnico: _________________________</Text>
+            </View>
+          </Page>
+        ))
+      ) : (
+        <Page style={styles.page}>
+          <Text>No hay Soportes pendientes</Text>
         </Page>
-      ))}
+      )}
     </Document>
   );
 };

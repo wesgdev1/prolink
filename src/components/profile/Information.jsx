@@ -44,6 +44,16 @@ export const Information = () => {
     });
     return contador;
   };
+
+  const calcularActivos = () => {
+    let contador = 0;
+    dataBlogs?.forEach((blog) => {
+      if (blog.published) {
+        contador++;
+      }
+    });
+    return contador;
+  };
   return (
     <>
       {loading && <Spinner animation="border" variant="info" />}
@@ -112,7 +122,7 @@ export const Information = () => {
                 <Card border="success" style={{ width: "10rem" }}>
                   <Card.Body>
                     <div className="d-flex flex-column align-items-center justify-content-center">
-                      <Card.Text>Blogs</Card.Text>
+                      <Card.Text>Blogs Activos</Card.Text>
 
                       <Card.Text>
                         <i
@@ -120,7 +130,7 @@ export const Information = () => {
                           className="bi bi-file-text"
                         ></i>
                       </Card.Text>
-                      <Card.Text>{dataBlogs.length}</Card.Text>
+                      <Card.Text>{calcularActivos()}</Card.Text>
                     </div>
                   </Card.Body>
                 </Card>
