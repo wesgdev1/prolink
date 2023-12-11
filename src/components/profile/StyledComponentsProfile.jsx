@@ -96,3 +96,14 @@ export const ContainerCalendar = styled("div")(({ theme }) => ({
     color: "black",
   },
 }));
+
+export const ButtonPing = styled(Button)(({ theme }) => ({
+  fontSize: "1rem",
+  color: theme.colors.mainColor,
+  background: "transparent",
+  border: "none",
+  "&:hover": {
+    color: "white",
+    background: theme.colors.mainColor,
+  },
+}));
