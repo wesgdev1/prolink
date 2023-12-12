@@ -14,6 +14,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const cambiarImagen = (imagen) => {
+    const user = { ...authState.user, urlFoto: imagen };
+    setAuthState({ user });
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
   const login = (payload) => {
     localStorage.setItem("user", JSON.stringify(payload));
     init();
@@ -44,6 +50,7 @@ export const AuthProvider = ({ children }) => {
         setAuthState,
         login,
         logout,
+        cambiarImagen,
       }}
     >
       {children}

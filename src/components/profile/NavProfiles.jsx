@@ -57,7 +57,7 @@ export const NavProfiles = () => {
                 <i className="bi bi-chat-dots"></i>
                 Soporte Online
               </NavLinkStyled>
-              <NavLinkStyled to="/profile/realtime">
+              <NavLinkStyled to="/profile/edit">
                 <i className="bi bi-pencil"></i>
                 Editar mi perfil
               </NavLinkStyled>

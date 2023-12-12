@@ -1,5 +1,6 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
+
 import { ContainerCalendar } from "./StyledComponentsProfile";
 import { useContext } from "react";
 import { AuthContext } from "../../auth/context/AuthContext";

@@ -18,9 +18,9 @@ export const Profile = () => {
         <Card
           className="text-center"
           style={{
-            background: "linear-gradient(to right, #009BD9, #E7F6FE)",
+            background: "linear-gradient(to right, #000A49, #E7F6FE)",
             boxShadow: "0px 0px 30px 0px rgba(0,0,0,0.75)",
-            borderRadius: "30px",
+            borderRadius: "20px",
           }}
         >
           <Card.Header>

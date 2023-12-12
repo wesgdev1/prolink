@@ -21,6 +21,7 @@ import { Chats } from "./Chats";
 import { Pings } from "./Pings";
 import { PingsTable } from "./PingsTable";
 import { Calendar } from "./Calendar";
+import { ProfileData } from "./ProfileData";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -63,6 +64,7 @@ export const ProfilesRoutes = () => {
         <Route path="realtime" element={<RealTime />} />
         <Route path="realtime/chats/:id" element={<Chats />} />
         <Route path="pings" element={<PingsTable />} />
+        <Route path="edit/" element={<ProfileData />} />
       </Routes>
     </>
   );

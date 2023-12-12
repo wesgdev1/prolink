@@ -221,3 +221,14 @@ export const CardStyledContacto = styled(Card)(({ theme }) => ({
 export const ParrafoStyled = styled("p")(({ theme }) => ({
   textAlign: "justify",
 }));
+
+export const ButtonStyledUpdate = styled(Button)(({ theme }) => ({
+  width: "40%",
+  backgroundColor: theme.colors.mainColor,
+  borderColor: theme.colors.mainColor,
+  color: "white",
+  "&:hover": {
+    backgroundColor: theme.colors.secondaryColor,
+    borderColor: theme.colors.secondaryColor,
+  },
+}));

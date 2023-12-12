@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Nav } from "react-bootstrap";
+import { Button, Nav, Tabs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 export const ContainerProfile = styled("div")(({ theme }) => ({
@@ -105,5 +105,14 @@ export const ButtonPing = styled(Button)(({ theme }) => ({
   "&:hover": {
     color: "white",
     background: theme.colors.mainColor,
+  },
+}));
+
+export const StyledTabs = styled(Tabs)(({ theme }) => ({
+  "& .MuiTabs-indicator": {
+    backgroundColor: theme.colors.mainColor,
+  },
+  "& .MuiTabs-root": {
+    color: "red",
   },
 }));
