@@ -232,3 +232,11 @@ export const ButtonStyledUpdate = styled(Button)(({ theme }) => ({
     borderColor: theme.colors.secondaryColor,
   },
 }));
+
+export const CardInformationConsultas = styled(Card)(({ theme }) => ({
+  width: "10rem",
+  boxShadow: `3px 3px 20px grey`,
+  "&:hover": {
+    boxShadow: `10px 10px 10px ${theme.colors.mainColor}`,
+  },
+}));

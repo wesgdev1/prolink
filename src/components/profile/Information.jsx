@@ -1,4 +1,4 @@
-import { Button, Card, Offcanvas, Spinner } from "react-bootstrap";
+import { Card, Offcanvas, Spinner } from "react-bootstrap";
 import { useSoportesDia } from "../../domain/soportes/useSoportesDia";
 import { VictoryPie, VictoryLabel } from "victory";
 import { useClientes } from "../../domain/clientes/useClientes";
@@ -6,7 +6,7 @@ import { useTecnicos } from "../../domain/tecnicos/useTecnicos";
 
 import { useBlogs } from "../../domain/useBlogs";
 import { Zoom } from "react-awesome-reveal";
-import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
 import { useConsultas } from "../../domain/useConsultas";
 import {
@@ -16,13 +16,15 @@ import {
 } from "./StyledComponentsProfile";
 import Swal from "sweetalert2";
 import { updateConsulta } from "../../api/consultas";
+import { format, parseISO } from "date-fns";
+import { CardInformationConsultas } from "../StyledComponents";
 
 export const Information = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const navigate = useNavigate();
+
   const fecha = new Date();
   const opcionesFecha = {
     weekday: "long",
@@ -33,17 +35,13 @@ export const Information = () => {
   const fechaFormateada = fecha.toLocaleDateString("es-ES", opcionesFecha);
 
   const { data, loading, error } = useSoportesDia();
-  const { data: dataCliente, loading: loading2, error: error2 } = useClientes();
-  const {
-    data: dataTecnicos,
-    loading: loading3,
-    error: error3,
-  } = useTecnicos();
-  const { data: dataBlogs, loading: loading4, error: error4 } = useBlogs();
+  const { data: dataCliente } = useClientes();
+  const { data: dataTecnicos } = useTecnicos();
+  const { data: dataBlogs } = useBlogs();
   const {
     data: dataConsultas,
-    loading: loading5,
-    error: error5,
+    loading: loadingConsultas,
+    cargarConsultas,
   } = useConsultas();
 
   const contarResueltos = () => {
@@ -78,17 +76,19 @@ export const Information = () => {
   const handleUpdate = (consulta) => {
     Swal.fire({
       title: "¿Desea marcar como resuelta  la consulta?",
-      showDenyButton: true,
+
       showCancelButton: true,
       confirmButtonText: `Si`,
-      denyButtonText: `No `,
     }).then(async (result) => {
       if (result.isConfirmed) {
         const response = await updateConsulta(consulta, { estado: true });
 
-        Swal.fire("Actualizado!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("No se actualizo", "", "info");
+        if (response) {
+          Swal.fire("Consulta archivada!", "", "success");
+          cargarConsultas();
+        } else if (result.isDenied) {
+          Swal.fire("Hubo un error", "", "info");
+        }
       }
     });
   };
@@ -124,7 +124,10 @@ export const Information = () => {
             )}
             <Zoom left>
               <div className="d-flex gap-5 pt-5 justify-content-center">
-                <Card border="success" style={{ width: "10rem" }}>
+                <Card
+                  border="success"
+                  style={{ width: "10rem", boxShadow: "3px 3px 20px gray" }}
+                >
                   <Card.Body>
                     <div className="d-flex flex-column align-items-center justify-content-center">
                       <Card.Text>Clientes</Card.Text>
@@ -157,14 +160,19 @@ export const Information = () => {
                     </div>
                   </Card.Body>
                 </Card>
-                <Card border="success" style={{ width: "10rem" }}>
+                <Card
+                  border="success"
+                  style={{ width: "10rem", boxShadow: "3px 3px 20px gray" }}
+                >
                   <Card.Body>
                     <div className="d-flex flex-column align-items-center justify-content-center">
                       <Card.Text>Blogs Activos</Card.Text>
 
                       <Card.Text>
                         <i
-                          style={{ fontSize: "3rem" }}
+                          style={{
+                            fontSize: "3rem",
+                          }}
                           className="bi bi-file-text"
                         ></i>
                       </Card.Text>
@@ -173,7 +181,7 @@ export const Information = () => {
                   </Card.Body>
                 </Card>
 
-                <Card
+                <CardInformationConsultas
                   border="success"
                   style={{ width: "10rem" }}
                   // onClick={() => navigate("/profile/consultas")}
@@ -189,10 +197,10 @@ export const Information = () => {
                           className="bi bi-cursor-fill"
                         ></i>
                       </Card.Text>
-                      <Card.Text>{dataCliente.length}</Card.Text>
+                      <Card.Text>{dataConsultas?.length}</Card.Text>
                     </div>
                   </Card.Body>
-                </Card>
+                </CardInformationConsultas>
               </div>
             </Zoom>
           </div>
@@ -204,26 +212,31 @@ export const Information = () => {
           <Offcanvas.Title>Consultas</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          {loading5 && <Spinner animation="border" variant="info" />}
+          {loadingConsultas && <Spinner animation="border" variant="info" />}
 
-          {dataConsultas.length > 0
-            ? dataConsultas.map((consulta) => (
-                <StyledCardConsultas key={consulta.id} className="mb-2">
-                  <Card.Body>
-                    <Card.Title>{consulta.nombre}</Card.Title>
-                    <Card.Text>{consulta.createdAt}</Card.Text>
-                    <Card.Text>{consulta.mensaje}</Card.Text>
-                    <div className="d-flex justify-content-between ">
-                      <Card.Text>{consulta.telefono}</Card.Text>
-                      <Card.Text>{consulta.email}</Card.Text>
-                      <ButtonConsulta onClick={() => handleUpdate(consulta.id)}>
-                        <i className="bi bi-clipboard-check-fill"></i>
-                      </ButtonConsulta>
-                    </div>
-                  </Card.Body>
-                </StyledCardConsultas>
-              ))
-            : null}
+          {dataConsultas.length > 0 ? (
+            dataConsultas.map((consulta) => (
+              <StyledCardConsultas key={consulta.id} className="mb-2">
+                <Card.Body>
+                  <Card.Title>{consulta.nombre}</Card.Title>
+                  <Card.Text>
+                    {" "}
+                    {format(parseISO(consulta.createdAt), "dd/MM/yyyy")}
+                  </Card.Text>
+                  <Card.Text>{consulta.mensaje}</Card.Text>
+                  <div className="d-flex justify-content-between ">
+                    <Card.Text>{consulta.telefono}</Card.Text>
+                    <Card.Text>{consulta.email}</Card.Text>
+                    <ButtonConsulta onClick={() => handleUpdate(consulta.id)}>
+                      <i className="bi bi-clipboard-check-fill"></i>
+                    </ButtonConsulta>
+                  </div>
+                </Card.Body>
+              </StyledCardConsultas>
+            ))
+          ) : (
+            <p>No tienes consultas</p>
+          )}
         </Offcanvas.Body>
       </StyledOffCanvas>
     </>

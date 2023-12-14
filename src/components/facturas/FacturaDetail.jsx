@@ -21,7 +21,7 @@ export const FacturaDetail = ({ factura }) => {
           <Card.Body>
             <Card.Title>
               <i className="bi bi-receipt-cutoff"></i> Factura{" "}
-              {factura.referencia}{" "}
+              {factura.numeroFactura}{" "}
             </Card.Title>
             <Card.Text>Usuario: {factura.cliente.nombreCompleto}</Card.Text>
             <Card.Text>Servicio: {factura.descripcionServicio}</Card.Text>
@@ -30,11 +30,22 @@ export const FacturaDetail = ({ factura }) => {
               Fecha limite de pago:{" "}
               {format(new Date(factura?.fechaLimite), "dd/MM/yyyy")}
             </Card.Text>
-            {new Date(factura?.fechaLimite) < new Date() ? (
+            {new Date(factura?.fechaLimite) < new Date() &&
+            factura.estado === false ? (
               <Card.Text>Estado: Vencida</Card.Text>
             ) : (
               <Card.Text>
-                Estado: {factura?.estado ? "Pagada" : "Pendiente"}
+                Estado:{" "}
+                {factura?.estado ? (
+                  <Badge bg="success">
+                    {" "}
+                    <i className="bi bi-check-all" style={{ color: "white" }}>
+                      Pagada
+                    </i>
+                  </Badge>
+                ) : (
+                  "Pendiente"
+                )}
               </Card.Text>
             )}
             {factura?.estado ? null : new Date(factura?.fechaLimite) <

@@ -53,7 +53,7 @@ export const FacturasTable = ({ facturas }) => {
                   <td>{factura.cliente?.nombreCompleto}</td>
                 ) : null}
                 <td>{factura.referencia}</td>
-                <td>{"FVC00002"}</td>
+                <td>{factura.numeroFactura}</td>
                 <td>{factura.total}</td>
                 <td>{format(new Date(factura.fechaLimite), "dd/MM/yyyy")}</td>
 

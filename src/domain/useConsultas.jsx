@@ -25,5 +25,5 @@ export const useConsultas = () => {
     cargarConsultas();
   }, []);
 
-  return { data, loading, error };
+  return { data, loading, error, cargarConsultas };
 };
