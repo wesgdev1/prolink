@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { getBlog } from "../api/blogs";
+import { getConsultas } from "../api/consultas";
 
-export const useBlog = ({ id }) => {
-  const [data, setData] = useState();
+export const useConsultas = () => {
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const cargarBlogs = async (id) => {
+  const cargarConsultas = async () => {
     setLoading(true);
     setError("");
 
     try {
-      const response = await getBlog(id);
+      const response = await getConsultas();
 
       setData(response.data);
     } catch (error) {
@@ -22,8 +22,8 @@ export const useBlog = ({ id }) => {
   };
 
   useEffect(() => {
-    cargarBlogs(id);
-  }, [id]);
+    cargarConsultas();
+  }, []);
 
-  return { data, loading, error, cargarBlogs };
+  return { data, loading, error };
 };

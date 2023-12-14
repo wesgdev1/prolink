@@ -356,7 +356,7 @@ export const ProfileData = () => {
                       </Form.Group>
 
                       <div className="d-flex justify-content-center">
-                        <ButtonStyled
+                        <ButtonStyledUpdate
                           type="submit"
                           size="lg"
                           disabled={isSubmitting}
@@ -371,7 +371,7 @@ export const ProfileData = () => {
                               aria-hidden="true"
                             />
                           )}
-                        </ButtonStyled>
+                        </ButtonStyledUpdate>
                       </div>
                     </Form>
                   </>

@@ -21,6 +21,10 @@ export const Profile = () => {
             background: "linear-gradient(to right, #000A49, #E7F6FE)",
             boxShadow: "0px 0px 30px 0px rgba(0,0,0,0.75)",
             borderRadius: "20px",
+            backgroundImage: `url("https://res.cloudinary.com/dppqkypts/image/upload/v1702437086/Copia_de_Dise%C3%B1o_sin_t%C3%ADtulo_2_ubzban.svg")`,
+            backgroundSize: "50%",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "right",
           }}
         >
           <Card.Header>
@@ -49,6 +53,7 @@ export const Profile = () => {
                 roundedCircle
                 width={100}
                 height={100}
+                style={{ boxShadow: "0px 0px 20px 0px rgba(0,0,0,0.75)" }}
               />
             </div>
             {user && user?.tipoUsuario === "Admin" ? (

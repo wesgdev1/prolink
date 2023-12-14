@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Nav, Tabs } from "react-bootstrap";
+import { Button, Card, Nav, Offcanvas, Tabs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 export const ContainerProfile = styled("div")(({ theme }) => ({
@@ -114,5 +114,37 @@ export const StyledTabs = styled(Tabs)(({ theme }) => ({
   },
   "& .MuiTabs-root": {
     color: "red",
+  },
+}));
+
+export const StyledOffCanvas = styled(Offcanvas)(({ theme }) => ({
+  "& .offcanvas-header": {
+    backgroundColor: theme.colors.mainColor,
+    color: "black",
+  },
+  "& .offcanvas-body": {
+    backgroundColor: theme.colors.mainColor,
+    color: "white",
+  },
+}));
+
+export const StyledCardConsultas = styled(Card)(({ theme }) => ({
+  width: "100%",
+  fontSize: "0.7rem",
+
+  "&:hover": {
+    backgroundColor: theme.colors.secondaryColor,
+    color: "black",
+  },
+}));
+
+export const ButtonConsulta = styled(Button)(({ theme }) => ({
+  fontSize: "1rem",
+  color: theme.colors.mainColor,
+  background: "transparent",
+  border: "none",
+  "&:hover": {
+    color: "white",
+    background: theme.colors.mainColor,
   },
 }));

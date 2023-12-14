@@ -1,4 +1,4 @@
-import { Card, Spinner } from "react-bootstrap";
+import { Button, Card, Offcanvas, Spinner } from "react-bootstrap";
 import { useSoportesDia } from "../../domain/soportes/useSoportesDia";
 import { VictoryPie, VictoryLabel } from "victory";
 import { useClientes } from "../../domain/clientes/useClientes";
@@ -6,8 +6,23 @@ import { useTecnicos } from "../../domain/tecnicos/useTecnicos";
 
 import { useBlogs } from "../../domain/useBlogs";
 import { Zoom } from "react-awesome-reveal";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useConsultas } from "../../domain/useConsultas";
+import {
+  ButtonConsulta,
+  StyledCardConsultas,
+  StyledOffCanvas,
+} from "./StyledComponentsProfile";
+import Swal from "sweetalert2";
+import { updateConsulta } from "../../api/consultas";
 
 export const Information = () => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const navigate = useNavigate();
   const fecha = new Date();
   const opcionesFecha = {
     weekday: "long",
@@ -25,6 +40,11 @@ export const Information = () => {
     error: error3,
   } = useTecnicos();
   const { data: dataBlogs, loading: loading4, error: error4 } = useBlogs();
+  const {
+    data: dataConsultas,
+    loading: loading5,
+    error: error5,
+  } = useConsultas();
 
   const contarResueltos = () => {
     let contador = 0;
@@ -53,6 +73,24 @@ export const Information = () => {
       }
     });
     return contador;
+  };
+
+  const handleUpdate = (consulta) => {
+    Swal.fire({
+      title: "¿Desea marcar como resuelta  la consulta?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: `Si`,
+      denyButtonText: `No `,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await updateConsulta(consulta, { estado: true });
+
+        Swal.fire("Actualizado!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("No se actualizo", "", "info");
+      }
+    });
   };
   return (
     <>
@@ -134,11 +172,60 @@ export const Information = () => {
                     </div>
                   </Card.Body>
                 </Card>
+
+                <Card
+                  border="success"
+                  style={{ width: "10rem" }}
+                  // onClick={() => navigate("/profile/consultas")}
+                  onClick={handleShow}
+                >
+                  <Card.Body>
+                    <div className="d-flex flex-column align-items-center justify-content-center">
+                      <Card.Text>Consultas</Card.Text>
+
+                      <Card.Text>
+                        <i
+                          style={{ fontSize: "3rem" }}
+                          className="bi bi-cursor-fill"
+                        ></i>
+                      </Card.Text>
+                      <Card.Text>{dataCliente.length}</Card.Text>
+                    </div>
+                  </Card.Body>
+                </Card>
               </div>
             </Zoom>
           </div>
         </div>
       )}
+
+      <StyledOffCanvas show={show} onHide={handleClose} placement="end">
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Consultas</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {loading5 && <Spinner animation="border" variant="info" />}
+
+          {dataConsultas.length > 0
+            ? dataConsultas.map((consulta) => (
+                <StyledCardConsultas key={consulta.id} className="mb-2">
+                  <Card.Body>
+                    <Card.Title>{consulta.nombre}</Card.Title>
+                    <Card.Text>{consulta.createdAt}</Card.Text>
+                    <Card.Text>{consulta.mensaje}</Card.Text>
+                    <div className="d-flex justify-content-between ">
+                      <Card.Text>{consulta.telefono}</Card.Text>
+                      <Card.Text>{consulta.email}</Card.Text>
+                      <ButtonConsulta onClick={() => handleUpdate(consulta.id)}>
+                        <i className="bi bi-clipboard-check-fill"></i>
+                      </ButtonConsulta>
+                    </div>
+                  </Card.Body>
+                </StyledCardConsultas>
+              ))
+            : null}
+        </Offcanvas.Body>
+      </StyledOffCanvas>
     </>
   );
 };

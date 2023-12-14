@@ -212,10 +212,10 @@ export const ContainerContacto = styled("div")(({ theme }) => ({
 
 export const CardStyledContacto = styled(Card)(({ theme }) => ({
   width: "30rem",
-  borderColor: theme.colors.mainColor,
-  boxShadow: `3px 3px 3px black`,
-  borderRadius: "20px",
-  padding: "60px",
+
+  boxShadow: `10px 10px 10px grey`,
+  borderRadius: "10px",
+  padding: "30px",
 }));
 
 export const ParrafoStyled = styled("p")(({ theme }) => ({
@@ -223,7 +223,7 @@ export const ParrafoStyled = styled("p")(({ theme }) => ({
 }));
 
 export const ButtonStyledUpdate = styled(Button)(({ theme }) => ({
-  width: "40%",
+  width: "100%",
   backgroundColor: theme.colors.mainColor,
   borderColor: theme.colors.mainColor,
   color: "white",

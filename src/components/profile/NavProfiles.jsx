@@ -3,6 +3,7 @@ import { NavLinkStyled, NavStyled } from "./StyledComponentsProfile";
 import { Divisor } from "./Divisor";
 import { useContext } from "react";
 import { AuthContext } from "../../auth/context/AuthContext";
+import { Image } from "react-bootstrap";
 
 export const NavProfiles = () => {
   const { user } = useContext(AuthContext);
@@ -76,7 +77,7 @@ export const NavProfiles = () => {
               <NavLinkStyled to="soportes/mis-Soportes">
                 <i className="bi bi-wrench-adjustable"></i> Soportes tecnicos
               </NavLinkStyled>
-              <NavLinkStyled to="/profile">
+              <NavLinkStyled to="/profile/edit">
                 <i className="bi bi-pencil"></i>Editar Perfil
               </NavLinkStyled>
             </NavStyled>
