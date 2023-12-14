@@ -15,10 +15,15 @@ export const TecnicosTable = ({ tecnicos }) => {
   const editTecnico = (tecnico) => {
     navigate(`/profile/tecnicos/${tecnico.id}`, { state: { tecnico } });
   };
+  const viewHistory = (tecnico) => {
+    navigate(`/profile/tecnicos/${tecnico.id}/soportes`, {
+      state: { tecnico },
+    });
+  };
   return (
     <div className="pt-4">
       {" "}
-      <Table striped bordered hover>
+      <Table striped bordered hover style={{ fontSize: "0.8rem" }}>
         <thead>
           <tr>
             <th>Nombre</th>
@@ -38,11 +43,11 @@ export const TecnicosTable = ({ tecnicos }) => {
                 <td>{"Tecnico"}</td>
 
                 <td>
-                  {/* <EditBlog>
-                    <i className="bi bi-toggle2-on"></i>
-                  </EditBlog> */}
                   <EditBlog onClick={() => editTecnico(tecnico)}>
                     <i className="bi bi-eye-fill"></i>
+                  </EditBlog>
+                  <EditBlog onClick={() => viewHistory(tecnico)}>
+                    <i className="bi bi-clock-history"></i>
                   </EditBlog>
                 </td>
               </tr>

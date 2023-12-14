@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getFacturas } from "../api/facturas";
+import { getFacturas, getMisFacturas } from "../api/facturas";
 
-export const useFacturas = () => {
+export const useFacturas = ({ user }) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -11,9 +11,18 @@ export const useFacturas = () => {
     setError("");
 
     try {
-      const response = await getFacturas();
+      console.log("hice la peti");
+      if (user?.tipoUsuario === "Admin") {
+        const response = await getFacturas();
+        setData(response.data);
+        console.log("hice la peti");
+      } else {
+        const response = await getMisFacturas();
+        setData(response.data);
+      }
+      // const response = await getFacturas();
 
-      setData(response.data);
+      // setData(response.data);
     } catch (error) {
       setError(error);
     } finally {

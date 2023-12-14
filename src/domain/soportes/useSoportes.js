@@ -14,7 +14,10 @@ export const useSoportes = ({ user }) => {
       if (user?.tipoUsuario === "Tecnico") {
         const response = await getMySoportes();
         setData(response.data);
-      } else {
+      } else if (user?.tipoUsuario === "Cliente") {
+        const response = await getMySoportes();
+        setData(response.data);
+      } else if (user?.tipoUsuario === "Admin") {
         const response = await getAllSoportes();
         setData(response.data);
       }

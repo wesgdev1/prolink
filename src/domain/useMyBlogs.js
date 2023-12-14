@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getMyBlogs } from "../api/blogs";
+import { getBlogs, getMyBlogs } from "../api/blogs";
 
-export const useMyBlogs = () => {
+export const useMyBlogs = ({ user }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -11,9 +11,13 @@ export const useMyBlogs = () => {
     setError("");
 
     try {
-      const response = await getMyBlogs();
-
-      setData(response.data);
+      if (user?.tipoUsuario === "Admin") {
+        const response = await getBlogs();
+        setData(response.data);
+      } else {
+        const response = await getMyBlogs();
+        setData(response.data);
+      }
     } catch (error) {
       setError(error);
     } finally {

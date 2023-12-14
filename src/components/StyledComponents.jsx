@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Carousel, Container, Pagination } from "react-bootstrap";
+import { Button, Card, Carousel, Container, Pagination } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 export const ButtonHome = styled(Button)(({ theme }) => ({
@@ -15,10 +15,10 @@ export const ButtonHome = styled(Button)(({ theme }) => ({
 
 export const CaptionStyled = styled(Carousel.Caption)(({ theme }) => ({
   "& p": {
-    color: "white",
-    fontWeight: "bold",
+    color: "black",
+    // fontWeight: "bold",
     fontSize: "38px",
-    textShadow: "3px 4px 1px #000000",
+    // textShadow: "3px 4px 1px #000000",
   },
 }));
 
@@ -97,6 +97,8 @@ export const MainConteiner = styled("div")(({ theme }) => ({
   width: "100vw",
   backgroundImage: `url("https://res.cloudinary.com/db9nfgjqr/image/upload/v1698974214/Dise%C3%B1o_sin_t%C3%ADtulo_6_ukijmg.png")`,
   backgroundSize: "cover",
+  // da trasparencia a la imagen de fondo usa la propieda de trasnparecnia
+
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
   // background: `linear-gradient(100deg, black 10%, ${theme.colors.mainColor} 90%)`,
@@ -141,8 +143,8 @@ export const IconStyled = styled("a")(({ theme }) => ({
   backgroundColor: "green",
   color: "white",
   borderRadius: "50%",
-  width: "100px",
-  lineHeight: "100px",
+  width: "70px",
+  lineHeight: "70px",
   position: "fixed",
   bottom: "2%",
   right: "2%",
@@ -197,9 +199,44 @@ export const PagNextStyle = styled(Pagination.Next)(({ theme }) => ({
 }));
 
 export const ImgStyled = styled("img")(({ theme }) => ({
-  width: "80%",
-  height: "80%",
+  width: "60%",
+  height: "60%",
   objectFit: "cover",
   borderRadius: "10px",
   boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+}));
+
+export const ContainerContacto = styled("div")(({ theme }) => ({
+  paddingTop: "100px",
+}));
+
+export const CardStyledContacto = styled(Card)(({ theme }) => ({
+  width: "30rem",
+
+  boxShadow: `10px 10px 10px grey`,
+  borderRadius: "10px",
+  padding: "30px",
+}));
+
+export const ParrafoStyled = styled("p")(({ theme }) => ({
+  textAlign: "justify",
+}));
+
+export const ButtonStyledUpdate = styled(Button)(({ theme }) => ({
+  width: "100%",
+  backgroundColor: theme.colors.mainColor,
+  borderColor: theme.colors.mainColor,
+  color: "white",
+  "&:hover": {
+    backgroundColor: theme.colors.secondaryColor,
+    borderColor: theme.colors.secondaryColor,
+  },
+}));
+
+export const CardInformationConsultas = styled(Card)(({ theme }) => ({
+  width: "10rem",
+  boxShadow: `3px 3px 20px grey`,
+  "&:hover": {
+    boxShadow: `10px 10px 10px ${theme.colors.mainColor}`,
+  },
 }));

@@ -14,6 +14,15 @@ import { SoporteForm } from "./SoporteForm";
 import { Soportes } from "./Soportes";
 import { SoporteDetail } from "./SoporteDetail";
 import { SoportesHistory } from "./SoportesHistory";
+import { TestComponent } from "./TestComponent";
+import { Facturas } from "./Facturas";
+import { RealTime } from "./RealTime";
+import { Chats } from "./Chats";
+import { Pings } from "./Pings";
+import { PingsTable } from "./PingsTable";
+import { Calendar } from "./Calendar";
+import { ProfileData } from "./ProfileData";
+import { Consultas } from "./Consultas";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -22,7 +31,19 @@ export const ProfilesRoutes = () => {
       <Routes>
         <Route
           path="/"
-          element={user?.tipoUsuario === "Admin" ? <Information /> : <></>}
+          element={
+            user?.tipoUsuario === "Admin" ? (
+              <Information />
+            ) : user?.tipoUsuario === "Cliente" ? (
+              <>
+                <TestComponent />
+              </>
+            ) : (
+              <>
+                <Calendar></Calendar>
+              </>
+            )
+          }
         />
         <Route path="blogs" element={<Blogs />} />
         <Route path="blogs/add" element={<BlogsForm />} />
@@ -35,10 +56,17 @@ export const ProfilesRoutes = () => {
         <Route path="clientes/add" element={<ClientesForm />} />
         <Route path="clientes/:id" element={<ClientesForm />} />
         <Route path="clientes/:id/soportes" element={<SoportesHistory />} />
+        <Route path="tecnicos/:id/soportes" element={<SoportesHistory />} />
         <Route path="ticket/add" element={<SoporteForm />} />
         <Route path="soportes" element={<Soportes />} />
         <Route path="soportes/mis-soportes" element={<Soportes />} />
         <Route path="soportes/:id" element={<SoporteDetail />} />
+        <Route path="misFacturas" element={<Facturas />} />
+        <Route path="realtime" element={<RealTime />} />
+        <Route path="realtime/chats/:id" element={<Chats />} />
+        <Route path="pings" element={<PingsTable />} />
+        <Route path="edit/" element={<ProfileData />} />
+        <Route path="consultas/" element={<Consultas />} />
       </Routes>
     </>
   );

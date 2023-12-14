@@ -1,43 +1,49 @@
-import React from "react";
-import { Button, Card } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap";
 import {
   AutorStyled,
-  ButtonLeerStyled,
   CardCategory,
   CardDescroptionStyle,
   CardImgStyled,
   CardStyled,
 } from "./StyledComponentsBlog";
+import { formatDistanceToNow } from "date-fns";
 
 export const BlogCard = ({ blog, viewDetail }) => {
   return (
-    <CardStyled className="mb-3">
-      <CardImgStyled variant="top" src={blog.fotos[0]?.url_foto} />
+    <CardStyled className="mb-3" onClick={() => viewDetail(blog.id)}>
+      <CardImgStyled
+        variant="top"
+        src={
+          blog.fotos[0]?.url_foto ||
+          "https://res.cloudinary.com/dppqkypts/image/upload/v1701397265/c4e577e4-e3c2-4676-a337-8ffb09c5f762_soq3lj.jpg"
+        }
+      />
       <Card.Body>
         <CardCategory>Networking</CardCategory>
         <Card.Title>{blog.title}</Card.Title>
         <CardDescroptionStyle>
-          {/* Dividir el contenido en párrafos y envolver cada párrafo en un elemento <p> */}
           {blog.content.split("\n").map((paragraph, index) => (
             <Card.Text key={index}>{paragraph}</Card.Text>
           ))}
         </CardDescroptionStyle>
-        <ButtonLeerStyled onClick={() => viewDetail(blog.id)}>
-          Leer mas...
-        </ButtonLeerStyled>
+
+        <hr />
 
         <div className="d-flex pt-2 justify-content-start gap-2 ">
-          <img
-            src="https://placehold.co/50x50"
-            style={{
-              width: "21%",
-              borderRadius: "50%",
-              border: "1px solid black",
-            }}
-          ></img>
+          <Image
+            width={50}
+            height={50}
+            src={blog.tecnico?.usuario?.urlFoto}
+            roundedCircle
+          ></Image>
+
           <AutorStyled className="d-flex flex-column justify-content-end">
-            <p>Welinton Elvis Suarez</p>
-            <p>hace 3 dias</p>
+            <strong>{blog.tecnico?.nombreCompleto}</strong>
+            <p>
+              {formatDistanceToNow(new Date(blog.createdAt), {
+                addSuffix: true,
+              })}
+            </p>
           </AutorStyled>
         </div>
       </Card.Body>

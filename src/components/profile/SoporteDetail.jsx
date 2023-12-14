@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { Alert, Badge, Card, Form, Spinner } from "react-bootstrap";
@@ -10,6 +10,8 @@ import { ButtonStyledFactura } from "../facturas/StyledComponentsFacturas";
 import { updateSoporte } from "../../api/soportes";
 import { formatError } from "./utils";
 import { format } from "date-fns";
+import { AuthContext } from "../../auth/context/AuthContext";
+import Swal from "sweetalert2";
 
 const solucionRqd = z.string({
   required_error: "La descripcion de la solicion es requerida",
@@ -23,6 +25,7 @@ const solucionSchema = z.object({
 });
 
 export const SoporteDetail = () => {
+  const { user } = useContext(AuthContext);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
@@ -35,7 +38,15 @@ export const SoporteDetail = () => {
   const onCerrarSoporte = async (values) => {
     const response = await updateSoporte(id, { ...values, estado: true });
     const { data } = response;
-    navigate("/profile/soportes/mis-Soportes");
+    if (data) {
+      Swal.fire({
+        icon: "success",
+        title: "Soporte cerrado",
+        text: "El soporte se ha cerrado correctamente",
+      });
+
+      navigate("/profile/soportes/mis-Soportes");
+    }
   };
 
   const onSubmit = async (values, { setSubmitting }) => {
@@ -49,6 +60,11 @@ export const SoporteDetail = () => {
     } catch (error) {
       const message = formatError(error);
       setError(message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Algo salio mal!",
+      });
     }
   };
   return (
@@ -165,7 +181,7 @@ export const SoporteDetail = () => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-            ) : (
+            ) : user?.tipoUsuario === "Cliente" ? null : (
               <div className="d-flex flex-column gap-2">
                 <h5> Descripcion de la Solucion: </h5>
                 <Formik

@@ -45,6 +45,9 @@ export const Clientes = () => {
 
   return (
     <div className="pt-5">
+      <h4 className="pb-3">
+        <i className="bi bi-person-add"></i> Clientes
+      </h4>
       <div className="d-flex justify-content-end">
         <ButtonProfile onClick={handleClick}>Agregar Cliente</ButtonProfile>
       </div>
@@ -82,8 +85,6 @@ export const Clientes = () => {
       ) : (
         <ClientesTable clientes={data} />
       )}
-
-      {/* // {data.length > 0 && <ClientesTable clientes={data} />} */}
     </div>
   );
 };

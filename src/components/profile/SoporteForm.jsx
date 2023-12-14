@@ -16,6 +16,7 @@ import { formatError } from "./utils";
 import { useTecnicos } from "../../domain/tecnicos/useTecnicos";
 import { Dropdown } from "react-bootstrap";
 import { createSoporte } from "../../api/soportes";
+import Swal from "sweetalert2";
 
 const tituloRqd = z.string({
   required_error: "El titulo es requerido",
@@ -75,6 +76,7 @@ export const SoporteForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const location = useLocation();
   const cliente = location.state?.cliente;
+  console.log("cliente", cliente);
 
   const onCreateCliente = async (formData) => {
     const newData = {
@@ -82,11 +84,18 @@ export const SoporteForm = () => {
       horaGeneracion: selectedTime,
       clienteId: cliente.id,
     };
-    console.log("creando");
-    console.log(newData);
-    const response = await createSoporte(newData);
 
-    navigate("/profile/", { replace: true });
+    const response = await createSoporte(newData);
+    const { data } = response;
+    if (data) {
+      Swal.fire({
+        icon: "success",
+        title: "Soporte creado",
+        text: "El soporte se ha creado correctamente",
+      });
+    }
+
+    // navigate("/profile/", { replace: true });
   };
   const initialValues = {
     titulo: "",
@@ -103,10 +112,17 @@ export const SoporteForm = () => {
       setErrorMessage("");
 
       await onCreateCliente(values);
+
       setSubmitting(false);
+      navigate("/profile/", { replace: true });
     } catch (error) {
       const message = formatError(error);
       setError(message);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Algo salio mal!",
+      });
     }
   };
 

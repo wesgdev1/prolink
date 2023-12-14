@@ -13,6 +13,7 @@ import { ButtonStyled } from "../StyledComponents";
 import { updateBlog } from "../../api/blogs";
 import { formatError } from "./utils";
 import { createCliente, updateCliente } from "../../api/Clientes";
+import Swal from "sweetalert2";
 
 const nombreCompletoRqd = z.string({
   required_error: "El nombre es requerido",
@@ -87,7 +88,19 @@ export const ClientesForm = () => {
 
   const onCreateCliente = async (formData) => {
     const response = await createCliente(formData);
-
+    if (response) {
+      Swal.fire({
+        icon: "success",
+        title: "Cliente Creado",
+        text: "El Cliente se creo correctamente",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Cliente no Creado",
+        text: "El Cliente no se creo correctamente, intenta nuevamente",
+      });
+    }
     navigate("/profile/clientes", { replace: true });
   };
   const initialValues = {
@@ -103,8 +116,34 @@ export const ClientesForm = () => {
   };
 
   const onUpdateCliente = async (formData) => {
-    await updateCliente(actionEdit.id, formData);
-    navigate("/profile/clientes", { replace: true });
+    Swal.fire({
+      title: "Esta seguro de actualizar los datos del tecnico?",
+      text: "¡Los cambios seran inmediatos!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+
+      confirmButtonText: "Si, Actualizar!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await updateCliente(actionEdit.id, formData);
+
+        if (response) {
+          Swal.fire(
+            "Actualizado!",
+            "Los datos del tecnico han sido actualizados.",
+            "success"
+          );
+          navigate("/profile/clientes", { replace: true });
+        } else
+          Swal.fire(
+            "Error!",
+            "Hubo un error al actualizar los datos del tecnico.",
+            "error"
+          );
+      }
+    });
   };
 
   const onSubmit = async (values, { setSubmitting }) => {
@@ -122,6 +161,11 @@ export const ClientesForm = () => {
     } catch (error) {
       const message = formatError(error);
       setError(message);
+      Swal.fire({
+        icon: "error",
+        title: "Cliente no Creado",
+        text: "El correo o el numero de documento ya se encuentra registrado, verifica los datos",
+      });
     }
   };
 
@@ -147,16 +191,12 @@ export const ClientesForm = () => {
               onSubmit={handleSubmit}
               style={{ width: "75%", margin: "auto", marginTop: "10px" }}
             >
-              {error && (
-                <Alert
-                  variant="danger"
-                  style={{ width: "75%", margin: "auto", marginTop: "10px" }}
-                >
-                  Hubo un error, intentalo nuevamente
-                </Alert>
-              )}
               <Form.Group className="" controlId="formBasicNombreCompleto">
-                <h3 className="pt-5 pb-3">Nuevo cliente</h3>
+                <h3 className="pt-5 pb-3">
+                  {actionEdit
+                    ? "Actualizar datos de usuario"
+                    : " Registro de nuevo Cliente"}
+                </h3>
                 <Form.Label>Nombre Completo</Form.Label>
                 <Form.Control
                   type="text"
@@ -343,20 +383,6 @@ export const ClientesForm = () => {
                   className="invalid-feedback"
                 />
               </Form.Group>
-
-              {/* {actionEdit?.id && (
-                <div className="d-flex gap-5">
-                  {" "}
-                  <Form.Label column sm="3">
-                    Imagen
-                  </Form.Label>
-                  <img
-                    width={200}
-                    src={actionEdit?.fotos[0]?.url_foto}
-                    alt="Imagen del Blog"
-                  />{" "}
-                </div>
-              )} */}
 
               <div className="d-flex justify-content-center">
                 <ButtonStyled

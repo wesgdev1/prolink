@@ -64,7 +64,19 @@ export const TecnicosForm = () => {
 
   const onCreateTecnico = async (formData) => {
     const response = await createTecnico(formData);
-    // const { data } = response;
+    if (response) {
+      Swal.fire({
+        icon: "success",
+        title: "Cliente Creado",
+        text: "El Cliente se creo correctamente",
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Cliente no Creado",
+        text: "El Cliente no se creo correctamente, intenta nuevamente",
+      });
+    }
     navigate("/profile/tecnicos", { replace: true });
   };
   const initialValues = {
@@ -122,6 +134,11 @@ export const TecnicosForm = () => {
     } catch (error) {
       const message = formatError(error);
       setError(message);
+      Swal.fire({
+        icon: "error",
+        title: "El Tecnico no fue Creado",
+        text: "El tecnico ya se encuentra registrado, verifique los datos",
+      });
     }
   };
 

@@ -25,5 +25,5 @@ export const useBlog = ({ id }) => {
     cargarBlogs(id);
   }, [id]);
 
-  return { data, loading, error };
+  return { data, loading, error, cargarBlogs };
 };

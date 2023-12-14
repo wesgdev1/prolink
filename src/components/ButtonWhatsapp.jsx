@@ -1,4 +1,4 @@
-import { ButtonWhatsappStyled, IconStyled } from "./StyledComponents";
+import { IconStyled } from "./StyledComponents";
 
 export const ButtonWhatsapp = () => {
   return (
