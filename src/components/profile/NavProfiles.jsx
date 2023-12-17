@@ -15,19 +15,19 @@ export const NavProfiles = () => {
             <NavStyled>
               <NavLinkStyled to="/profile/clientes">
                 <i className="bi bi-person-circle"></i>
-                Modulo Clientes
+                Módulo Clientes
               </NavLinkStyled>
 
               <NavLinkStyled to="/profile/tecnicos">
                 <i className="bi bi-person-badge-fill"></i>
-                Modulo tecnicos
+                Módulo técnicos
               </NavLinkStyled>
               <NavLinkStyled to="facturas">
                 <i className="bi bi-receipt-cutoff"></i>Cargar Facturas
               </NavLinkStyled>
               <NavLinkStyled to="/profile/soportes">
                 <i className="bi bi-person-fill-gear"></i>
-                Soportes Tecnicos
+                Soportes Técnicos
               </NavLinkStyled>
               <NavLinkStyled to="/profile/realtime">
                 <i className="bi bi-chat-dots"></i>
@@ -38,7 +38,7 @@ export const NavProfiles = () => {
                 Hosts
               </NavLinkStyled>
               <NavLinkStyled to="/profile/blogs">
-                <i className="bi bi-book-half"></i>Modulo de Blogs
+                <i className="bi bi-book-half"></i>Módulo de Blogs
               </NavLinkStyled>
             </NavStyled>
           </nav>
@@ -47,7 +47,7 @@ export const NavProfiles = () => {
             <NavStyled>
               <NavLinkStyled to="soportes/mis-soportes">
                 <i className="bi bi-wrench-adjustable"></i>
-                Soporte tecnico
+                Soporte técnico
               </NavLinkStyled>
 
               <NavLinkStyled to="/profile/misFacturas">
@@ -75,7 +75,7 @@ export const NavProfiles = () => {
                 <i className="bi bi-book-half"></i>Blogs
               </NavLinkStyled>
               <NavLinkStyled to="soportes/mis-Soportes">
-                <i className="bi bi-wrench-adjustable"></i> Soportes tecnicos
+                <i className="bi bi-wrench-adjustable"></i> Soportes técnicos
               </NavLinkStyled>
               <NavLinkStyled to="/profile/edit">
                 <i className="bi bi-pencil"></i>Editar Perfil

@@ -23,7 +23,7 @@ export const RealtimeTable = ({ conversaciones }) => {
         <thead>
           <tr>
             <th># Caso</th>
-            <th>Fecha Creacion</th>
+            <th>Fecha Creación</th>
             <th>Agente</th>
             <th>Estado</th>
             <th>Acciones</th>

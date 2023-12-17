@@ -99,7 +99,7 @@ export const Information = () => {
       {data && dataCliente && dataBlogs && dataTecnicos && (
         <div>
           <div className="d-flex flex-column align-items-center pt-3 flex-wrap ">
-            <h2>Informacion diaria</h2>
+            <h2>Información diaria</h2>
 
             <p>{fechaFormateada}</p>
             {data?.length > 0 ? (
@@ -148,7 +148,7 @@ export const Information = () => {
                 >
                   <Card.Body>
                     <div className="d-flex flex-column align-items-center justify-content-center">
-                      <Card.Text>Tecnicos</Card.Text>
+                      <Card.Text>Técnicos</Card.Text>
 
                       <Card.Text>
                         <i

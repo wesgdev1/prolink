@@ -39,7 +39,7 @@ export const FacturasTable = ({ facturas }) => {
             <th>Contrato</th>
             <th>Factura</th>
             <th>Total</th>
-            <th>Fecha limite</th>
+            <th>Fecha límite</th>
             <th>Estado</th>
             {user.tipoUsuario === "Cliente" ? <th>Acciones</th> : null}
           </tr>

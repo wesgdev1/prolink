@@ -112,7 +112,7 @@ export const TecnicosForm = () => {
         } else
           Swal.fire(
             "Error!",
-            "Hubo un error al actualizar los datos del tecnico.",
+            "Hubo un error al actualizar los datos del técnico.",
             "error"
           );
       }
@@ -136,8 +136,8 @@ export const TecnicosForm = () => {
       setError(message);
       Swal.fire({
         icon: "error",
-        title: "El Tecnico no fue Creado",
-        text: "El tecnico ya se encuentra registrado, verifique los datos",
+        title: "El Técnico no fue Creado",
+        text: "El técnico ya se encuentra registrado, verifique los datos",
       });
     }
   };
@@ -174,12 +174,12 @@ export const TecnicosForm = () => {
               )}
               <Form.Group className="" controlId="formBasicNombreCompleto">
                 <h3 className="pt-5 pb-3">
-                  {actionEdit ? "Actualizar datos" : "Nuevo tecnico"}
+                  {actionEdit ? "Actualizar datos" : "Nuevo técnico"}
                 </h3>
                 <Form.Label>Nombre Completo</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Escibe aqui el nombre del tecnico"
+                  placeholder="Escibe aqui el nombre del técnico"
                   name="nombreCompleto"
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -200,7 +200,7 @@ export const TecnicosForm = () => {
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="Escibe aqui el email del tecnico"
+                  placeholder="Escibe aqui el email del técnico"
                   name="email"
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -262,7 +262,7 @@ export const TecnicosForm = () => {
                 <Form.Label>Telefono</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Escribe el Telefono del tecnico"
+                  placeholder="Escribe el Telefono del técnico"
                   name="telefono"
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -281,7 +281,7 @@ export const TecnicosForm = () => {
                 <Form.Label>Direccion</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Escribe la direccion del tecnico"
+                  placeholder="Escribe la direccion del técnico"
                   name="direccion"
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -322,7 +322,7 @@ export const TecnicosForm = () => {
                     actionEdit ? (
                       "Actualizar"
                     ) : (
-                      "Crear Tecnico"
+                      "Crear Técnico"
                     )
                   ) : (
                     <Spinner

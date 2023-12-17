@@ -30,18 +30,13 @@ export const Profile = () => {
           <Card.Header>
             <strong>
               {user?.tipoUsuario === "Admin"
-                ? "Bienvenido Administrador"
+                ? "Bienvenido, Administrador"
                 : user?.tipoUsuario === "Cliente"
                 ? "¡Bienvenido! " + user?.cliente.nombreCompleto
                 : "¡Bienvenido! " + user?.tecnico.nombreCompleto}
             </strong>
           </Card.Header>
           <Card.Body>
-            {/* <img
-              src={user?.tipoUsuario === "Admin" ? IMG_ADMIN : user?.urlFoto}
-              alt=""
-              style={{ width: "10%", borderRadius: "50%" }}
-            /> */}
             <div>
               <Image
                 src={
@@ -92,7 +87,7 @@ export const Profile = () => {
             {/* <Button variant="primary">Go somewhere</Button> */}
           </Card.Body>
           <Card.Footer className="text-muted">
-            Ultima Conexion: hace un momento
+            Última Conexión: hace un momento
           </Card.Footer>
         </Card>
       </div>

@@ -18,19 +18,19 @@ export const Payments = () => {
 
       <Col md={7}>
         <div className="d-flex  flex-column justify-content-end mx-5 pt-5">
-          <h2>¿COMO PUEDES PAGAR?</h2>
+          <h2>¿CÓMO PUEDES PAGAR?</h2>
 
           <p>
-            Cuenta Bancolombia Ahorros Numero: 80927482734 - Prolink
+            Cuenta Bancolombia Ahorros Numero: 590-702655-53 | Prolink
             Comunicaciones SAS
           </p>
-          <p>Nit: 9010290012</p>
+          <p>Nit: 901029001-2</p>
           <p>
-            Si requieres asesoria o tienes dudas al momento de elegir algunos de
-            nuestros planes da click en el siguiente boton.
+            Si requieres asesoria o tienes duda al momento de elegir algunos de
+            nuestros planes da click en el siguiente botón.
           </p>
           <ButtonProfile onClick={() => navigate("/contacto")}>
-            ¡Solicitar informacion!
+            ¡Solicitar información!
           </ButtonProfile>
         </div>
       </Col>

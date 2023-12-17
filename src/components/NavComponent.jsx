@@ -43,7 +43,6 @@ export const NavComponent = () => {
               <Nav className="d-flex justify-content-center gap-4">
                 <NavLinkStyled to="/home">Inicio</NavLinkStyled>
                 <NavLinkStyled to="/blogs">Blog</NavLinkStyled>
-                {/* <NavLinkStyled to="/servicios">Servicios</NavLinkStyled> */}
                 <NavLinkStyled to="/contacto">Contacto</NavLinkStyled>
               </Nav>
             </nav>
@@ -60,14 +59,14 @@ export const NavComponent = () => {
                   <i className="bi bi-person-circle"></i> Perfil
                 </NavLinkStyledLogin>
                 <Button onClick={handleLogout} className="nav-link ms-4">
-                  <i className="bi bi-box-arrow-right"></i> Cerrar sesion
+                  <i className="bi bi-box-arrow-right"></i> Cerrar sesión
                 </Button>
               </>
             ) : (
               <nav>
                 <Nav className="d-flex justify-content-center">
                   <ButtonHomeLogin onClick={() => navigate("/login")}>
-                    <i className="bi bi-person-circle"></i> Iniciar sesion
+                    <i className="bi bi-person-circle"></i> Iniciar sesión
                   </ButtonHomeLogin>
                   <ButtonHomeLogin onClick={() => navigate("/signup")}>
                     <i className="bi bi-person-plus"></i> Registrarse

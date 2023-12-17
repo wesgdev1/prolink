@@ -76,7 +76,7 @@ export const SoporteDetail = () => {
           <h5>
             {" "}
             <i className="bi bi-clipboard-data-fill"></i>Detalle de soporte
-            numero # {data?.numeroSoporte}{" "}
+            número # {data?.numeroSoporte}{" "}
           </h5>
           <hr />
           <div className="d-flex justify-content-around">
@@ -97,11 +97,11 @@ export const SoporteDetail = () => {
             </div>
             <div>
               <p>
-                <i className="bi bi-hourglass-bottom"></i>Hora atencion tecnica:{" "}
+                <i className="bi bi-hourglass-bottom"></i>Hora atención técnica:{" "}
                 {data?.horaGeneracion}
               </p>
               <p>
-                <i className="bi bi-person-fill-check"></i>Tecnico asignado:{" "}
+                <i className="bi bi-person-fill-check"></i>Técnico asignado:{" "}
                 {data?.tecnico?.nombreCompleto}
               </p>
             </div>
@@ -122,8 +122,8 @@ export const SoporteDetail = () => {
                   Nombre: {data.cliente?.nombreCompleto}
                 </Card.Subtitle>
                 <Card.Text>Email: {data.cliente?.email}</Card.Text>
-                <Card.Text>Telefono: {data.cliente?.telefono}</Card.Text>
-                <Card.Text>Direccion: {data.cliente?.direccion}</Card.Text>
+                <Card.Text>Teléfono: {data.cliente?.telefono}</Card.Text>
+                <Card.Text>Dirección: {data.cliente?.direccion}</Card.Text>
               </Card.Body>
             </Card>
             <Card
@@ -134,12 +134,12 @@ export const SoporteDetail = () => {
               }}
             >
               <Card.Body>
-                <Card.Title>Datos Tecnicos</Card.Title>
+                <Card.Title>Datos Técnicos</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
                   Servicio: {data.cliente?.servicio}
                 </Card.Subtitle>
                 <Card.Text>
-                  Ip Navegacion: {data.cliente?.ipNavegacion}
+                  Ip Navegación: {data.cliente?.ipNavegacion}
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -155,7 +155,7 @@ export const SoporteDetail = () => {
                 <Card.Subtitle className="mb-2 text-muted">
                   Tipo: {data?.titulo}
                 </Card.Subtitle>
-                <Card.Text>Descripcion: {data?.descripcion}</Card.Text>
+                <Card.Text>Descripción: {data?.descripcion}</Card.Text>
               </Card.Body>
             </Card>
           </div>
@@ -170,7 +170,7 @@ export const SoporteDetail = () => {
                 }}
               >
                 <Card.Body>
-                  <Card.Title>Solucion [Caso cerrado]</Card.Title>
+                  <Card.Title>Solución [Caso cerrado]</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
                     Tipo: {data?.titulo}
                   </Card.Subtitle>
@@ -183,7 +183,7 @@ export const SoporteDetail = () => {
               </Card>
             ) : user?.tipoUsuario === "Cliente" ? null : (
               <div className="d-flex flex-column gap-2">
-                <h5> Descripcion de la Solucion: </h5>
+                <h5> Descripción de la Solución: </h5>
                 <Formik
                   initialValues={initialValues}
                   onSubmit={onSubmit}
@@ -207,7 +207,7 @@ export const SoporteDetail = () => {
                           <Form.Control
                             as={"textarea"}
                             rows={5}
-                            placeholder="Ingrese detalladamente la solucion del soporte"
+                            placeholder="Ingrese detalladamente la solución del soporte"
                             name="solucion"
                             onChange={handleChange}
                             onBlur={handleBlur}

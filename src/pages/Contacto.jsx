@@ -127,7 +127,7 @@ export const Contacto = () => {
                         }}
                       >
                         <h5 className="pb-5">
-                          Escribe aqui tus dudas o consultas sobre nuestros
+                          Escribe aquí tus dudas o consultas sobre nuestros
                           servicios.
                         </h5>
                         <Form.Group
@@ -174,7 +174,7 @@ export const Contacto = () => {
                           />
                         </Form.Group>
                         <Form.Group className="" controlId="formBasicEmail">
-                          <Form.Label>Telefono</Form.Label>
+                          <Form.Label>Teléfono</Form.Label>
                           <Form.Control
                             type="number"
                             placeholder="Escibe aqui el numero de contrato"

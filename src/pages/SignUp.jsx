@@ -156,8 +156,8 @@ export function SignUp() {
                       alt="logo"
                     ></img>
 
-                    <h2>Creacion de Usario</h2>
-                    <p>Diligenicie los siguiente campos</p>
+                    <h2>Creación de Usuario</h2>
+                    <p>Diligencie los siguientes campos</p>
                   </div>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Correo Electrónico</Form.Label>

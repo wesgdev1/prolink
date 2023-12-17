@@ -57,7 +57,7 @@ export const TecnicosTable = ({ tecnicos }) => {
         <tfoot>
           <tr>
             <td colSpan="3">
-              <strong>Total Tecnicos: {tecnicos.length}</strong>
+              <strong>Total Técnicos: {tecnicos.length}</strong>
             </td>
           </tr>
         </tfoot>

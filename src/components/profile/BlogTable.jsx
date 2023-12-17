@@ -89,9 +89,9 @@ export const BlogTable = ({ blogs }) => {
       <Table striped bordered hover style={{ fontSize: "0.8rem" }}>
         <thead>
           <tr>
-            <th>Fecha de Creacion</th>
-            {user.tipoUsuario === "Admin" && <th>Autor</th>}
-            <th>Titulo</th>
+            <th>Fecha de Creación</th>
+            {user.tipoUsuario === "Admin" && <th>Autór</th>}
+            <th>Título</th>
             <th>Visible</th>
             <th>Acciones</th>
           </tr>

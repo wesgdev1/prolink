@@ -3,7 +3,7 @@ import { ParrafoStyled } from "./StyledComponents";
 export const AboutUs = () => {
   return (
     <div className="d-flex flex-column justify-content-center align-items-center pt-5 pb-5">
-      <h1 className="">QUIENES SOMOS</h1>
+      <h1 className="">¿ QUIÉNES SOMOS ?</h1>
       <ParrafoStyled className="pt-5 mx-5 ">
         <strong>ProLink </strong>es una empresa líder en el sector de las
         telecomunicaciones, dedicada a proporcionar servicios de internet y

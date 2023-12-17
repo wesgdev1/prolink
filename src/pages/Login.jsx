@@ -116,9 +116,9 @@ export function Login() {
                       alt="logo"
                     ></img>
 
-                    <h2>Iniciar sesion</h2>
+                    <h2>Iniciar Sesión</h2>
                     <p>
-                      Ingrese las credenciales para acceder a la aplicacion.
+                      Ingrese las credenciales para acceder a la aplicación.
                     </p>
                   </div>
                   <Form.Group className="mb-3" controlId="formBasicEmail">

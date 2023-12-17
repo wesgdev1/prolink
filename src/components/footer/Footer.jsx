@@ -22,10 +22,10 @@ export const Footer = () => {
         <Col xs={4}>
           <div className=" d-flex flex-column align-items-center justify-content-center pt-5 gap-3">
             <h2>Contacto</h2>
-            <i className="bi bi-whatsapp"> 3208719438</i>
+            <i className="bi bi-whatsapp"> 312 282 1189</i>
 
-            <i className="bi bi-facebook"> @prolink </i>
-            <i className="bi bi-instagram"> @prolink</i>
+            <i className="bi bi-facebook"> @prolinkComunicaciones</i>
+            <i className="bi bi-instagram"> @prolinkComunicaciones</i>
           </div>
         </Col>
       </Row>
