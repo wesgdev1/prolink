@@ -19,8 +19,8 @@ export const InstalationsDay = () => {
           <Flip>
             <div className="d-flex  gap-4 flex-wrap justify-content-center ">
               {data?.length > 0 &&
-                data.map((blog) => {
-                  return <InstalationCard />;
+                data.map((instalacion) => {
+                  return <InstalationCard key={instalacion.id} />;
                 })}
             </div>
           </Flip>

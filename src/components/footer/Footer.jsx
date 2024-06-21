@@ -4,14 +4,14 @@ import { FooterContainer } from "../StyledComponents";
 export const Footer = () => {
   return (
     <FooterContainer>
-      <Row xs={12}>
-        <Col xs={4}>
+      <Row>
+        <Col sm>
           <div className="d-flex flex-column align-items-center justify-content-center pt-5">
             <h2>Prolink</h2>
             <p>Empresa del sector de las telecomunicaciones</p>
           </div>
         </Col>
-        <Col xs={4}>
+        <Col sm>
           <div className="d-flex flex-column align-items-center justify-content-center pt-5">
             <h2>Enlaces</h2>
             <p>Blogs</p>
@@ -19,7 +19,7 @@ export const Footer = () => {
             <p>Contacto</p>
           </div>
         </Col>
-        <Col xs={4}>
+        <Col sm>
           <div className=" d-flex flex-column align-items-center justify-content-center pt-5 gap-3">
             <h2>Contacto</h2>
             <i className="bi bi-whatsapp"> 312 282 1189</i>

@@ -40,6 +40,14 @@ export const NavLinkStyledLogin = styled(NavLink)(({ theme }) => ({
     color: theme.colors.mainColor,
     fontSize: "1.2rem",
   },
+
+  // en moviles quiero que desaparezca
+}));
+
+export const ControlsProfileMenu = styled("div")(({ theme }) => ({
+  "@media (max-width: 768px)": {
+    display: "none",
+  },
 }));
 export const ButtonHomeLogin = styled(Button)(({ theme }) => ({
   color: theme.colors.mainColor,
@@ -118,9 +126,11 @@ export const ButtonStyled = styled(Button)(({ theme }) => ({
 export const FooterContainer = styled("div")(({ theme }) => ({
   background: `linear-gradient(100deg, black 70%, ${theme.colors.secondaryColor} 100%)`,
   height: "auto",
-  width: "100vw",
+  // width: "100vw",
   color: "white",
   paddingBottom: "3rem",
+  paddingLeft: "10px",
+  paddingRight: "10px",
 }));
 
 export const ButtonWhatsappStyled = styled(Button)(({ theme }) => ({
