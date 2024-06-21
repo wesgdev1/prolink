@@ -9,6 +9,7 @@ import { Facturas } from "../pages/Facturas";
 import { PagoExitoso } from "../pages/PagoExitoso";
 import { Contacto } from "../pages/Contacto";
 import { PagoFailure } from "../pages/PagoFailure";
+import { InstalationsDay } from "../pages/InstalationsDay";
 
 export const ProlinkRoutes = () => {
   return (
@@ -18,6 +19,7 @@ export const ProlinkRoutes = () => {
         <Route path="/*" element={<Home />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/facturas" element={<Facturas />} />
+        <Route path="/instalaciones" element={<InstalationsDay />} />
         <Route path="/blogs/:id" element={<BlogDeatil />} />
         <Route path="/profile/*" element={<Profile />} />
         <Route path="/success" element={<PagoExitoso />} />

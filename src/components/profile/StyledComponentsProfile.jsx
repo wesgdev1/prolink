@@ -21,7 +21,7 @@ export const NavStyled = styled(Nav)(({ theme }) => ({
   // boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.50)",
 
   boxShadow: "inset -10px 0px 10px -10px rgba(64, 0, 129, 0.5)",
-  height: "80vh",
+  height: "90vh",
 
   // background: " #D0CFD1 ",
   borderRadius: "10px",

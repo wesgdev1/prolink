@@ -23,6 +23,7 @@ import { PingsTable } from "./PingsTable";
 import { Calendar } from "./Calendar";
 import { ProfileData } from "./ProfileData";
 import { Consultas } from "./Consultas";
+import { Instalations } from "./Instalations";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -67,6 +68,7 @@ export const ProfilesRoutes = () => {
         <Route path="pings" element={<PingsTable />} />
         <Route path="edit/" element={<ProfileData />} />
         <Route path="consultas/" element={<Consultas />} />
+        <Route path="instalations/" element={<Instalations />} />
       </Routes>
     </>
   );

@@ -40,6 +40,9 @@ export const NavProfiles = () => {
               <NavLinkStyled to="/profile/blogs">
                 <i className="bi bi-book-half"></i>Módulo de Blogs
               </NavLinkStyled>
+              <NavLinkStyled to="/profile/instalations">
+                <i className="bi bi-book-half"></i>Instalaciones
+              </NavLinkStyled>
             </NavStyled>
           </nav>
         ) : user?.tipoUsuario === "Cliente" ? (
