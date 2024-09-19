@@ -27,9 +27,7 @@ const phoneRqd = z.string({
 const addressRqd = z.string({
   required_error: "La direccion es requerida",
 });
-const observationRqd = z.string({
-  required_error: "La observacion es requerida",
-});
+const observationRqd = z.string().optional();
 
 const ubicationRqd = z
   .string({
@@ -80,7 +78,7 @@ export const InstalacionForm = () => {
     phone: "" || actionEdit?.phone,
     address: "" || actionEdit?.address,
     ubication: "" || actionEdit?.ubication ? actionEdit?.ubication : "",
-    observation: "N/A" || actionEdit?.observation,
+    observation: "" || actionEdit?.observation,
     dateTime: "" || actionEdit?.dateTime,
   };
 
@@ -149,7 +147,7 @@ export const InstalacionForm = () => {
             >
               <h5>Informacion de la instalacion</h5>
               <Form.Group className="" controlId="formBasicEmail">
-                <Form.Label>Nombre del cliente potencial</Form.Label>
+                <Form.Label>Nombre del cliente potencial *</Form.Label>
                 <Form.Control
                   type="text"
                   size="sm"
@@ -189,7 +187,7 @@ export const InstalacionForm = () => {
               </Form.Group>
 
               <Form.Group className="" controlId="formBasicEmail">
-                <Form.Label>Celular</Form.Label>
+                <Form.Label>Celular *</Form.Label>
                 <Form.Control
                   type="text"
                   size="sm"
@@ -208,7 +206,7 @@ export const InstalacionForm = () => {
               </Form.Group>
 
               <Form.Group className="" controlId="formBasicEmail">
-                <Form.Label>Direccion</Form.Label>
+                <Form.Label>Direccion *</Form.Label>
                 <Form.Control
                   type="text"
                   size="sm"
@@ -250,7 +248,7 @@ export const InstalacionForm = () => {
               </Form.Group>
 
               <Form.Group className="" controlId="formBasicEmail">
-                <Form.Label>Fecha estimada instalacion</Form.Label>
+                <Form.Label>Fecha estimada instalacion *</Form.Label>
                 <Form.Control
                   size="sm"
                   type="date"
