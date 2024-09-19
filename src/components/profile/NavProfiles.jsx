@@ -44,10 +44,10 @@ export const NavProfiles = () => {
                 <i className="bi bi-book-half"></i>Instalaciones
               </NavLinkStyled>
 
-              <NavLinkStyled to="/profile/instalations">
+              <NavLinkStyled to="/profile/retiros">
                 <i className="bi bi-book-half"></i> Retiros
               </NavLinkStyled>
-              <NavLinkStyled to="/profile/instalations">
+              <NavLinkStyled to="/profile/nodos">
                 <i className="bi bi-book-half"></i> Nodos
               </NavLinkStyled>
             </NavStyled>
