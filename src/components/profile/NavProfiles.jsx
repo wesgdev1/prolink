@@ -22,21 +22,21 @@ export const NavProfiles = () => {
                 <i className="bi bi-person-badge-fill"></i>
                 Módulo técnicos
               </NavLinkStyled>
-              <NavLinkStyled to="facturas">
+              {/* <NavLinkStyled to="facturas">
                 <i className="bi bi-receipt-cutoff"></i>Cargar Facturas
-              </NavLinkStyled>
+              </NavLinkStyled> */}
               <NavLinkStyled to="/profile/soportes">
                 <i className="bi bi-person-fill-gear"></i>
                 Soportes Técnicos
               </NavLinkStyled>
-              <NavLinkStyled to="/profile/realtime">
+              {/* <NavLinkStyled to="/profile/realtime">
                 <i className="bi bi-chat-dots"></i>
                 Soportes Online
-              </NavLinkStyled>
-              <NavLinkStyled to="/profile/pings">
+              </NavLinkStyled> */}
+              {/* <NavLinkStyled to="/profile/pings">
                 <i className="bi bi-hdd-stack"></i>
                 Hosts
-              </NavLinkStyled>
+              </NavLinkStyled> */}
               {/* <NavLinkStyled to="/profile/blogs">
                 <i className="bi bi-book-half"></i>Módulo de Blogs
               </NavLinkStyled> */}
