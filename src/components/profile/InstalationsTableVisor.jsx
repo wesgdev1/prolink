@@ -171,34 +171,36 @@ export const InstalationsTableVisor = ({
                 </td>
 
                 <td>
-                  <EditBlog
-                    onClick={() => {
-                      handleCopy(instalacion);
-                    }}
-                  >
-                    <i className="bi bi-clipboard-check"></i>
-                  </EditBlog>
-                  <EditBlog
-                    onClick={() => {
-                      editInstalation(instalacion);
-                    }}
-                  >
-                    <i className="bi bi-eye-fill"></i>
-                  </EditBlog>
-                  <EditBlog
-                    onClick={() => {
-                      deleteInstalation(instalacion.id);
-                    }}
-                  >
-                    <i className="bi bi-trash3"></i>
-                  </EditBlog>
-                  <EditBlog
-                    onClick={() => {
-                      handleUpdate(instalacion.id);
-                    }}
-                  >
-                    <i className="bi bi-check-lg"></i>
-                  </EditBlog>
+                  <div className="d-flex flex">
+                    <EditBlog
+                      onClick={() => {
+                        handleCopy(instalacion);
+                      }}
+                    >
+                      <i className="bi bi-clipboard-check"></i>
+                    </EditBlog>
+                    <EditBlog
+                      onClick={() => {
+                        editInstalation(instalacion);
+                      }}
+                    >
+                      <i className="bi bi-eye-fill"></i>
+                    </EditBlog>
+                    <EditBlog
+                      onClick={() => {
+                        deleteInstalation(instalacion.id);
+                      }}
+                    >
+                      <i className="bi bi-trash3"></i>
+                    </EditBlog>
+                    <EditBlog
+                      onClick={() => {
+                        handleUpdate(instalacion.id);
+                      }}
+                    >
+                      <i className="bi bi-check-lg"></i>
+                    </EditBlog>
+                  </div>
                 </td>
               </tr>
             ))

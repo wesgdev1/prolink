@@ -48,7 +48,7 @@ export const NavLinkStyled = styled(NavLink)(({ theme }) => ({
 }));
 
 export const EditBlog = styled(Button)(({ theme }) => ({
-  fontSize: "0.8rem",
+  fontSize: "0.7rem",
   color: theme.colors.mainColor,
   background: "transparent",
   border: "none",

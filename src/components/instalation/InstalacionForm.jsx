@@ -31,7 +31,11 @@ const observationRqd = z.string({
   required_error: "La observacion es requerida",
 });
 
-const ubicationRqd = z.string().optional();
+const ubicationRqd = z
+  .string({
+    required_error: "La ubicacion es requerida",
+  })
+  .optional();
 const dateTimeRqd = z.string().optional();
 
 const singUpSchema = z.object({
@@ -72,10 +76,10 @@ export const InstalacionForm = () => {
   };
   const initialValues = {
     nameClient: "" || actionEdit?.nameClient,
-    email: "" || actionEdit?.email,
+    email: "" || actionEdit?.email ? actionEdit?.email : "",
     phone: "" || actionEdit?.phone,
     address: "" || actionEdit?.address,
-    ubication: "" || actionEdit?.ubication,
+    ubication: "" || actionEdit?.ubication ? actionEdit?.ubication : "",
     observation: "N/A" || actionEdit?.observation,
     dateTime: "" || actionEdit?.dateTime,
   };
@@ -259,7 +263,7 @@ export const InstalacionForm = () => {
                   }
                 />
                 <ErrorMessage
-                  name="ubication"
+                  name="date"
                   component="div"
                   className="invalid-feedback"
                 />
