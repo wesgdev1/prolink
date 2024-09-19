@@ -24,6 +24,7 @@ import { Calendar } from "./Calendar";
 import { ProfileData } from "./ProfileData";
 import { Consultas } from "./Consultas";
 import { Instalations } from "./Instalations";
+import { InstalacionForm } from "../instalation/InstalacionForm";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -69,6 +70,8 @@ export const ProfilesRoutes = () => {
         <Route path="edit/" element={<ProfileData />} />
         <Route path="consultas/" element={<Consultas />} />
         <Route path="instalations/" element={<Instalations />} />
+        <Route path="instalations/add" element={<InstalacionForm />} />
+        <Route path="instalations/:id" element={<InstalacionForm />} />
       </Routes>
     </>
   );

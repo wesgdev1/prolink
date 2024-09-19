@@ -25,5 +25,5 @@ export const useInstalations = () => {
     cargarInstalations();
   }, []);
 
-  return { data, loading, error };
+  return { data, loading, error, cargarInstalations };
 };

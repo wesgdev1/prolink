@@ -37,11 +37,18 @@ export const NavProfiles = () => {
                 <i className="bi bi-hdd-stack"></i>
                 Hosts
               </NavLinkStyled>
-              <NavLinkStyled to="/profile/blogs">
+              {/* <NavLinkStyled to="/profile/blogs">
                 <i className="bi bi-book-half"></i>Módulo de Blogs
-              </NavLinkStyled>
+              </NavLinkStyled> */}
               <NavLinkStyled to="/profile/instalations">
                 <i className="bi bi-book-half"></i>Instalaciones
+              </NavLinkStyled>
+
+              <NavLinkStyled to="/profile/instalations">
+                <i className="bi bi-book-half"></i> Retiros
+              </NavLinkStyled>
+              <NavLinkStyled to="/profile/instalations">
+                <i className="bi bi-book-half"></i> Nodos
               </NavLinkStyled>
             </NavStyled>
           </nav>

@@ -6,7 +6,7 @@ import { InstalationsTableVisor } from "./InstalationsTableVisor";
 import { useState } from "react";
 
 export const Instalations = () => {
-  const { data, loading, error } = useInstalations();
+  const { data, loading, error, cargarInstalations } = useInstalations();
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -18,16 +18,17 @@ export const Instalations = () => {
   const [filtroSelected, setFiltroSelected] = useState("Todo");
 
   const [notificacion, setNotificacion] = useState(false);
+
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
   };
   const onSearch = (e) => {
     if (e.key === "Enter" && e.target.value !== "") {
+      console.log("entre aqui");
       e.preventDefault();
 
-      const filter = data.filter((soporte) => {
-        return soporte.numeroSoporte
-          .toString()
+      const filter = data.filter((instalacion) => {
+        return instalacion.nameClient
           .toLowerCase()
           .includes(searchValue.toLowerCase());
       });
@@ -40,7 +41,7 @@ export const Instalations = () => {
   const handleFiltro = (e) => {
     if (e.target.value === "1") {
       const filter = data.filter((soporte) => {
-        return soporte.estado === false;
+        return soporte.viability === true;
       });
       setFilteredData(filter);
       setFiltroSelected("1");
@@ -48,7 +49,7 @@ export const Instalations = () => {
     }
     if (e.target.value === "2") {
       const filter = data.filter((soporte) => {
-        return soporte.estado === true;
+        return soporte.viability === false;
       });
       setFilteredData(filter);
       setFiltroSelected("2");
@@ -71,6 +72,7 @@ export const Instalations = () => {
         <div style={{ width: "30%" }}>
           <Form.Control
             type="search"
+            size="sm"
             placeholder="Buscar por nombre"
             aria-label="Search"
             onChange={handleInputChange}
@@ -79,9 +81,8 @@ export const Instalations = () => {
           />
         </div>
         <div className="d-flex gap-2">
-          <span>Ordenar:</span>
           <select
-            className="form-select"
+            className="form-select text-sm"
             aria-label="Default select example"
             value={filtroSelected}
             onChange={handleFiltro}
@@ -96,11 +97,43 @@ export const Instalations = () => {
       {loading && <Spinner animation="border" variant="primary" />}
       {error && <Alert variant="danger">{error}</Alert>}
 
-      {data?.length > 0 ? (
-        <InstalationsTableVisor instalaciones={data} />
+      {notificacion ? (
+        <div className="pt-3">
+          <p>No se encontraron resultados</p>
+          <ButtonProfile onClick={() => setNotificacion(false)}>
+            Ver todo
+          </ButtonProfile>
+        </div>
+      ) : filteredData.length > 0 ? (
+        <>
+          <p className="pt-2">
+            Se encontraron: ({filteredData.length}) coincidencias
+          </p>
+          <ButtonProfile onClick={() => setFilteredData([])}>
+            Mostrar todo
+          </ButtonProfile>
+          <InstalationsTableVisor
+            instalaciones={filteredData}
+            cargarInstalations={cargarInstalations}
+          />
+        </>
+      ) : (
+        data?.length > 0 && (
+          <InstalationsTableVisor
+            instalaciones={data}
+            cargarInstalations={cargarInstalations}
+          />
+        )
+      )}
+
+      {/* {data?.length > 0 ? (
+        <InstalationsTableVisor
+          instalaciones={data}
+          cargarInstalations={cargarInstalations}
+        />
       ) : (
         <p>No hay instalaciones</p>
-      )}
+      )} */}
     </div>
   );
 };
