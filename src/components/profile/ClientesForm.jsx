@@ -54,9 +54,7 @@ const ipAntenaRqd = z.string({
   required_error: "La ip de la antena es requerida",
 });
 
-const ipPublicaRqd = z.string({
-  required_error: "La ip publica es requerida",
-});
+const ipPublicaRqd = z.string().optional();
 
 const ubicacionRqd = z.string({
   required_error: "La ubicacion es requerida",
@@ -68,6 +66,10 @@ const cicloFacturacion = z.string({
 
 const fechaContrato = z.string({
   required_error: "La fecha de contrato es requerida",
+});
+
+const valorFactura = z.number({
+  required_error: "El valor es requerido",
 });
 
 const tiposDocumento = ["CC", "NIT", "PEP"];
@@ -106,6 +108,9 @@ const tecnicoSchema = z.object({
   ipAntena: ipAntenaRqd,
   ipPublica: ipPublicaRqd,
   ubicacion: ubicacionRqd,
+  cicloFacturacion: cicloFacturacion,
+  fechaContrato: fechaContrato,
+  valorFactura: valorFactura,
 });
 
 export const ClientesForm = () => {
@@ -144,9 +149,11 @@ export const ClientesForm = () => {
     servicio: "" || actionEdit?.servicio,
     ipNavegacion: "" || actionEdit?.ipNavegacion,
     ipAntena: "" || actionEdit?.ipAntena,
-    ipPublica: "N/A" || actionEdit?.ipPublica,
+    ipPublica: "" || actionEdit?.ipPublica,
     ubicacion: "" || actionEdit?.ubicacion,
     fechaContrato: "" || actionEdit?.fechaContrato,
+    cicloFacturacion: "" || actionEdit?.cicloFacturacion,
+    valorFactura: "" || actionEdit?.valorFactura,
   };
 
   const onUpdateCliente = async (formData) => {
@@ -438,7 +445,7 @@ export const ClientesForm = () => {
                   })}
                 </Form.Select>
                 <ErrorMessage
-                  name="tipoDocumento"
+                  name="servicio"
                   component="div"
                   className="invalid-feedback"
                 />
@@ -449,7 +456,7 @@ export const ClientesForm = () => {
                 <Form.Control
                   size="sm"
                   type="date"
-                  name="dateTime"
+                  name="fechaContrato"
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.fechaContrato}
@@ -460,31 +467,56 @@ export const ClientesForm = () => {
                   }
                 />
               </Form.Group>
-              <Form.Group className=" " controlId="formBasicProdRef">
-                <Form.Label>Ciclo de facturacion</Form.Label>
+              <div className="d-flex  gap-5">
+                <Form.Group className=" " controlId="formBasicProdRef">
+                  <Form.Label>Ciclo de facturacion</Form.Label>
 
-                <Form.Select
-                  size="sm"
-                  name="servicio"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.servicio}
-                >
-                  <option value="0">Seleccione el plan</option>
-                  {ciclos.map((service) => {
-                    return (
-                      <option key={service} value={service}>
-                        {service}
-                      </option>
-                    );
-                  })}
-                </Form.Select>
-                <ErrorMessage
-                  name="tipoDocumento"
-                  component="div"
-                  className="invalid-feedback"
-                />
-              </Form.Group>
+                  <Form.Select
+                    size="sm"
+                    name="cicloFacturacion"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.cicloFacturacion}
+                  >
+                    <option value="0">Seleccione el plan</option>
+                    {ciclos.map((service) => {
+                      return (
+                        <option key={service} value={service}>
+                          {service}
+                        </option>
+                      );
+                    })}
+                  </Form.Select>
+                  <ErrorMessage
+                    name="cicloFacturacion"
+                    component="div"
+                    className="invalid-feedback"
+                  />
+                </Form.Group>
+                <Form.Group className="" controlId="formBasicDireccion">
+                  <Form.Label>Valor Factura</Form.Label>
+                  <Form.Control
+                    size="sm"
+                    type="number"
+                    placeholder="Escribe el valor de la factura"
+                    name="valorFactura"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.valorFactura}
+                    className={
+                      touched.valorFactura && errors.valorFactura
+                        ? "is-invalid"
+                        : ""
+                    }
+                  />
+                  <ErrorMessage
+                    name="valorFactura"
+                    component="div"
+                    className="invalid-feedback"
+                  />
+                </Form.Group>
+              </div>
+
               <div className="d-flex flex-row gap-5  flex-wrap ">
                 <Form.Group
                   className="flex-grow-1"
