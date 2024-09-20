@@ -54,7 +54,7 @@ const ipAntenaRqd = z.string({
   required_error: "La ip de la antena es requerida",
 });
 
-const ipPublicaRqd = z.string().optional();
+const ipPublicaRqd = z.any().optional();
 
 const ubicacionRqd = z.string({
   required_error: "La ubicacion es requerida",
@@ -195,6 +195,7 @@ export const ClientesForm = () => {
 
       if (actionEdit) {
         await onUpdateCliente(values);
+        setSubmitting(false);
       } else {
         await onCreateCliente(values);
         setSubmitting(false);

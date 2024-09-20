@@ -88,6 +88,64 @@ export const ClientesTable = ({ clientes }) => {
     });
   };
 
+  const inactivarServicio = (cliente) => {
+    Swal.fire({
+      title: "Esta accion inactivara el servicio del cliente, estas seguro?",
+      text: "¡No podras revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+
+      confirmButtonText: "Si, Inactivar!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await updateCliente(cliente.id, {
+          enMora: true,
+        });
+
+        if (response) {
+          Swal.fire(
+            "Inactivado!",
+            "El servicio ha sido inactivado.",
+            "success"
+          );
+          const index = dataCliente.findIndex((item) => item.id === cliente.id);
+          const newData = [...dataCliente];
+          newData[index].enMora = true;
+          setDataCliente(newData);
+        }
+      }
+    });
+  };
+
+  const activarServicio = (cliente) => {
+    Swal.fire({
+      title: "Esta accion activara el servicio del cliente, estas seguro?",
+      text: "¡No podras revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+
+      confirmButtonText: "Si, Activar!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const response = await updateCliente(cliente.id, {
+          enMora: false,
+        });
+
+        if (response) {
+          Swal.fire("Activado!", "El servicio ha sido activado.", "success");
+          const index = dataCliente.findIndex((item) => item.id === cliente.id);
+          const newData = [...dataCliente];
+          newData[index].enMora = false;
+          setDataCliente(newData);
+        }
+      }
+    });
+  };
+
   const createTicket = (cliente) => {
     if (cliente.soportesTecnicos.length > 0) {
       // reviso si tiene algun soporte en false osea pendiente, si lo tiene pendiente, notifico que no puede crear ticket
@@ -119,11 +177,14 @@ export const ClientesTable = ({ clientes }) => {
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Email</th>
-            <th>Usuario activo</th>
+            {/* <th>Email</th> */}
+            {/* <th>Usuario activo</th> */}
+            <th>Contrato</th>
             <th>Fecha de contrato</th>
-            <th>Contrato</th>
-            <th>Contrato</th>
+            <th>Ip Navegacion</th>
+            <th>Ip Antena</th>
+            <th>Estado Contrato</th>
+            <th>Estado Facturacion</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -132,14 +193,28 @@ export const ClientesTable = ({ clientes }) => {
             .map((cliente) => (
               <tr key={cliente.id}>
                 <td>{cliente.nombreCompleto}</td>
-                <td>{cliente.email}</td>
-                <td>{cliente.usuarioId ? "Si" : "No"}</td>
-                <td> {format(new Date(cliente.createdAt), "dd/MM/yyyy")}</td>
                 <td>{cliente.numeroContrato}</td>
-                <td>{cliente.contratoActivo ? "Activo" : "Terminado"}</td>
+                {/* <td>{cliente.email}</td>
+                <td>{cliente.usuarioId ? "Si" : "No"}</td> */}
+                <td> {cliente.fechaContrato}</td>
+                <td>{cliente.ipNavegacion}</td>
+                <td>{cliente.ipAntena}</td>
+                {/* <td> {format(new Date(cliente.createdAt), "dd/MM/yyyy")}</td> */}
 
+                <td>{cliente.contratoActivo ? "Activo" : "Terminado"}</td>
+                <td>{cliente.enMora ? "En mora" : "Al dia"}</td>
                 {cliente.contratoActivo ? (
                   <td>
+                    {cliente.enMora ? (
+                      <EditBlog onClick={() => activarServicio(cliente)}>
+                        <i className="bi bi-wifi-off"></i>
+                      </EditBlog>
+                    ) : (
+                      <EditBlog onClick={() => inactivarServicio(cliente)}>
+                        <i className="bi bi-wifi"></i>
+                      </EditBlog>
+                    )}
+
                     <EditBlog onClick={() => inactivarContrato(cliente)}>
                       <i className="bi bi-toggle2-on"></i>
                     </EditBlog>
