@@ -52,9 +52,7 @@ const ipNavegacionRqd = z.string({
   required_error: "La ip de navegacion es requerida",
 });
 
-const ipAntenaRqd = z.string({
-  required_error: "La ip de la antena es requerida",
-});
+const ipAntenaRqd = z.any().optional();
 
 const ipPublicaRqd = z.any().optional();
 
@@ -614,29 +612,33 @@ export const ClientesForm = () => {
                     className="invalid-feedback"
                   />
                 </Form.Group>
-                <Form.Group
-                  className="flex-grow-1"
-                  controlId="formBasicDireccion"
-                >
-                  <Form.Label>Ip Antena</Form.Label>
-                  <Form.Control
-                    size="sm"
-                    type="text"
-                    placeholder="Escribe la Ip de navegacion del cliente"
-                    name="ipAntena"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.ipAntena}
-                    className={
-                      touched.ipAntena && errors.ipAntena ? "is-invalid" : ""
-                    }
-                  />
-                  <ErrorMessage
-                    name="ipAntena"
-                    component="div"
-                    className="invalid-feedback"
-                  />
-                </Form.Group>
+
+                {/* solo si el servicio elejido no contiene la palabra fibra */}
+                {values.servicio?.includes("Inalambrico") && (
+                  <Form.Group
+                    className="flex-grow-1"
+                    controlId="formBasicDireccion"
+                  >
+                    <Form.Label>Ip Antena</Form.Label>
+                    <Form.Control
+                      size="sm"
+                      type="text"
+                      placeholder="Escribe la Ip de navegacion del cliente"
+                      name="ipAntena"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.ipAntena}
+                      className={
+                        touched.ipAntena && errors.ipAntena ? "is-invalid" : ""
+                      }
+                    />
+                    <ErrorMessage
+                      name="ipAntena"
+                      component="div"
+                      className="invalid-feedback"
+                    />
+                  </Form.Group>
+                )}
               </div>
 
               <Form.Group className="" controlId="formBasicDireccion">
