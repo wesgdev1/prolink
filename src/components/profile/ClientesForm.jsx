@@ -120,7 +120,7 @@ export const ClientesForm = () => {
 
   const autocompleteRef = useRef(null);
   const { isLoaded, loadError } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyA4wKEc548mmiXDSBamTzI6ZsOBzmajm-k",
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries: ["places"],
   });
 
