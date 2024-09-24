@@ -1,5 +1,5 @@
 import Alert from "react-bootstrap/Alert";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Spinner from "react-bootstrap/Spinner";
@@ -14,6 +14,8 @@ import { updateBlog } from "../../api/blogs";
 import { formatError } from "./utils";
 import { createCliente, updateCliente } from "../../api/Clientes";
 import Swal from "sweetalert2";
+import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
+import { set } from "date-fns";
 
 const nombreCompletoRqd = z.string({
   required_error: "El nombre es requerido",
@@ -115,6 +117,20 @@ const tecnicoSchema = z.object({
 
 export const ClientesForm = () => {
   const navigate = useNavigate();
+
+  const autocompleteRef = useRef(null);
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyA4wKEc548mmiXDSBamTzI6ZsOBzmajm-k",
+    libraries: ["places"],
+  });
+
+  const handlePlaceChanged = ({ setFieldValue }) => {};
+  const cucutaBounds = {
+    north: 7.9463,
+    south: 7.8863,
+    east: -72.4833,
+    west: -72.5633,
+  };
 
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -226,6 +242,7 @@ export const ClientesForm = () => {
           handleBlur,
           handleSubmit,
           isSubmitting,
+          setFieldValue,
         }) => (
           <>
             <Form
@@ -386,7 +403,7 @@ export const ClientesForm = () => {
                   />
                 </Form.Group>
               </div>
-              <Form.Group className="" controlId="formBasicDireccion">
+              {/* <Form.Group className="" controlId="formBasicDireccion">
                 <Form.Label>Direccion</Form.Label>
                 <Form.Control
                   size="sm"
@@ -405,7 +422,60 @@ export const ClientesForm = () => {
                   component="div"
                   className="invalid-feedback"
                 />
-              </Form.Group>
+              </Form.Group> */}
+
+              {isLoaded ? (
+                <Form.Group>
+                  <Form.Label>Direccion</Form.Label>
+                  <Autocomplete
+                    onLoad={(autocomplete) =>
+                      (autocompleteRef.current = autocomplete)
+                    }
+                    onPlaceChanged={() => {
+                      if (autocompleteRef.current) {
+                        const place = autocompleteRef.current.getPlace();
+
+                        const formattedAddress = place.formatted_address;
+                        const placeName = place.name;
+                        const finalAddress = placeName
+                          ? `${placeName}, ${formattedAddress}`
+                          : formattedAddress;
+
+                        setFieldValue("direccion", finalAddress);
+                      } else {
+                        console.error("Autocomplete not initialized yet");
+                      }
+                    }}
+                    options={{
+                      bounds: cucutaBounds,
+                      componentRestrictions: { country: "co" },
+                    }}
+                  >
+                    <Form.Control
+                      size="sm"
+                      type="text"
+                      placeholder="Ingrese la dirección"
+                      name="direccion"
+                      onBlur={handleBlur}
+                      value={values.direccion}
+                      onChange={handleChange}
+                      className={
+                        touched.direccion && errors.direccion
+                          ? "is-invalid"
+                          : ""
+                      }
+                    />
+                  </Autocomplete>
+                  <ErrorMessage
+                    name="direccion"
+                    component="div"
+                    className="invalid-feedback"
+                  />
+                </Form.Group>
+              ) : (
+                <div>Loading...</div>
+              )}
+
               <Form.Group className="" controlId="formBasicDireccion">
                 <Form.Label>Ubicacion Gps</Form.Label>
                 <Form.Control

@@ -17,7 +17,7 @@ export const Excustomers = () => {
 
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [filtroSelected, setFiltroSelected] = useState("Todo");
+  const [filtroSelected, setFiltroSelected] = useState("1");
 
   const [notificacion, setNotificacion] = useState(false);
 
@@ -89,7 +89,7 @@ export const Excustomers = () => {
             value={filtroSelected}
             onChange={handleFiltro}
           >
-            <option selected>Todo</option>
+            {/* <option selected>Todo</option> */}
             <option value="1">Pendientes</option>
             <option value="2">Completados</option>
           </select>
@@ -103,7 +103,7 @@ export const Excustomers = () => {
         <div className="pt-3">
           <p>No se encontraron resultados</p>
           <ButtonProfile onClick={() => setNotificacion(false)}>
-            Ver todo
+            Eliminar busqueda
           </ButtonProfile>
         </div>
       ) : filteredData.length > 0 ? (
@@ -111,8 +111,12 @@ export const Excustomers = () => {
           <p className="pt-2">
             Se encontraron: ({filteredData.length}) coincidencias
           </p>
-          <ButtonProfile onClick={() => setFilteredData([])}>
-            Mostrar todo
+          <ButtonProfile
+            onClick={() => {
+              setFilteredData([]), setFiltroSelected("1");
+            }}
+          >
+            Quitar filtro
           </ButtonProfile>
           <ExcustomerTableVisor
             instalaciones={filteredData}
@@ -122,7 +126,9 @@ export const Excustomers = () => {
       ) : (
         data?.length > 0 && (
           <ExcustomerTableVisor
-            instalaciones={data}
+            instalaciones={data.filter((excustomer) => {
+              return excustomer.status === false;
+            })}
             cargarRetiros={cargarRetiros}
           />
         )

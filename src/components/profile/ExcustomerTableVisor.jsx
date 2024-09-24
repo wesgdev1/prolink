@@ -160,9 +160,9 @@ export const ExcustomerTableVisor = ({ instalaciones, cargarRetiros }) => {
                 </td>
                 <td>
                   {instalacion.status ? (
-                    <i className="bi bi-hourglass-top"> Realizado</i>
+                    <i className="bi bi-check-all"> Realizado</i>
                   ) : (
-                    <i className="bi bi-check-all">Pendiente</i>
+                    <i className="bi bi-hourglass-top">Pendiente</i>
                   )}
                 </td>
 

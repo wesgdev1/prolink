@@ -15,7 +15,7 @@ export const Instalations = () => {
 
   const [searchValue, setSearchValue] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [filtroSelected, setFiltroSelected] = useState("Todo");
+  const [filtroSelected, setFiltroSelected] = useState("1");
 
   const [notificacion, setNotificacion] = useState(false);
 
@@ -87,7 +87,7 @@ export const Instalations = () => {
             value={filtroSelected}
             onChange={handleFiltro}
           >
-            <option selected>Todo</option>
+            {/* <option selected>Todo</option> */}
             <option value="1">Pendientes</option>
             <option value="2">Instalados</option>
           </select>
@@ -101,7 +101,7 @@ export const Instalations = () => {
         <div className="pt-3">
           <p>No se encontraron resultados</p>
           <ButtonProfile onClick={() => setNotificacion(false)}>
-            Ver todo
+            Eliminar busqueda
           </ButtonProfile>
         </div>
       ) : filteredData.length > 0 ? (
@@ -109,8 +109,12 @@ export const Instalations = () => {
           <p className="pt-2">
             Se encontraron: ({filteredData.length}) coincidencias
           </p>
-          <ButtonProfile onClick={() => setFilteredData([])}>
-            Mostrar todo
+          <ButtonProfile
+            onClick={() => {
+              setFilteredData([]), setFiltroSelected("1");
+            }}
+          >
+            Quitar filtro
           </ButtonProfile>
           <InstalationsTableVisor
             instalaciones={filteredData}
@@ -120,7 +124,9 @@ export const Instalations = () => {
       ) : (
         data?.length > 0 && (
           <InstalationsTableVisor
-            instalaciones={data}
+            instalaciones={data.filter((instalacion) => {
+              return instalacion.viability === true;
+            })}
             cargarInstalations={cargarInstalations}
           />
         )

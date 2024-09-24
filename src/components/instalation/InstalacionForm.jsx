@@ -291,7 +291,14 @@ export const InstalacionForm = () => {
                 />
               </Form.Group>
 
-              <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center gap-4 pt-4">
+                <ButtonStyled
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => navigate("/profile/instalations")}
+                >
+                  Cancelar
+                </ButtonStyled>
                 <ButtonStyled
                   variant="primary"
                   type="submit"
