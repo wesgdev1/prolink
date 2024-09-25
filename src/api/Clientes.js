@@ -29,3 +29,13 @@ export const updateCliente = async (cliente, payload) => {
     return Promise.reject(error.message);
   }
 };
+
+export const getAllBarrios = async () => {
+  try {
+    const { data: response } = await http.get("/barrios");
+
+    return response;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+};

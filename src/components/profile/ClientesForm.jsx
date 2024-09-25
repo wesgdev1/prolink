@@ -16,6 +16,9 @@ import { createCliente, updateCliente } from "../../api/Clientes";
 import Swal from "sweetalert2";
 import { Autocomplete, useJsApiLoader } from "@react-google-maps/api";
 import { set } from "date-fns";
+import Autosuggest from "react-autosuggest";
+import { useBarrios } from "../../domain/useBarrios";
+import ReactSelect from "react-select";
 
 const nombreCompletoRqd = z.string({
   required_error: "El nombre es requerido",
@@ -72,6 +75,10 @@ const valorFactura = z.number({
   required_error: "El valor es requerido",
 });
 
+const barrioRqd = z.string({
+  required_error: "El barrio es requerido",
+});
+
 const tiposDocumento = ["CC", "NIT", "PEP"];
 
 const servicios = [
@@ -111,10 +118,16 @@ const tecnicoSchema = z.object({
   cicloFacturacion: cicloFacturacion,
   fechaContrato: fechaContrato,
   valorFactura: valorFactura,
+  barrioId: barrioRqd,
 });
 
 export const ClientesForm = () => {
   const navigate = useNavigate();
+  const { data: barrios, loading, error: errorBarrios } = useBarrios();
+  const options = barrios.map((barrio) => ({
+    value: barrio.id,
+    label: barrio.nombre,
+  }));
 
   const autocompleteRef = useRef(null);
   const { isLoaded, loadError } = useJsApiLoader({
@@ -128,6 +141,28 @@ export const ClientesForm = () => {
     south: 7.8863,
     east: -72.4833,
     west: -72.5633,
+  };
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      minHeight: "30px", // Altura mínima del input
+      height: "30px", // Altura total del select
+      fontSize: "12px", // Tamaño de fuente más pequeño
+    }),
+    valueContainer: (provided) => ({
+      ...provided,
+      height: "30px",
+      padding: "0 6px", // Ajuste de padding
+    }),
+    input: (provided) => ({
+      ...provided,
+      margin: "0", // Quitar márgenes adicionales
+      padding: "0", // Quitar padding adicional
+    }),
+    indicatorsContainer: (provided) => ({
+      ...provided,
+      height: "30px",
+    }),
   };
 
   const [error, setError] = useState(false);
@@ -168,6 +203,7 @@ export const ClientesForm = () => {
     fechaContrato: "" || actionEdit?.fechaContrato,
     cicloFacturacion: "" || actionEdit?.cicloFacturacion,
     valorFactura: "" || actionEdit?.valorFactura,
+    barrioId: "" || actionEdit?.barrioId,
   };
 
   const onUpdateCliente = async (formData) => {
@@ -224,6 +260,32 @@ export const ClientesForm = () => {
       });
     }
   };
+
+  // const [barrios, setBarrios] = useState(["LOMA DE BOLIVAR", "ALGO"]);
+  const [suggestions, setSuggestions] = useState([]);
+
+  const getSuggestions = (value) => {
+    const inputValue = value?.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0
+      ? []
+      : barrios.filter((barrio) =>
+          barrio.nombre.toLowerCase().includes(inputValue)
+        );
+  };
+
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value));
+  };
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+
+  const getSuggestionValue = (suggestion) => suggestion.nombre;
+
+  const renderSuggestion = (suggestion) => <>{suggestion.nombre}</>;
 
   return (
     <div className="d-flex border flex-row justify-content-center pb-5 ">
@@ -473,6 +535,129 @@ export const ClientesForm = () => {
               ) : (
                 <div>Loading...</div>
               )}
+
+              {/* <Form.Group>
+                <Form.Label>Barrio</Form.Label>
+                {barrios && barrios.length > 0 ? (
+                  <Autosuggest
+                    suggestions={suggestions}
+                    onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                    onSuggestionsClearRequested={onSuggestionsClearRequested}
+                    getSuggestionValue={getSuggestionValue}
+                    renderSuggestion={renderSuggestion}
+                    inputProps={{
+                      placeholder: "Ingrese el barrio",
+                      value: values.barrio,
+                      onChange: (event, { newValue }) => {
+                        setFieldValue("barrio", newValue);
+                      },
+                      // onBlur: { handleBlur },
+                      className:
+                        touched.barrio && errors.barrio ? "is-invalid" : "",
+                    }}
+                    theme={{
+                      input: {
+                        width: "100%",
+                        padding: "5px",
+                        fontSize: "12px",
+                        border: "1px solid #ccc",
+                        borderRadius: "4px",
+                        transition: "border-color 0.3s ease",
+                        ":focus": {
+                          borderColor: "#007BFF", // Color al enfocar
+                          outline: "none",
+                        },
+                      },
+                      suggestionsList: {
+                        listStyleType: "none",
+                        padding: "0",
+                        margin: "0",
+                        border: "1px solid #ccc",
+                        borderRadius: "4px",
+                        backgroundColor: "#fff",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                        zIndex: 10,
+                        transition: "all 0.3s ease",
+                      },
+                      suggestion: {
+                        padding: "10px",
+                        cursor: "pointer",
+                        transition: "background-color 0.3s ease",
+                        ":hover": {
+                          backgroundColor: "#007BFF", // Color de fondo al pasar el ratón
+                          color: "#fff", // Color de texto al pasar el ratón
+                        },
+                      },
+                    }}
+                  />
+                ) : (
+                  <div>Loading...</div>
+                )}
+
+                <ErrorMessage
+                  name="barrio"
+                  component="div"
+                  className="invalid-feedback"
+                />
+              </Form.Group> */}
+              {/* <Form.Group className=" " controlId="formBasicProdRef">
+                <Form.Label>Barrio</Form.Label>
+
+                <Form.Select
+                  size="sm"
+                  name="barrio"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.barrio}
+                >
+                  <option value="0">Seleccione el Bario</option>
+                  {barrios.map((service) => {
+                    return (
+                      <option key={service} value={service.id}>
+                        {service.nombre}
+                      </option>
+                    );
+                  })}
+                </Form.Select>
+                <ErrorMessage
+                  name="cicloFacturacion"
+                  component="div"
+                  className="invalid-feedback"
+                />
+              </Form.Group> */}
+
+              <Form.Group controlId="formBasicProdRef">
+                <Form.Label>Barrio</Form.Label>
+
+                <ReactSelect
+                  name="barrioId"
+                  options={options}
+                  onChange={(selectedOption) => {
+                    handleChange({
+                      target: {
+                        name: "barrioId",
+                        value: selectedOption ? selectedOption.value : "", // Guardamos el id en Formik
+                      },
+                    });
+                  }}
+                  onBlur={handleBlur}
+                  value={options.find(
+                    (option) => option.value === values.barrioId
+                  )}
+                  placeholder="Seleccione o escriba el barrio"
+                  isClearable
+                  styles={customStyles}
+                  className={
+                    touched.barrioId && errors.barrioId ? "is-invalid" : ""
+                  }
+                />
+
+                <ErrorMessage
+                  name="barrioId"
+                  component="div"
+                  className="invalid-feedback"
+                />
+              </Form.Group>
 
               <Form.Group className="" controlId="formBasicDireccion">
                 <Form.Label>Ubicacion Gps</Form.Label>

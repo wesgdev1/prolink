@@ -15,6 +15,7 @@ import {
   createInstalation,
   updateInstalation,
 } from "../../api/instalaciones.js";
+import { useBarrios } from "../../domain/useBarrios.jsx";
 
 const nameClientRqd = z.string({
   required_error: "El nombre es requerido",
