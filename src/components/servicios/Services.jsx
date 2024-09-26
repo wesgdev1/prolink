@@ -17,33 +17,27 @@ export const Services = () => {
           img={
             "https://res.cloudinary.com/dppqkypts/image/upload/v1701294367/Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_dwakut.png"
           }
-          title={"Internet + DirecTv GO"}
-          description={
-            "Hasta 450 megas de internet + DirecTv GO con 3 meses de regalo"
-          }
-          price={"$ 89.900"}
+          title={"Internet "}
+          description={"Hasta 500 megas de internet "}
+          price={"$ 79.900"}
           priceNormal={"$150.000"}
+        />
+        <Service
+          img={
+            "https://res.cloudinary.com/dppqkypts/image/upload/v1701963754/Copia_de_Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_2_e9htbp.png"
+          }
+          title={"Internet "}
+          description={"Hasta 300 megas de internet "}
+          price={"$ 69.900"}
+          priceNormal={"$140.000"}
         />
         <Service
           img={
             "https://res.cloudinary.com/dppqkypts/image/upload/v1701963747/Copia_de_Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_1_dj9wft.png"
           }
           title={"Internet "}
-          description={
-            "Hasta 450 megas de internet + DirecTv GO con 3 meses de regalo"
-          }
-          price={"$ 39.900"}
-          priceNormal={"$50.000"}
-        />
-        <Service
-          img={
-            "https://res.cloudinary.com/dppqkypts/image/upload/v1701963754/Copia_de_Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_2_e9htbp.png"
-          }
-          title={"Internet + DirecTv GO"}
-          description={
-            "Hasta 450 megas de internet + DirecTv GO con 3 meses de regalo"
-          }
-          price={"$ 69.900"}
+          description={"Hasta 100 megas de internet "}
+          price={"$ 55.900"}
           priceNormal={"$80.000"}
         />
       </div>
