@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { ThemeProvider } from "@emotion/react";
 
+import "./index.css"; // quitar si hay problemas
 import "./theme/custom.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./theme/index.css";

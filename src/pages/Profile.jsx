@@ -14,7 +14,7 @@ export const Profile = () => {
 
   return (
     <ContainerProfile>
-      <div className="mx-2  px-5  pb-5">
+      <div className="mx-2  px-5 pb-5">
         <Card
           className="text-center"
           style={{
@@ -91,7 +91,7 @@ export const Profile = () => {
           </Card.Footer>
         </Card>
       </div>
-      <div className="d-flex  mx-2  px-5 pb-5 gap-2 ">
+      <div className="d-flex  mx-2  px-2 pb-5 gap-2 ">
         <div className="">
           <NavProfiles />
         </div>
