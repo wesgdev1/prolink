@@ -14,83 +14,67 @@ export const Profile = () => {
 
   return (
     <ContainerProfile>
-      <div className="mx-2  px-5 pb-5">
-        <Card
-          className="text-center"
-          style={{
-            background: "linear-gradient(to right, #000A49, #E7F6FE)",
-            boxShadow: "0px 0px 30px 0px rgba(0,0,0,0.75)",
-            borderRadius: "20px",
-            backgroundImage: `url("https://res.cloudinary.com/dppqkypts/image/upload/v1702437086/Copia_de_Dise%C3%B1o_sin_t%C3%ADtulo_2_ubzban.svg")`,
-            backgroundSize: "50%",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "right",
-          }}
-        >
-          <Card.Header>
-            <strong>
+      <div className="mx-2 px-5 ">
+        <div className="bg-gradient-to-r from-blue-900 to-purple-500 shadow-lg rounded-3xl p-4 text-center relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-right opacity-20"
+            style={{
+              backgroundImage: `url("https://res.cloudinary.com/dppqkypts/image/upload/v1702437086/Copia_de_Dise%C3%B1o_sin_t%C3%ADtulo_2_ubzban.svg")`,
+            }}
+          ></div>
+
+          <div className="relative z-10">
+            <h2 className="text-lg font-semibold text-white mb-1">
               {user?.tipoUsuario === "Admin"
                 ? "Bienvenido, Administrador"
                 : user?.tipoUsuario === "Cliente"
-                ? "¡Bienvenido! " + user?.cliente.nombreCompleto
-                : "¡Bienvenido! " + user?.tecnico.nombreCompleto}
-            </strong>
-          </Card.Header>
-          <Card.Body>
-            <div>
-              <Image
+                ? `¡Bienvenido! ${user?.cliente.nombreCompleto}`
+                : `¡Bienvenido! ${user?.tecnico.nombreCompleto}`}
+            </h2>
+
+            <div className="flex justify-center mb-2">
+              <img
                 src={
                   user?.tipoUsuario === "Admin"
                     ? IMG_ADMIN
                     : user?.urlFoto ||
                       "https://res.cloudinary.com/dppqkypts/image/upload/v1701901417/Dise%C3%B1o_sin_t%C3%ADtulo_11_r8jfvs.png"
                 }
-                roundedCircle
-                width={100}
-                height={100}
-                style={{ boxShadow: "0px 0px 20px 0px rgba(0,0,0,0.75)" }}
+                className="w-20 h-20 rounded-full shadow-lg border-4 border-white"
+                alt="User profile"
               />
             </div>
-            {user && user?.tipoUsuario === "Admin" ? (
-              <div className="d-flex justify-content-center pt-4 gap-5">
-                <Card.Text>
-                  <strong>Email:</strong>
-                  {user?.email}
-                </Card.Text>
-                <Card.Text>
-                  <strong>Cargo:</strong> Administrador
-                </Card.Text>
-              </div>
-            ) : user?.tipoUsuario === "Cliente" ? (
-              <div className="d-flex justify-content-center pt-4 gap-5">
-                <Card.Text>
-                  {" "}
-                  <strong>Email:</strong> {user?.email}
-                </Card.Text>
 
-                <Card.Text>
-                  <strong>Servicio:</strong> 100Mbps fibra optica
-                </Card.Text>
-              </div>
-            ) : (
-              <div className="d-flex justify-content-center pt-4 gap-5">
-                <Card.Text>
-                  {" "}
-                  <strong>Email:</strong> {user?.email}
-                </Card.Text>
-                <Card.Text>
-                  <strong>Cargo:</strong> Tecnico de soporte
-                </Card.Text>
-              </div>
-            )}
+            <div className="flex flex-col md:flex-row justify-center items-center gap-3 text-white text-xs font-light mb-4">
+              <p>
+                <span className="font-semibold">Email:</span> {user?.email}
+              </p>
 
-            {/* <Button variant="primary">Go somewhere</Button> */}
-          </Card.Body>
-          <Card.Footer className="text-muted">
-            Última Conexión: hace un momento
-          </Card.Footer>
-        </Card>
+              <p>
+                <span className="font-semibold">
+                  {user?.tipoUsuario === "Admin"
+                    ? "Cargo:"
+                    : user?.tipoUsuario === "Cliente"
+                    ? "Servicio:"
+                    : "Cargo:"}
+                </span>{" "}
+                {user?.tipoUsuario === "Admin"
+                  ? "Administrador"
+                  : user?.tipoUsuario === "Cliente"
+                  ? "100Mbps fibra óptica"
+                  : "Técnico de soporte"}
+              </p>
+            </div>
+
+            <div className="text-gray-300 text-xs">
+              Última Conexión: hace un momento
+            </div>
+          </div>
+        </div>
       </div>
+
+      <hr />
+
       <div className="d-flex  mx-2  px-2 pb-5 gap-2 ">
         <div className="">
           <NavProfiles />
