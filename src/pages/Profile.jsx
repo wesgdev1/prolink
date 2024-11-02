@@ -14,7 +14,7 @@ export const Profile = () => {
 
   return (
     <ContainerProfile>
-      <div className="mx-2 px-5 ">
+      <div className="mx-2 px-5 relative z-1 ">
         <div className="bg-gradient-to-r from-blue-900 to-purple-500 shadow-lg rounded-3xl p-4 text-center relative overflow-hidden">
           <div
             className="absolute inset-0 bg-cover bg-right opacity-20"
