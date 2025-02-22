@@ -8,11 +8,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { Formik, ErrorMessage } from "formik";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { z } from "zod";
-import { Button } from "react-bootstrap";
+
 import {
   ButtonStyled,
+  ButtonStyled2,
   MainConteiner,
-  NavLinkStyledRegister,
 } from "../components/StyledComponents";
 import { AuthContext } from "../auth/context/AuthContext";
 import { signIn } from "../api/auth";
@@ -77,10 +77,15 @@ export function Login() {
     setSubmitting(false);
   };
   return (
-    <MainConteiner className="img-fluid pt-5">
+    <MainConteiner>
       {/* <h1 className="">Iniciar sesion</h1> */}
-      <div className="login d-flex row w-50 bg-white">
-        <div className="login__contenedor">
+      <div
+        className=" d-flex row w-[380px] justify-center
+      border border-gray-200 rounded-lg shadow-lg bg-white p-4 gap-4
+      
+      "
+      >
+        <div>
           {error && (
             <Alert
               variant="danger"
@@ -105,13 +110,10 @@ export function Login() {
               isSubmitting,
             }) => (
               <>
-                <Form
-                  className="Form_login my-5 d-flex flex-column gap-2 "
-                  onSubmit={handleSubmit}
-                >
+                <Form onSubmit={handleSubmit}>
                   <div className="d-flex justify-content-center flex-column align-items-center gap-2">
                     <img
-                      style={{ width: "10%", height: "auto" }}
+                      style={{ width: "80px", height: "80px" }}
                       src="https://res.cloudinary.com/db9nfgjqr/image/upload/v1698873285/PROLINK_LOGO_pauqtg.png"
                       alt="logo"
                     ></img>
@@ -175,7 +177,7 @@ export function Login() {
                     </NavLink>
                   </Form.Group>
                   <div className="d-flex justify-content-center">
-                    <ButtonStyled
+                    <ButtonStyled2
                       variant="primary"
                       type="submit"
                       size="lg"
@@ -191,9 +193,9 @@ export function Login() {
                           aria-hidden="true"
                         />
                       )}
-                    </ButtonStyled>
+                    </ButtonStyled2>
                   </div>
-                  <div className="d-flex gap-1 mt-2 justify-content-center">
+                  {/* <div className="d-flex gap-1 mt-2 justify-content-center">
                     <label>¿No tienes un usuario?</label>
                     <NavLink
                       style={{ textDecoration: "none", color: "darkblue" }}
@@ -201,7 +203,7 @@ export function Login() {
                     >
                       Registrate
                     </NavLink>
-                  </div>
+                  </div> */}
                   <div className="d-flex gap-1 mt-2 justify-content-center">
                     <NavLink
                       style={{ textDecoration: "none", color: "darkblue" }}

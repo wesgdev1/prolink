@@ -100,20 +100,36 @@ export const MainConteiner = styled("div")(({ theme }) => ({
 
   flexDirection: "column",
   alignItems: "center",
+
   justifyContent: "center",
   height: "100vh",
-  width: "100vw",
-  backgroundImage: `url("https://res.cloudinary.com/db9nfgjqr/image/upload/v1698974214/Dise%C3%B1o_sin_t%C3%ADtulo_6_ukijmg.png")`,
+
+  // backgroundImage: `url("https://res.cloudinary.com/db9nfgjqr/image/upload/v1698974214/Dise%C3%B1o_sin_t%C3%ADtulo_6_ukijmg.png")`,
   backgroundSize: "cover",
   // da trasparencia a la imagen de fondo usa la propieda de trasnparecnia
 
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
+  backgroundColor: "white",
+
+  // coloca un gradiante blanco y gris, pero que predonomine bastan el blanco
+
   // background: `linear-gradient(100deg, black 10%, ${theme.colors.mainColor} 90%)`,
 }));
 
 export const ButtonStyled = styled(Button)(({ theme }) => ({
   width: "40%",
+  backgroundColor: theme.colors.mainColor,
+  borderColor: theme.colors.mainColor,
+  color: "white",
+  "&:hover": {
+    backgroundColor: theme.colors.secondaryColor,
+    borderColor: theme.colors.secondaryColor,
+  },
+}));
+
+export const ButtonStyled2 = styled(Button)(({ theme }) => ({
+  width: "90%",
   backgroundColor: theme.colors.mainColor,
   borderColor: theme.colors.mainColor,
   color: "white",
