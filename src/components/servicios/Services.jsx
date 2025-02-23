@@ -9,7 +9,7 @@ export const Services = () => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
-      className="pt-5 d-flex flex-column justify-content-center align-items-center gap-5"
+      className="pt-5 mb-4 d-flex flex-column justify-content-center align-items-center gap-5"
     >
       <h3>SERVICIOS FIBRA OPTICA</h3>
       <div className="d-flex gap-3 justify-content-center flex-wrap ">

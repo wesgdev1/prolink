@@ -1,5 +1,5 @@
 import { Col, Image, Row } from "react-bootstrap";
-import { ButtonProfile } from "./profile/StyledComponentsProfile";
+import { ButtonInfo2, ButtonProfile } from "./profile/StyledComponentsProfile";
 import { useNavigate } from "react-router-dom";
 
 export const Payments = () => {
@@ -29,9 +29,9 @@ export const Payments = () => {
             Si requieres asesoria o tienes duda al momento de elegir algunos de
             nuestros planes da click en el siguiente botón.
           </p>
-          <ButtonProfile onClick={() => navigate("/contacto")}>
+          <ButtonInfo2 onClick={() => navigate("/contacto")}>
             ¡Solicitar información!
-          </ButtonProfile>
+          </ButtonInfo2>
         </div>
       </Col>
     </Row>

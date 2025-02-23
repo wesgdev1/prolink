@@ -15,7 +15,7 @@ export const ServicesRadio = () => {
       <div className="d-flex gap-3 justify-content-center flex-wrap ">
         <Service
           img={
-            "https://res.cloudinary.com/dppqkypts/image/upload/v1701294367/Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_dwakut.png"
+            "https://res.cloudinary.com/dppqkypts/image/upload/v1740339025/imagesBlog/pro3_goruf6.png"
           }
           title={"Plan 5 Megas "}
           description={"Ideal para conectar entre 1 a 3 dispositivos"}
@@ -24,7 +24,7 @@ export const ServicesRadio = () => {
         />
         <Service
           img={
-            "https://res.cloudinary.com/dppqkypts/image/upload/v1701963754/Copia_de_Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_2_e9htbp.png"
+            "https://res.cloudinary.com/dppqkypts/image/upload/v1740339180/imagesBlog/pro4_topjhl.png"
           }
           title={"Plan 8 Megas"}
           description={"Ideal para conectar entre 3 a 5 dispositivos"}
@@ -33,7 +33,7 @@ export const ServicesRadio = () => {
         />
         <Service
           img={
-            "https://res.cloudinary.com/dppqkypts/image/upload/v1701963747/Copia_de_Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_1_dj9wft.png"
+            "https://res.cloudinary.com/dppqkypts/image/upload/v1740339026/imagesBlog/pro1_ylwc20.png"
           }
           title={"Plan 10 Megas"}
           description={"Ideal para conectar entre 5 a 7 dispositivos"}

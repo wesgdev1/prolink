@@ -7,6 +7,7 @@ import { ButtonWhatsapp } from "../components/ButtonWhatsapp";
 import { Payments } from "../components/Payment";
 import { FirstSection } from "../components/home/FirstSection";
 import { ServicesRadio } from "../components/servicios/ServicesRadio";
+import { TestV } from "../components/home/TestV";
 
 export const Home = () => {
   return (
@@ -16,6 +17,7 @@ export const Home = () => {
       <AboutUs />
       <ServicesRadio />
       <Services />
+      <TestV />
       <hr />
       <Payments />
       <ButtonWhatsapp />

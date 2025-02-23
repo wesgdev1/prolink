@@ -68,6 +68,16 @@ export const ButtonProfile = styled(Button)(({ theme }) => ({
     borderColor: theme.colors.secondaryColor,
   },
 }));
+export const ButtonInfo2 = styled(Button)(({ theme }) => ({
+  width: "200px",
+  backgroundColor: theme.colors.mainColor,
+  borderColor: theme.colors.mainColor,
+  color: "white",
+  "&:hover": {
+    backgroundColor: theme.colors.secondaryColor,
+    borderColor: theme.colors.secondaryColor,
+  },
+}));
 export const ButtonPBlog = styled(Button)(({ theme }) => ({
   width: "60%",
   backgroundColor: theme.colors.mainColor,
