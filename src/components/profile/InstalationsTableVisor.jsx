@@ -153,20 +153,21 @@ export const InstalationsTableVisor = ({
                         href={instalacion.ubication}
                         target="_blank"
                         rel="noreferrer"
-                        className="underline text-blue-700 hover:cursor-pointer "
+                        className="no-underline text-blue-700 hover:cursor-pointer "
                       >
+                        <i className="bi bi-check-circle-fill text-green-600"></i>
                         Ver
                       </a>
                     </p>
                   ) : (
-                    "No disponible"
+                    <i className="bi bi-ban-fill text-red-600"></i>
                   )}
                 </td>
                 <td>
                   {instalacion.viability ? (
-                    <i className="bi bi-hourglass-top"> Pendiente</i>
+                    <i className="bi bi-hourglass-top text-red-700"></i>
                   ) : (
-                    <i className="bi bi-check-all">Realizada</i>
+                    <i className="bi bi-check-all text-green-600"></i>
                   )}
                 </td>
 
