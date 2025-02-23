@@ -5,12 +5,16 @@ import { NavComponent } from "../components/NavComponent";
 import { Services } from "../components/servicios/Services";
 import { ButtonWhatsapp } from "../components/ButtonWhatsapp";
 import { Payments } from "../components/Payment";
+import { FirstSection } from "../components/home/FirstSection";
+import { ServicesRadio } from "../components/servicios/ServicesRadio";
 
 export const Home = () => {
   return (
     <>
-      <Carrousel />
+      <FirstSection />
+      {/* <Carrousel /> */}
       <AboutUs />
+      <ServicesRadio />
       <Services />
       <hr />
       <Payments />

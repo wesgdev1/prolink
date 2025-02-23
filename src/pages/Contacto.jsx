@@ -12,6 +12,7 @@ import { z } from "zod";
 
 import { useState } from "react";
 import { createConsulta } from "../api/consultas";
+import { ButtonWhatsapp } from "../components/ButtonWhatsapp";
 
 const nombreRqd = z.string({
   required_error: "El nombre es requerido",
@@ -95,9 +96,8 @@ export const Contacto = () => {
             <div
               style={{
                 position: "absolute",
-                top: "60%",
-                left: "40%",
-
+                top: "50%",
+                right: "50%",
                 transform: "translate(50%, -50%)",
               }}
             >
@@ -247,6 +247,7 @@ export const Contacto = () => {
           </section>
         </Col>
       </Row>
+      <ButtonWhatsapp />
     </ContainerContacto>
   );
 };

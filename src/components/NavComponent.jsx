@@ -83,7 +83,7 @@ export const NavComponent = () => {
                 ) : (
                   <>
                     <NavLinkStyled2 to="/login">Iniciar sesion</NavLinkStyled2>
-                    <NavLinkStyled2 to="/signup">Registrase</NavLinkStyled2>
+                    <NavLinkStyled2 to="/signup">Registrarse</NavLinkStyled2>
                   </>
                 )}
               </Nav>

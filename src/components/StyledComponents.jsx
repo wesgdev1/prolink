@@ -253,7 +253,8 @@ export const ContainerContacto = styled("div")(({ theme }) => ({
 }));
 
 export const CardStyledContacto = styled(Card)(({ theme }) => ({
-  width: "30rem",
+  marginTop: "150px",
+  width: "370px",
 
   boxShadow: `10px 10px 10px grey`,
   borderRadius: "10px",
