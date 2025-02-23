@@ -141,7 +141,7 @@ export const Contacto = () => {
                           <Form.Label>Nombre Completo</Form.Label>
                           <Form.Control
                             type="text"
-                            placeholder="Escibe aqui el nombre del tecnico"
+                            placeholder="Escibe aqui tu nombre completo"
                             name="nombre"
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -162,7 +162,7 @@ export const Contacto = () => {
                           <Form.Label>Email</Form.Label>
                           <Form.Control
                             type="email"
-                            placeholder="Escibe aqui el email del tecnico"
+                            placeholder="Escibe aqui tu email"
                             name="email"
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -181,7 +181,7 @@ export const Contacto = () => {
                           <Form.Label>Teléfono</Form.Label>
                           <Form.Control
                             type="number"
-                            placeholder="Escibe aqui el numero de contrato"
+                            placeholder="Escibe aqui tu numero de telefono"
                             name="telefono"
                             onChange={handleChange}
                             onBlur={handleBlur}
