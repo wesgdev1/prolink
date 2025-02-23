@@ -7,18 +7,25 @@ export const Service = ({ img, title, description, price, priceNormal }) => {
   return (
     <Card
       style={{
-        width: "18rem",
+        width: "10rem",
         borderRadius: "20px",
         boxShadow: "3px 3px 10px gray",
+        fontSize: "0.8rem",
       }}
     >
       <Card.Img variant="top" src={img} />
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title
+          style={{
+            fontSize: "1rem",
+          }}
+        >
+          {title}
+        </Card.Title>
         <Card.Text>{description}</Card.Text>
         <hr />
         <Card.Text>
-          <h4>{price}</h4>
+          <h5>{price}</h5>
         </Card.Text>
         <Card.Text>
           <p

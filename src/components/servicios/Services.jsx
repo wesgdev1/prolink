@@ -11,13 +11,13 @@ export const Services = () => {
       }}
       className="pt-5 d-flex flex-column justify-content-center align-items-center gap-5"
     >
-      <h1>SERVICIOS</h1>
-      <div className="d-flex gap-4 justify-content-center flex-wrap ">
+      <h3>SERVICIOS FIBRA OPTICA</h3>
+      <div className="d-flex gap-3 justify-content-center flex-wrap ">
         <Service
           img={
             "https://res.cloudinary.com/dppqkypts/image/upload/v1701294367/Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_dwakut.png"
           }
-          title={"Internet "}
+          title={"Plan Familia "}
           description={"Hasta 500 megas de internet "}
           price={"$ 79.900"}
           priceNormal={"$150.000"}
@@ -26,7 +26,7 @@ export const Services = () => {
           img={
             "https://res.cloudinary.com/dppqkypts/image/upload/v1701963754/Copia_de_Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_2_e9htbp.png"
           }
-          title={"Internet "}
+          title={"Plan Profesional"}
           description={"Hasta 300 megas de internet "}
           price={"$ 69.900"}
           priceNormal={"$140.000"}
@@ -35,7 +35,7 @@ export const Services = () => {
           img={
             "https://res.cloudinary.com/dppqkypts/image/upload/v1701963747/Copia_de_Blue_and_Yellow_Modern_Internet_Services_Provider_Promotion_Instagram_Post_1_dj9wft.png"
           }
-          title={"Internet "}
+          title={"Plan Hogar"}
           description={"Hasta 100 megas de internet "}
           price={"$ 55.900"}
           priceNormal={"$80.000"}

@@ -12,6 +12,7 @@ export const Home = () => {
       <Carrousel />
       <AboutUs />
       <Services />
+      <hr />
       <Payments />
       <ButtonWhatsapp />
     </>

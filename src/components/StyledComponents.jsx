@@ -1,5 +1,12 @@
 import styled from "@emotion/styled";
-import { Button, Card, Carousel, Container, Pagination } from "react-bootstrap";
+import {
+  Button,
+  Card,
+  Carousel,
+  Container,
+  Navbar,
+  Pagination,
+} from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 export const ButtonHome = styled(Button)(({ theme }) => ({
@@ -30,6 +37,15 @@ export const NavLinkStyled = styled(NavLink)(({ theme }) => ({
   "&:hover": {
     color: theme.colors.mainColor,
     fontSize: "1.2rem",
+  },
+}));
+
+export const NavLinkStyled2 = styled(NavLink)(({ theme }) => ({
+  color: "white",
+  textDecoration: "none",
+  marginLeft: "10px",
+  "&:hover": {
+    color: theme.colors.mainColor,
   },
 }));
 
@@ -72,7 +88,7 @@ export const ConteinerNavStyled = styled(Container)(({ theme }) => ({
   // background: `linear-gradient(4deg, black 70%, ${theme.colors.mainColor} 100%)`,
 
   background: "#000011",
-  height: "15%",
+
   position: "fixed",
   top: 0,
 
@@ -264,5 +280,22 @@ export const CardInformationConsultas = styled(Card)(({ theme }) => ({
   boxShadow: `3px 3px 20px grey`,
   "&:hover": {
     boxShadow: `10px 10px 10px ${theme.colors.mainColor}`,
+  },
+}));
+
+export const NavbarS = styled(Navbar)(({ theme }) => ({
+  background: "transparent",
+  color: "white",
+  "& a": {
+    color: "white",
+    "&:hover": {
+      color: theme.colors.mainColor,
+    },
+  },
+
+  "& .navbar-toggler": {
+    color: "white",
+    borderColor: "white",
+    backgroundColor: "white",
   },
 }));
