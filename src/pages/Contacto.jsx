@@ -10,7 +10,7 @@ import { Formik, ErrorMessage } from "formik";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { z } from "zod";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createConsulta } from "../api/consultas";
 import { ButtonWhatsapp } from "../components/ButtonWhatsapp";
 
@@ -46,6 +46,10 @@ export const Contacto = () => {
     telefono: "",
     mensaje: "",
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const onCreateQuery = async (values) => {
     try {

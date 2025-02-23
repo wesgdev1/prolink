@@ -54,7 +54,7 @@ export const NavComponent = () => {
           }}
         >
           <span>
-            <i className="bi bi-geo-alt text-red-600"></i> Cúcuta - Norte
+            <i className="bi bi-geo-alt text-red-600"></i> Cúcuta - Norte de
             Santander
           </span>
 

@@ -16,7 +16,7 @@ export const TestV = () => {
           </h1>
 
           <p className="mt-4 max-w-lg text-white sm:text-xl/relaxed">
-            recuerda hacer el test estando cerca del router y sin interferencias
+            Recuerda hacer el test estando cerca del router y sin interferencias
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4 text-center">
