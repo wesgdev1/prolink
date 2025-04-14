@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 
 import { ButtonProfile } from "./StyledComponentsProfile";
 import { Alert, Form, Spinner } from "react-bootstrap";
-import { InstalationsTableVisor } from "./InstalationsTableVisor";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useRetiros } from "../../domain/useRetiros";
 import { ExcustomerTableVisor } from "./ExcustomerTableVisor";
+import { MapsClients } from "../maps/MapsClients";
 
 export const Excustomers = () => {
   const { data, loading, error, cargarRetiros } = useRetiros();
@@ -20,6 +20,12 @@ export const Excustomers = () => {
   const [filtroSelected, setFiltroSelected] = useState("1");
 
   const [notificacion, setNotificacion] = useState(false);
+
+  // Obtener clientes pendientes para el mapa
+  const clientesPendientes = useMemo(() => {
+    if (!data) return [];
+    return data.filter((cliente) => !cliente.status);
+  }, [data]);
 
   const handleInputChange = (e) => {
     setSearchValue(e.target.value);
@@ -67,6 +73,7 @@ export const Excustomers = () => {
       <h4 className="pb-3">
         <i className="bi bi-book-half"></i> Retiros programados
       </h4>
+      <MapsClients clientesPendientes={clientesPendientes} />
       <div className="d-flex justify-content-end">
         <ButtonProfile onClick={handleClick}>Agendar retiro</ButtonProfile>
       </div>
