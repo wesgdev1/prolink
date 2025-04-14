@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 // Coordenadas por defecto para Cúcuta
 const DEFAULT_COORDS = { lat: 7.8891, lng: -72.4969 };
 
+// Obtener la API Key de Google Maps desde las variables de entorno
+const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY2 || "";
+
 // Coordenadas alternativas para distribuir clientes sin ubicación en un área de Cúcuta
 const CUCUTA_POINTS = [
   { lat: 7.8891, lng: -72.4969 }, // Centro
@@ -59,6 +62,18 @@ export const MapsClients = ({ clientesPendientes = [] }) => {
   const theme = useTheme();
   const [usarUbicacionAlternativa, setUsarUbicacionAlternativa] =
     useState(false);
+
+  // Verificar si la API Key está disponible
+  const [apiKeyError, setApiKeyError] = useState(false);
+
+  useEffect(() => {
+    if (!GOOGLE_MAPS_API_KEY) {
+      console.error(
+        "API Key de Google Maps no encontrada en variables de entorno"
+      );
+      setApiKeyError(true);
+    }
+  }, []);
 
   // Log para depuración
   useEffect(() => {
@@ -231,6 +246,37 @@ export const MapsClients = ({ clientesPendientes = [] }) => {
 
   console.log("Total de coordenadas encontradas:", coordenadas.length);
 
+  // Si hay un error con la API Key
+  if (apiKeyError) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          height: "150px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: "8px",
+          marginBottom: "20px",
+          padding: "20px",
+          color: "#721c24",
+          backgroundColor: "#f8d7da",
+          border: "1px solid #f5c6cb",
+        }}
+      >
+        <p style={{ textAlign: "center" }}>
+          <strong>Error:</strong> No se pudo cargar el mapa. La API Key de
+          Google Maps no está configurada correctamente.
+          <br />
+          <small>
+            Por favor, verifica la variable de entorno VITE_GOOGLE_MAPS_API_KEY
+            en el archivo .env
+          </small>
+        </p>
+      </div>
+    );
+  }
+
   // Si no hay coordenadas válidas, mostramos un mensaje
   if (coordenadas.length === 0) {
     return (
@@ -295,7 +341,7 @@ export const MapsClients = ({ clientesPendientes = [] }) => {
             <li>
               <strong>Formato DMS (grados, minutos, segundos):</strong>
               <ul>
-                <li>7°56'20.6"N 72°31'17.2"W</li>
+                <li>7°56&apos;20.6&quot;N 72°31&apos;17.2&quot;W</li>
               </ul>
             </li>
           </ul>
@@ -313,7 +359,7 @@ export const MapsClients = ({ clientesPendientes = [] }) => {
                 "Ejemplos de formatos aceptados:\n" +
                   "- URL: https://www.google.com/maps?q=7.123456,-72.123456\n" +
                   "- Decimal directo: 7.123456, -72.123456\n" +
-                  "- DMS: 7°56'20.6\"N 72°31'17.2\"W"
+                  "- DMS: 7°56&apos;20.6&quot;N 72°31&apos;17.2&quot;W"
               )
             }
             style={{
@@ -366,7 +412,7 @@ export const MapsClients = ({ clientesPendientes = [] }) => {
         </div>
       )}
 
-      <APIProvider apiKey={"AIzaSyB7wZYYHmvKAvv-WR35FMKIUtPSA4ftJPA"}>
+      <APIProvider apiKey={GOOGLE_MAPS_API_KEY}>
         <Map
           defaultZoom={12}
           mapId="117b7446662f16c3"
