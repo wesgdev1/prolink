@@ -1,0 +1,59 @@
+/* Animaciones para el botón de WhatsApp */
+.whatsapp-button {
+  animation: pulse-whatsapp 2s infinite;
+}
+
+.wave-1 {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.3);
+  animation: wave 2s infinite;
+  z-index: -1;
+}
+
+.wave-2 {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.2);
+  animation: wave 2s infinite 0.5s;
+  z-index: -2;
+}
+
+@keyframes pulse-whatsapp {
+  0%, 100% { 
+    transform: scale(1); 
+  }
+  50% { 
+    transform: scale(1.05); 
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.whatsapp-button-container:hover .whatsapp-tooltip {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(-50%) translateX(-8px) !important;
+}
+
+@media (max-width: 768px) {
+  .whatsapp-button-container {
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+  
+  .whatsapp-tooltip {
+    display: none !important;
+  }
+} 

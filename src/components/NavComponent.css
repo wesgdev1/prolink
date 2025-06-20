@@ -1,0 +1,689 @@
+/* Navbar Futurista - Diseño Responsive Mejorado */
+.modern-nav-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(6, 6, 20, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modern-nav-container.scrolled {
+  background: rgba(6, 6, 20, 0.98);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+/* Top Info Bar */
+.top-info-bar {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+  border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+  padding: 8px 0;
+  font-size: 0.8rem;
+}
+
+.info-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #cbd5e1;
+  transition: all 0.3s ease;
+}
+
+.info-item:hover {
+  color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+.info-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.location-icon {
+  background: linear-gradient(45deg, #ef4444, #f97316);
+  color: white;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.whatsapp-icon {
+  background: linear-gradient(45deg, #10b981, #16a34a);
+  color: white;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+}
+
+.info-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px currentColor;
+}
+
+.info-text {
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+.info-divider {
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(to bottom, transparent, #3b82f6, transparent);
+}
+
+/* Main Navbar */
+.main-navbar {
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.navbar-background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+  border-radius: 0;
+}
+
+.navbar-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  opacity: 0.6;
+}
+
+.custom-navbar {
+  background: transparent !important;
+  padding: 0;
+}
+
+/* Brand Logo */
+.brand-container {
+  position: relative;
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.brand-container:hover {
+  transform: translateY(-2px);
+}
+
+.brand-glow {
+  position: absolute;
+  inset: -5px;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+  border-radius: 12px;
+  opacity: 0;
+  blur: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.brand-container:hover .brand-glow {
+  opacity: 0.3;
+  animation: rotateGlow 2s linear infinite;
+}
+
+.brand-text {
+  display: flex;
+  align-items: baseline;
+  font-size: 1.8rem;
+  font-weight: 900;
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+.brand-pro {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-link {
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-subtitle {
+  font-size: 0.65rem;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: -0.2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Custom Toggle Button Mejorado */
+.custom-toggle {
+  border: none !important;
+  background: rgba(59, 130, 246, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 0.75rem !important;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-toggle:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
+  outline: none !important;
+}
+
+.custom-toggle:hover {
+  background: rgba(59, 130, 246, 0.2) !important;
+  transform: scale(1.05);
+}
+
+.hamburger-line {
+  width: 24px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.custom-toggle:hover .hamburger-line {
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+.custom-toggle[aria-expanded="true"] .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.custom-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.custom-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Navbar Collapse Mejorado */
+.navbar-collapse-custom {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Asegurar que el colapso funcione correctamente */
+.navbar-collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.main-nav, .user-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main-nav {
+  margin-right: auto;
+}
+
+/* Nav Items */
+.nav-item-wrapper {
+  position: relative;
+}
+
+.modern-nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.modern-nav-link:hover {
+  color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+.nav-hover-effect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.modern-nav-link:hover .nav-hover-effect {
+  transform: scaleX(1);
+}
+
+.nav-icon {
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.modern-nav-link:hover .nav-icon {
+  transform: scale(1.1);
+  color: #3b82f6;
+}
+
+/* Botones Mejorados */
+.modern-nav-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.btn-background {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.logout-btn .btn-background {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.signup-btn .btn-background {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.modern-nav-button:hover .btn-background {
+  transform: scale(1.02);
+}
+
+.logout-btn:hover .btn-background {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.signup-btn:hover .btn-background {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-glow {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.signup-btn:hover .btn-glow {
+  opacity: 0.3;
+  animation: rotateGlow 2s linear infinite;
+}
+
+.modern-nav-button .nav-text,
+.modern-nav-link .nav-text {
+  position: relative;
+  z-index: 2;
+  color: inherit;
+}
+
+/* Connectivity Indicator */
+.connectivity-indicator {
+  position: absolute;
+  bottom: -25px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  color: #64748b;
+  background: rgba(6, 6, 20, 0.9);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.signal-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #374151;
+  transition: all 0.3s ease;
+}
+
+.signal-dot.active {
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+  animation: signalPulse 2s infinite ease-in-out;
+}
+
+.signal-dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.signal-dot:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.signal-text {
+  font-weight: 500;
+  margin-left: 0.2rem;
+}
+
+/* Animaciones */
+@keyframes rotateGlow {
+  0% {
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+  }
+  25% {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899, #3b82f6, #8b5cf6);
+  }
+  50% {
+    background: linear-gradient(225deg, #ec4899, #3b82f6, #8b5cf6, #ec4899);
+  }
+  75% {
+    background: linear-gradient(315deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+  }
+  100% {
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+  }
+}
+
+@keyframes signalPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+/* RESPONSIVE DESIGN MEJORADO */
+
+  /* Tablet y pantallas medianas */
+@media (max-width: 991px) {
+  .info-container {
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .info-divider {
+    display: none;
+  }
+
+  /* Estilos del menú móvil cuando está abierto */
+  .navbar-collapse-custom.show {
+    background: rgba(6, 6, 20, 0.98);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Asegurar que el menú esté oculto por defecto */
+  .navbar-collapse-custom:not(.show) {
+    display: none !important;
+  }
+
+  .main-nav, .user-nav {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .modern-nav-link, .modern-nav-button {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .connectivity-indicator {
+    position: static;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+  .modern-nav-container {
+    padding-bottom: 0;
+  }
+
+  .brand-text {
+    font-size: 1.6rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.6rem;
+  }
+
+  .top-info-bar {
+    padding: 6px 0;
+    font-size: 0.75rem;
+  }
+
+  .info-container {
+    gap: 1rem;
+    padding: 0 0.75rem;
+  }
+
+  .info-text {
+    font-size: 0.75rem;
+  }
+
+  .info-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+  }
+
+  .custom-toggle {
+    padding: 0.6rem !important;
+  }
+
+  .hamburger-line {
+    width: 20px;
+    height: 2.5px;
+  }
+
+  .navbar-collapse-custom {
+    margin-top: 0.75rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .modern-nav-link, .modern-nav-button {
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+  }
+
+  .nav-icon {
+    font-size: 1rem;
+  }
+
+  .connectivity-indicator {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .signal-dot {
+    width: 3px;
+    height: 3px;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .top-info-bar {
+    padding: 4px 0;
+  }
+
+  .info-container {
+    gap: 0.75rem;
+    padding: 0 0.5rem;
+  }
+
+  .info-item .info-text {
+    font-size: 0.7rem;
+    display: none; /* Ocultar texto en pantallas muy pequeñas */
+  }
+
+  .info-icon {
+    width: 18px;
+    height: 18px;
+    font-size: 0.75rem;
+  }
+
+  .brand-container {
+    padding: 0.25rem 0;
+  }
+
+  .brand-text {
+    font-size: 1.4rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.55rem;
+    margin-top: -0.1rem;
+  }
+
+  .custom-toggle {
+    padding: 0.5rem !important;
+  }
+
+  .hamburger-line {
+    width: 18px;
+    height: 2px;
+  }
+
+  .navbar-collapse-custom {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .modern-nav-link, .modern-nav-button {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.9rem;
+  }
+
+  .connectivity-indicator {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.5rem;
+    gap: 0.2rem;
+  }
+
+  .signal-text {
+    display: none; /* Ocultar texto en pantallas muy pequeñas */
+  }
+}
+
+/* Mejoras para el colapso del navbar */
+.navbar-expand-lg .navbar-collapse {
+  display: flex !important;
+  flex-basis: auto;
+}
+
+.navbar-expand-lg .navbar-toggler {
+  display: none;
+}
+
+/* Corregir el comportamiento del menú en móviles */
+@media (max-width: 991.98px) {
+  .navbar-expand-lg .navbar-toggler {
+    display: block !important;
+  }
+
+  .navbar-expand-lg .navbar-collapse {
+    display: none !important;
+  }
+
+  .navbar-expand-lg .navbar-collapse.show {
+    display: block !important;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  /* Asegurar que el menú se oculte correctamente */
+  .navbar-collapse-custom {
+    display: none;
+  }
+
+  .navbar-collapse-custom.show {
+    display: block !important;
+  }
+}
+
+/* Animación de entrada del menú móvil */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mejoras para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+} 
