@@ -1,4 +1,3 @@
-import { Card, Image } from "react-bootstrap";
 import { NavProfiles } from "../components/profile/NavProfiles";
 import { ProfilesRoutes } from "../components/profile/ProfileRoutes";
 import { ContainerProfile } from "../components/profile/StyledComponentsProfile";
@@ -14,60 +13,64 @@ export const Profile = () => {
 
   return (
     <ContainerProfile>
-      <div className="mx-2 px-5 relative z-1 ">
-        <div className="bg-gradient-to-r from-blue-900 to-purple-500 shadow-lg rounded-3xl p-4 text-center relative overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-right opacity-20"
-            style={{
-              backgroundImage: `url("https://res.cloudinary.com/dppqkypts/image/upload/v1702437086/Copia_de_Dise%C3%B1o_sin_t%C3%ADtulo_2_ubzban.svg")`,
-            }}
-          ></div>
+      <div className="mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+          <div className="p-6 sm:p-8">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              {/* Profile Image with Gradient Border */}
+              <div className="relative flex-shrink-0">
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full animate-pulse"></div>
+                <img
+                  className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-gray-800"
+                  src={
+                    user?.tipoUsuario === "Admin"
+                      ? IMG_ADMIN
+                      : user?.urlFoto ||
+                        "https://res.cloudinary.com/dppqkypts/image/upload/v1701901417/Dise%C3%B1o_sin_t%C3%ADtulo_11_r8jfvs.png"
+                  }
+                  alt="User profile"
+                />
+              </div>
 
-          <div className="relative z-10">
-            <h2 className="text-lg font-semibold text-white mb-1">
-              {user?.tipoUsuario === "Admin"
-                ? "Bienvenido, Administrador"
-                : user?.tipoUsuario === "Cliente"
-                ? `¡Bienvenido! ${user?.cliente.nombreCompleto}`
-                : `¡Bienvenido! ${user?.tecnico.nombreCompleto}`}
-            </h2>
-
-            <div className="flex justify-center mb-2">
-              <img
-                src={
-                  user?.tipoUsuario === "Admin"
-                    ? IMG_ADMIN
-                    : user?.urlFoto ||
-                      "https://res.cloudinary.com/dppqkypts/image/upload/v1701901417/Dise%C3%B1o_sin_t%C3%ADtulo_11_r8jfvs.png"
-                }
-                className="w-20 h-20 rounded-full shadow-lg border-4 border-white"
-                alt="User profile"
-              />
-            </div>
-
-            <div className="flex flex-col md:flex-row justify-center items-center gap-3 text-white text-xs font-light mb-4">
-              <p>
-                <span className="font-semibold">Email:</span> {user?.email}
-              </p>
-
-              <p>
-                <span className="font-semibold">
+              {/* User Info */}
+              <div className="text-center sm:text-left flex-grow">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">
                   {user?.tipoUsuario === "Admin"
-                    ? "Cargo:"
-                    : user?.tipoUsuario === "Cliente"
-                    ? "Servicio:"
-                    : "Cargo:"}
-                </span>{" "}
-                {user?.tipoUsuario === "Admin"
-                  ? "Administrador"
-                  : user?.tipoUsuario === "Cliente"
-                  ? "100Mbps fibra óptica"
-                  : "Técnico de soporte"}
-              </p>
+                    ? "Administrador"
+                    : user?.cliente?.nombreCompleto ||
+                      user?.tecnico?.nombreCompleto}
+                </h2>
+                <p className="text-md text-indigo-400 font-medium">
+                  {user?.tipoUsuario === "Cliente"
+                    ? "Cliente de Fibra Óptica"
+                    : "Equipo Prolink"}
+                </p>
+                <p className="mt-2 text-sm text-gray-400 flex items-center justify-center sm:justify-start gap-2">
+                  <i className="bi bi-envelope-fill"></i>
+                  {user?.email}
+                </p>
+              </div>
             </div>
+          </div>
 
-            <div className="text-gray-300 text-xs">
-              Última Conexión: hace un momento
+          {/* Footer with additional info */}
+          <div className="bg-gray-900 px-6 py-3 sm:px-8 sm:py-4">
+            <div className="flex flex-col sm:flex-row justify-between items-center text-xs text-gray-400 gap-2">
+              <p className="flex items-center gap-2">
+                <i className="bi bi-wifi text-green-400"></i>
+                <span>
+                  <span className="font-semibold text-gray-300">
+                    Servicio Contratado:
+                  </span>{" "}
+                  {user?.tipoUsuario === "Cliente"
+                    ? "100Mbps Fibra Óptica"
+                    : "N/A"}
+                </span>
+              </p>
+              <p className="flex items-center gap-2">
+                <i className="bi bi-clock-history"></i>
+                <span>Última Conexión: hace un momento</span>
+              </p>
             </div>
           </div>
         </div>
