@@ -68,6 +68,17 @@ export const NavProfiles = () => {
                 Retiros
               </NavLink>
               <NavLink
+                to="/profile/procesar-facturas"
+                className={({ isActive }) =>
+                  `flex items-center p-3 rounded-lg transition-all duration-200 text-white no-underline ${
+                    isActive ? "bg-gray-700 shadow-lg" : "hover:bg-gray-700"
+                  }`
+                }
+              >
+                <i className="bi bi-emoji-frown-fill mr-2"></i>
+                Procesar facturas
+              </NavLink>
+              <NavLink
                 to="/profile/nodos"
                 className={({ isActive }) =>
                   `flex items-center p-3 rounded-lg transition-all duration-200 text-white no-underline ${

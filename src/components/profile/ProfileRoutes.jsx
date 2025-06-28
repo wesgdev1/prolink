@@ -28,6 +28,7 @@ import { InstalacionForm } from "../instalation/InstalacionForm";
 import { Excustomers } from "./Excustomers";
 import { ExcustomerForm } from "../retiros/ExcustomerForm";
 import { Nodes } from "./Nodes";
+import ProcesarFacturas from "./ProcesarFacturas";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -73,6 +74,7 @@ export const ProfilesRoutes = () => {
         <Route path="edit/" element={<ProfileData />} />
         <Route path="consultas/" element={<Consultas />} />
         <Route path="instalations/" element={<Instalations />} />
+        <Route path="procesar-facturas" element={<ProcesarFacturas />} />
         <Route path="instalations/add" element={<InstalacionForm />} />
         <Route path="instalations/:id" element={<InstalacionForm />} />
         <Route path="retiros/" element={<Excustomers />} />
