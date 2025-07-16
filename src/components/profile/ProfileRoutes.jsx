@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { useContext } from "react";
 import { Blogs } from "./Blogs";
@@ -18,7 +18,6 @@ import { TestComponent } from "./TestComponent";
 import { Facturas } from "./Facturas";
 import { RealTime } from "./RealTime";
 import { Chats } from "./Chats";
-import { Pings } from "./Pings";
 import { PingsTable } from "./PingsTable";
 import { Calendar } from "./Calendar";
 import { ProfileData } from "./ProfileData";
@@ -29,6 +28,9 @@ import { Excustomers } from "./Excustomers";
 import { ExcustomerForm } from "../retiros/ExcustomerForm";
 import { Nodes } from "./Nodes";
 import ProcesarFacturas from "./ProcesarFacturas";
+
+import ServicesForm from "../services/ServicesForm";
+import { Services } from "../services/Services";
 
 export const ProfilesRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -73,6 +75,9 @@ export const ProfilesRoutes = () => {
         <Route path="pings" element={<PingsTable />} />
         <Route path="edit/" element={<ProfileData />} />
         <Route path="consultas/" element={<Consultas />} />
+        <Route path="servicios/" element={<Services />} />
+        <Route path="servicios/add" element={<ServicesForm />} />
+        <Route path="servicios/edit/:id" element={<ServicesForm />} />
         <Route path="instalations/" element={<Instalations />} />
         <Route path="procesar-facturas" element={<ProcesarFacturas />} />
         <Route path="instalations/add" element={<InstalacionForm />} />
