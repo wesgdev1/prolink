@@ -315,154 +315,146 @@ export const ClientesForm = () => {
                   ? "Actualizar datos de usuario"
                   : " Registro de nuevo Cliente"}
               </h3>
-              <div className="d-flex flex-row gap-5  flex-wrap ">
-                <Form.Group
-                  className="flex-grow-1"
-                  controlId="formBasicNombreCompleto"
-                >
-                  <Form.Label>Nombre Completo</Form.Label>
-                  <Form.Control
-                    style={{ width: "70%" }}
-                    type="text"
-                    size="sm"
-                    placeholder="Escibe aqui el nombre completo del usuario"
-                    name="nombreCompleto"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.nombreCompleto}
-                    className={
-                      touched.nombreCompleto && errors.nombreCompleto
-                        ? "is-invalid"
-                        : ""
-                    }
-                  />
-                  <ErrorMessage
-                    name="nombreCompleto"
-                    component="div"
-                    className="invalid-feedback"
-                  />
-                </Form.Group>
-                <Form.Group className="" controlId="formBasicEmail">
-                  <Form.Label>Contrato</Form.Label>
-                  <Form.Control
-                    type="text"
-                    size="sm"
-                    placeholder="Escibe aqui el numero de contrato"
-                    name="numeroContrato"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.numeroContrato}
-                    className={
-                      touched.numeroContrato && errors.numeroContrato
-                        ? "is-invalid"
-                        : ""
-                    }
-                  />
-                  <ErrorMessage
-                    name="numeroContrato"
-                    component="div"
-                    className="invalid-feedback"
-                  />
-                </Form.Group>
-              </div>
-              <div className="d-flex flex-row gap-5  flex-wrap ">
-                <Form.Group className="flex-grow-1" controlId="formBasicEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type="email"
-                    size="sm"
-                    placeholder="Escibe aqui el email del tecnico"
-                    name="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.email}
-                    className={
-                      touched.email && errors.email ? "is-invalid" : ""
-                    }
-                  />
-                  <ErrorMessage
-                    name="email"
-                    component="div"
-                    className="invalid-feedback"
-                  />
-                </Form.Group>
-                <Form.Group
-                  className="flex-grow-1"
-                  controlId="formBasicTelefono"
-                >
-                  <Form.Label>Telefono</Form.Label>
-                  <Form.Control
-                    type="text"
-                    size="sm"
-                    placeholder="Escribe el Telefono del cliente"
-                    name="telefono"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.telefono}
-                    className={
-                      touched.telefono && errors.telefono ? "is-invalid" : ""
-                    }
-                  />
-                  <ErrorMessage
-                    name="telefono"
-                    component="div"
-                    className="invalid-feedback"
-                  />
-                </Form.Group>
-              </div>
-              <div className="d-flex flex-row gap-5  flex-wrap ">
-                <Form.Group className=" " controlId="formBasicProdRef">
-                  <Form.Label>Tipo de documento</Form.Label>
 
-                  <Form.Select
-                    style={{ width: "70%" }}
-                    size="sm"
-                    name="tipoDocumento"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.tipoDocumento}
+              <fieldset
+                style={{
+                  border: "1px solid #ccc",
+                  padding: "20px",
+                  borderRadius: "5px",
+                }}
+              >
+                <legend>Prueba</legend>
+                <div className="d-flex flex-row gap-5  flex-wrap ">
+                  <Form.Group
+                    className="flex-grow-1"
+                    controlId="formBasicNombreCompleto"
                   >
-                    <option value="0">Selecciona el tipo</option>
-                    {tiposDocumento.map((doc) => {
-                      return (
-                        <option key={doc} value={doc}>
-                          {doc}
-                        </option>
-                      );
-                    })}
-                  </Form.Select>
-                  <ErrorMessage
-                    name="tipoDocumento"
-                    component="div"
-                    className="invalid-feedback"
-                  />
-                </Form.Group>
-                <Form.Group
-                  className="flex-grow-1"
-                  controlId="formBasicDocumento"
-                >
-                  <Form.Label>Numero Documento</Form.Label>
-                  <Form.Control
-                    type="text"
-                    size="sm"
-                    placeholder="Escribe el numero de documento"
-                    name="numeroDocumento"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.numeroDocumento}
-                    className={
-                      touched.numeroDocumento && errors.numeroDocumento
-                        ? "is-invalid"
-                        : ""
-                    }
-                  />
-                  <ErrorMessage
-                    name="numeroDocumento"
-                    component="div"
-                    className="invalid-feedback"
-                  />
-                </Form.Group>
-              </div>
+                    <Form.Label>Nombre Completo</Form.Label>
+                    <Form.Control
+                      style={{ width: "70%" }}
+                      type="text"
+                      size="sm"
+                      placeholder="Escibe aqui el nombre completo del usuario"
+                      name="nombreCompleto"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.nombreCompleto}
+                      className={
+                        touched.nombreCompleto && errors.nombreCompleto
+                          ? "is-invalid"
+                          : ""
+                      }
+                    />
+                    <ErrorMessage
+                      name="nombreCompleto"
+                      component="div"
+                      className="invalid-feedback"
+                    />
+                  </Form.Group>
+                </div>
+                <div className="d-flex flex-row gap-5  flex-wrap ">
+                  <Form.Group
+                    className="flex-grow-1"
+                    controlId="formBasicEmail"
+                  >
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      size="sm"
+                      placeholder="Escibe aqui el email del tecnico"
+                      name="email"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.email}
+                      className={
+                        touched.email && errors.email ? "is-invalid" : ""
+                      }
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component="div"
+                      className="invalid-feedback"
+                    />
+                  </Form.Group>
+                  <Form.Group
+                    className="flex-grow-1"
+                    controlId="formBasicTelefono"
+                  >
+                    <Form.Label>Telefono</Form.Label>
+                    <Form.Control
+                      type="text"
+                      size="sm"
+                      placeholder="Escribe el Telefono del cliente"
+                      name="telefono"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.telefono}
+                      className={
+                        touched.telefono && errors.telefono ? "is-invalid" : ""
+                      }
+                    />
+                    <ErrorMessage
+                      name="telefono"
+                      component="div"
+                      className="invalid-feedback"
+                    />
+                  </Form.Group>
+                </div>
+                <div className="d-flex flex-row gap-5  flex-wrap ">
+                  <Form.Group className=" " controlId="formBasicProdRef">
+                    <Form.Label>Tipo de documento</Form.Label>
+
+                    <Form.Select
+                      style={{ width: "70%" }}
+                      size="sm"
+                      name="tipoDocumento"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.tipoDocumento}
+                    >
+                      <option value="0">Selecciona el tipo</option>
+                      {tiposDocumento.map((doc) => {
+                        return (
+                          <option key={doc} value={doc}>
+                            {doc}
+                          </option>
+                        );
+                      })}
+                    </Form.Select>
+                    <ErrorMessage
+                      name="tipoDocumento"
+                      component="div"
+                      className="invalid-feedback"
+                    />
+                  </Form.Group>
+                  <Form.Group
+                    className="flex-grow-1"
+                    controlId="formBasicDocumento"
+                  >
+                    <Form.Label>Numero Documento</Form.Label>
+                    <Form.Control
+                      type="text"
+                      size="sm"
+                      placeholder="Escribe el numero de documento"
+                      name="numeroDocumento"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.numeroDocumento}
+                      className={
+                        touched.numeroDocumento && errors.numeroDocumento
+                          ? "is-invalid"
+                          : ""
+                      }
+                    />
+                    <ErrorMessage
+                      name="numeroDocumento"
+                      component="div"
+                      className="invalid-feedback"
+                    />
+                  </Form.Group>
+                </div>
+              </fieldset>
+
               {/* <Form.Group className="" controlId="formBasicDireccion">
                 <Form.Label>Direccion</Form.Label>
                 <Form.Control
@@ -483,6 +475,29 @@ export const ClientesForm = () => {
                   className="invalid-feedback"
                 />
               </Form.Group> */}
+
+              <Form.Group className="" controlId="formBasicEmail">
+                <Form.Label>Contrato</Form.Label>
+                <Form.Control
+                  type="text"
+                  size="sm"
+                  placeholder="Escibe aqui el numero de contrato"
+                  name="numeroContrato"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.numeroContrato}
+                  className={
+                    touched.numeroContrato && errors.numeroContrato
+                      ? "is-invalid"
+                      : ""
+                  }
+                />
+                <ErrorMessage
+                  name="numeroContrato"
+                  component="div"
+                  className="invalid-feedback"
+                />
+              </Form.Group>
 
               {isLoaded ? (
                 <Form.Group>

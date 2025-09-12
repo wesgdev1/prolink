@@ -16,6 +16,7 @@ export const Excustomers = () => {
   };
 
   const [searchValue, setSearchValue] = useState("");
+  const [searchValueDirection, setSearchValueDirection] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [filtroSelected, setFiltroSelected] = useState("1");
 
@@ -46,6 +47,21 @@ export const Excustomers = () => {
     }
   };
 
+  const onSearchDirection = (e) => {
+    if (e.key === "Enter" && e.target.value !== "") {
+      console.log("entre aqui");
+      e.preventDefault();
+      const filter = data.filter((instalacion) => {
+        return instalacion.address
+          .toLowerCase()
+          .includes(searchValueDirection.toLowerCase());
+      });
+      setFilteredData(filter);
+      setNotificacion(filter.length === 0);
+      setSearchValueDirection("");
+    }
+  };
+
   const handleFiltro = (e) => {
     if (e.target.value === "1") {
       const filter = data.filter((soporte) => {
@@ -73,7 +89,7 @@ export const Excustomers = () => {
       <h4 className="pb-3">
         <i className="bi bi-book-half"></i> Retiros programados
       </h4>
-      <MapsClients clientesPendientes={clientesPendientes} />
+      {/* <MapsClients clientesPendientes={clientesPendientes} /> */}
       <div className="d-flex justify-content-end">
         <ButtonProfile onClick={handleClick}>Agendar retiro</ButtonProfile>
       </div>
@@ -87,6 +103,17 @@ export const Excustomers = () => {
             onChange={handleInputChange}
             onKeyDown={onSearch}
             value={searchValue}
+          />
+        </div>
+        <div style={{ width: "30%" }}>
+          <Form.Control
+            type="search"
+            size="sm"
+            placeholder="Buscar por Direccion"
+            aria-label="Search"
+            onChange={(e) => setSearchValueDirection(e.target.value)}
+            onKeyDown={onSearchDirection}
+            value={searchValueDirection}
           />
         </div>
         <div className="d-flex gap-2">
