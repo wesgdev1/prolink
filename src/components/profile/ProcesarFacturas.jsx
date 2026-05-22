@@ -82,11 +82,12 @@ const ProcesarFacturas = () => {
 
         // Extraer texto y buscar nombre
         const text = await extractTextFromPage(newPdfBytes);
+        console.log("TEXTO EXTRAÍDO PÁGINA", pageNum, text);
         // const nameMatch = text.match(
         //   /Señores\s+([A-ZÁÉÍÓÚÑ\s]+?)(?=\s*(NIT|Teléfono|Dirección|Cédula|Ciudad|Local|$))/i
         // );
         const nameMatch = text.match(
-          /Cliente\s+Raz[oó]n social:\s*([A-ZÁÉÍÓÚÑ\s]+?)(?=\s*(NIT:|Direcci[oó]n:|Tel[eé]fonos:|Email:|$))/i
+          /Raz[oó]n social:\s*PROLINK COMUNICACIONES SAS\s+(.+?)\s+Raz[oó]n social:/i
         );
         const editableName =
           nameMatch && nameMatch[1]
@@ -166,7 +167,7 @@ const ProcesarFacturas = () => {
         <div className="card-header bg-dark text-white">
           <h3 className="mb-0">
             <i className="bi bi-file-earmark-zip-fill me-2"></i>
-            Procesador de Facturas Prolink
+            Procesador de Facturas Prolink -tns
           </h3>
         </div>
         <div className="card-body">
