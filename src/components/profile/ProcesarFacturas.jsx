@@ -82,8 +82,11 @@ const ProcesarFacturas = () => {
 
         // Extraer texto y buscar nombre
         const text = await extractTextFromPage(newPdfBytes);
+        // const nameMatch = text.match(
+        //   /Señores\s+([A-ZÁÉÍÓÚÑ\s]+?)(?=\s*(NIT|Teléfono|Dirección|Cédula|Ciudad|Local|$))/i
+        // );
         const nameMatch = text.match(
-          /Señores\s+([A-ZÁÉÍÓÚÑ\s]+?)(?=\s*(NIT|Teléfono|Dirección|Cédula|Ciudad|Local|$))/i
+          /Cliente\s+Raz[oó]n social:\s*([A-ZÁÉÍÓÚÑ\s]+?)(?=\s*(NIT:|Direcci[oó]n:|Tel[eé]fonos:|Email:|$))/i
         );
         const editableName =
           nameMatch && nameMatch[1]
